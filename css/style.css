@@ -424,7 +424,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .uplanet:hover .uplanet__art { scale: 1.06; }
 .member__link { position: relative; display: inline-flex; align-items: center; gap: 5px; color: inherit; text-decoration: none; transition: color .3s; }
 .member__link::after { content: ""; position: absolute; inset: -8px -4px; }   /* bigger tap area without shifting layout */
-.member__link svg { width: 11px; height: 11px; fill: currentColor; opacity: .55; transition: opacity .3s; }
+.member__link svg { width: 14px; height: 14px; fill: currentColor; opacity: .7; transition: opacity .3s; }
 .member__link:hover, .member__link:focus-visible { color: var(--cream); }
 .member__link:hover svg, .member__link:focus-visible svg { opacity: 1; }
 .uplanet__art svg { position: absolute; inset: -27%; width: 154%; height: 154%; overflow: visible; }
