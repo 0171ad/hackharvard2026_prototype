@@ -508,7 +508,7 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
 }
 .moonlock { display: grid; justify-items: center; width: max-content; max-width: 100%; margin: 0 auto; font: 400 clamp(76px, 15vw, 220px)/.78 var(--serif); color: var(--yellow); }
 /* solar system behind the FAQ: planet-scale, the sun half off the right edge, dim enough to read over */
-.sol { right: -55vw; top: 26%; width: 110vw; height: auto; overflow: visible; opacity: .55; }
+.sol { right: -55vw; top: 26%; width: 110vw; height: auto; overflow: visible; }
 .sol__orbit { fill: none; stroke: var(--text); stroke-opacity: .16; stroke-width: 1; stroke-dasharray: 2 6; vector-effect: non-scaling-stroke; }
 .sol__spin { transform-origin: 0 0; animation: spin var(--t) linear infinite; animation-delay: var(--d); }
 .sol__keep { transform-box: fill-box; transform-origin: center; animation: spin var(--t) linear infinite reverse; animation-delay: var(--d); }
@@ -662,7 +662,7 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .btn--closed { padding: 14px 30px; font-size: 16px; }
   .deco--ribbons { width: 120vw; opacity: .3; }
   .deco--park { width: 150vw; left: -25vw; bottom: -41vw; opacity: .35; }   /* island sits in the gap under the track list */
-  .sol { width: 170vw; right: -85vw; top: 40%; opacity: .45; }
+  .sol { width: 170vw; right: -85vw; top: 40%; }
   .deco--island { width: 30vw; top: auto; bottom: -20px; }
   .deco--island-steps { right: -6vw; }
   .deco--island-dome { left: -6vw; }
