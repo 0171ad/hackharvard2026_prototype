@@ -314,6 +314,46 @@
     tick(); setInterval(tick, 1000);
   };
 
+  /* ------------------------------- Hero logo: chromatic split that follows the pointer/scroll */
+  const logoFx = () => {
+    const wrap = $('[data-logo-fx]');
+    if (!wrap) return;
+    const logo = $('.lockup', wrap);
+    const ghosts = ['is-m', 'is-t'].map(cls => {
+      const g = logo.cloneNode(true);
+      g.classList.add('lockup--ghost', cls);
+      g.style.cssText = 'position:absolute;inset:0;z-index:-1;pointer-events:none';   // stays layered even with a stale stylesheet
+      g.removeAttribute('aria-label');
+      g.setAttribute('aria-hidden', 'true');
+      $$('.spark', g).forEach(s => s.remove());
+      wrap.insertBefore(g, logo);
+      return g;
+    });
+    const set = (x, y) => ghosts.forEach((g, k) => {
+      const s = k ? -1 : 1;
+      g.style.setProperty('--gx', (x * s).toFixed(2) + 'px');
+      g.style.setProperty('--gy', (y * s).toFixed(2) + 'px');
+    });
+    const REST = 2.2;                                     // a slight split even at rest
+    if (reduceMotion) return set(REST, 0);
+
+    let px = 0, py = 0, cx = 0, cy = 0, kick = 0, lastY = scrollY, visible = true, raf = 0;
+    const loop = () => {
+      raf = 0;
+      kick *= .9;
+      cx += (px - cx) * .08; cy += (py - cy) * .08;
+      set(REST + cx * 9 + kick, cy * 7 + kick * .35);
+      if (visible && (Math.abs(px - cx) > .002 || Math.abs(py - cy) > .002 || Math.abs(kick) > .05)) raf = requestAnimationFrame(loop);
+    };
+    const go = () => { if (!raf && visible) raf = requestAnimationFrame(loop); };
+    addEventListener('pointermove', e => { px = e.clientX / innerWidth - .5; py = e.clientY / innerHeight - .5; go(); }, { passive: true });
+    addEventListener('scroll', () => {                    // the split widens briefly with scroll speed
+      kick = Math.max(-14, Math.min(14, kick + (scrollY - lastY) * .25)); lastY = scrollY; go();
+    }, { passive: true });
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; go(); }).observe(wrap);
+    set(REST, 0);
+  };
+
   /* ------------------------------------------------ Fit the HackHarvard lockup */
   const fitLockups = () => {
     const textWidth = el => { const r = document.createRange(); r.selectNodeContents(el); return r.getBoundingClientRect().width; };
@@ -610,6 +650,7 @@
     });
   };
 
+  logoFx();
   fitLockups();
   loader();
   starfield();

@@ -194,6 +194,28 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   -webkit-mask: url("../assets/img/h-mark.png") center / contain no-repeat;
           mask: url("../assets/img/h-mark.png") center / contain no-repeat;
 }
+/* ---- logo effects: chromatic split (10), spark from the loader (7), twinkling star (3) ---- */
+.lockup-fx { position: relative; isolation: isolate; }
+.lockup--ghost { position: absolute; inset: 0; z-index: -1; pointer-events: none; filter: none; mix-blend-mode: screen; opacity: .7;
+  translate: var(--gx, 0px) var(--gy, 0px); }
+.lockup--ghost.is-m { color: var(--magenta); }
+.lockup--ghost.is-t { color: #00c2b8; }
+.lockup__markwrap { position: relative; display: block; flex: none; }
+.lockup__markwrap .lockup__mark { display: block; }
+.spark { position: absolute; left: 93.77%; top: 50.33%; width: calc(var(--mark-h, 1.5em) * .29);  /* measured from h-mark.png */ aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
+.spark svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.spark__star { fill: #fff6c2; filter: drop-shadow(0 0 2px rgba(255, 221, 0, .8)); transform-origin: 0 0; scale: 0; }
+.spark__rays line { stroke: var(--yellow); stroke-width: 2; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.spark__rays { transform-origin: 0 0; opacity: 0; }
+.spark__ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--yellow); opacity: 0; }
+.is-ready .spark__star { animation: sparkPop .9s var(--ease) .35s both, sparkTwinkle 4.5s ease-in-out 2.4s infinite; }
+.is-ready .spark__rays { animation: sparkRays 1.1s var(--ease) .4s both, sparkRaysTwinkle 4.5s ease-in-out 2.4s infinite; }
+.is-ready .spark__ring { animation: sparkRing 1.2s var(--ease) .4s both; }
+@keyframes sparkPop { 0% { scale: 0; rotate: -90deg; } 45% { scale: 2.4; rotate: 0deg; } 100% { scale: 1; rotate: 0deg; } }
+@keyframes sparkRays { 0% { opacity: 1; scale: .2; } 60% { opacity: .9; } 100% { opacity: 0; scale: 1.7; } }
+@keyframes sparkRing { 0% { opacity: .9; scale: .1; } 100% { opacity: 0; scale: 3.2; } }
+@keyframes sparkTwinkle { 0%, 70%, 100% { scale: 1; rotate: 0deg; } 80% { scale: 1.6; rotate: 45deg; } 90% { scale: .9; rotate: 90deg; } }
+@keyframes sparkRaysTwinkle { 0%, 72%, 100% { opacity: 0; scale: .5; } 82% { opacity: .8; scale: 1.1; } 94% { opacity: 0; scale: 1.4; } }
 .lockup__text { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
 .lockup__line { display: block; overflow: hidden; padding: .04em .08em 0 0; }
 .lockup__line > * { display: inline-block; }
@@ -543,6 +565,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .spark__star { scale: 1 !important; animation: none !important; }
+  .spark__rays, .spark__ring { display: none; }
   .team__row { overflow-x: auto; }
   .team__track { animation: none !important; }
   .tstar__art svg { animation: none !important; }

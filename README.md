@@ -11,6 +11,10 @@ python3 -m http.server 5173
 # open http://localhost:5173
 ```
 
+## Caching
+
+`index.html` loads `css/style.css?v=…` and `js/main.js?v=…`. Bump the `v=` value whenever you change CSS or JS so browsers fetch the new files.
+
 ## Structure
 
 | Path | What |

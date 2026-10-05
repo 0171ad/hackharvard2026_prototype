@@ -14,7 +14,7 @@
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20261005i" />
 </head>
 <body class="is-loading">
 
@@ -61,13 +61,25 @@
 
       <div class="hero__copy">
         <!-- Main lockup: H mark + HACK / HARVARD (italic) -->
-        <h1 class="lockup" aria-label="HackHarvard">
-          <span class="lockup__mark" aria-hidden="true"></span>
-          <span class="lockup__text">
-            <span class="lockup__line"><span style="--d:.2s">HACK</span></span>
-            <span class="lockup__line"><em style="--d:.32s">HARVARD</em></span>
-          </span>
-        </h1>
+        <!-- Main lockup + effects: chromatic split ghosts (added in JS) and a sparkle on the H mark's star -->
+        <div class="lockup-fx" data-logo-fx>
+          <h1 class="lockup" aria-label="HackHarvard">
+            <span class="lockup__markwrap">
+              <span class="lockup__mark" aria-hidden="true"></span>
+              <span class="spark" aria-hidden="true">
+                <span class="spark__ring"></span>
+                <svg viewBox="-50 -50 100 100">
+                  <g class="spark__rays"><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(0)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(45)"/><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(90)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(135)"/><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(180)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(225)"/><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(270)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(315)"/></g>
+                  <path class="spark__star" d="M0 -26Q-1.5 -1.5 26 0Q-1.5 1.5 0 26Q1.5 1.5 -26 0Q1.5 -1.5 0 -26Z"/>
+                </svg>
+              </span>
+            </span>
+            <span class="lockup__text">
+              <span class="lockup__line"><span>HACK</span></span>
+              <span class="lockup__line"><em>HARVARD</em></span>
+            </span>
+          </h1>
+        </div>
         <p class="hero__date">October 16–18, 2026 <span>·</span> Cambridge, MA</p>
         <div class="hero__cta">
           <a class="btn" href="https://portal.hackharvard.io">Apply</a>
@@ -373,6 +385,6 @@
     </footer>
   </main>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=20261005i" defer></script>
 </body>
 </html>
