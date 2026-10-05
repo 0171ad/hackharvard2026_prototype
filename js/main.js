@@ -574,7 +574,7 @@
   /* ------------------------------------------------------ Sponsor logo glow */
   const logoGlow = () => {
     if (!finePointer) return;
-    $$('.logo, .site').forEach(l => l.addEventListener('pointermove', e => {
+    $$('.logo, .site, .sponsor-cta').forEach(l => l.addEventListener('pointermove', e => {
       const r = l.getBoundingClientRect();
       l.style.setProperty('--mx', e.clientX - r.left + 'px');
       l.style.setProperty('--my', e.clientY - r.top + 'px');
