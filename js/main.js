@@ -37,7 +37,7 @@
     ['Luna', 'Yin', 'Co-Director', 'assets/img/team/luna.jpg'], ['Ian', 'Park', 'Co-Director', 'assets/img/team/ian.jpg'],
     ['Andy', 'Dieu', 'Director of Finance', 'assets/img/team/andy.jpg'], ['Chi', 'Le', 'Director of Design', 'assets/img/team/chi.jpg'],
     ['Kelly', 'Olmos', 'Director of Logistics & HX', 'assets/img/team/kelly.jpg'],
-    ['Jaden', 'Zhang', 'Co-Director of Engineering', 'assets/img/team/jaden.jpg'],
+    ['Jaden', 'Zhang', 'Director of Engineering', 'assets/img/team/jaden.jpg'],
     // everyone else (carousel)
     ['Alyssa', 'Kang', 'Finance', 'assets/img/team/alyssa.jpg'], ['Athena', 'Zhou', 'Finance', 'assets/img/team/athena.jpg'],
     ['Smera', 'Sachin', 'Finance', 'assets/img/team/smera.jpg'], ['Shiwaum', 'Khera', 'Finance', 'assets/img/team/shiwaum.jpg'],
