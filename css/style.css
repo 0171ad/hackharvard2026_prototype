@@ -471,7 +471,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sched__day time { font: italic 500 13px/1.35 var(--sans); color: var(--muted); font-variant-numeric: tabular-nums; }
 .sched__day b { display: block; font: 500 16px/1.3 var(--sans); }
 .sched__day li span { display: block; margin-top: 3px; font-size: 13px; color: var(--muted); }
-.sched__day li.is-key b, .sched__day li.is-key time { color: var(--yellow); }
+.sched__day li.is-key b, .sched__day li.is-key time,
+.sched__day--key li b, .sched__day--key li time, .sched__day--key h3 { color: var(--yellow); }   /* yellow = must be at the venue */
+.schedule__legend { display: flex; align-items: center; gap: 10px; margin: 0; font: italic 500 13px/1.3 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--yellow); }
+.schedule__legend i { flex: none; width: 9px; height: 13px; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); background: var(--yellow); }
 
 /* ---------- FAQ ---------- */
 .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
@@ -621,6 +624,8 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .section { overflow-x: clip; }
   .sched { grid-template-columns: 1fr; }
   .schedule__head { justify-content: center; }
+  .schedule__legend { display: block; text-align: center; letter-spacing: .12em; }
+  .schedule__legend i { display: inline-block; margin-right: 8px; vertical-align: -1px; }
   .sched__day { text-align: left; }
   .section, .title { text-align: center; }
   .about { justify-items: center; }
