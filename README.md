@@ -45,7 +45,7 @@ Check changes at desktop width and at 375px (no horizontal scroll), with a clean
 
 ## Editing common things
 
-- **Team:** `TEAM` in `js/main.js`, as `[first, last, title, photo?]`. The first `FEATURED_COUNT` (7) are directors. Photos are square crops at `assets/img/team/<first>.jpg`. `LEADS` maps each director to the titles they lead.
+- **Team:** `TEAM` in `js/main.js`, as `[first, last, title, photo?]`. The first `FEATURED_COUNT` (6) are directors. Photos are square crops at `assets/img/team/<first>.jpg`. `LEADS` maps each director to the titles they lead.
 - **Event date:** `EVENT_START` in `js/main.js`.
 - **Tracks:** the `TRACKS` array in `js/main.js` (one satellite module per track).
 - **Sponsors:** add a transparent PNG/SVG to `assets/img/sponsors/` and a `.logo` entry in `#sponsors`, highest tier first. CSS tints logos white.

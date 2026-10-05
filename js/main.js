@@ -26,13 +26,13 @@
   ];
 
   // Team roster. The first FEATURED_COUNT people get a featured nova; the rest scroll as stars. Format: [first, last, title, photo (optional, e.g. 'assets/img/team/avery.jpg')]
-  const FEATURED_COUNT = 7;
+  const FEATURED_COUNT = 6;
   const TEAM = [
     // directors (featured novas, in this order)
     ['Luna', 'Yin', 'Co-Director', 'assets/img/team/luna.jpg'], ['Ian', 'Park', 'Co-Director', 'assets/img/team/ian.jpg'],
     ['Andy', 'Dieu', 'Director of Finance', 'assets/img/team/andy.jpg'], ['Chi', 'Le', 'Director of Design', 'assets/img/team/chi.jpg'],
     ['Kelly', 'Olmos', 'Director of Logistics & HX', 'assets/img/team/kelly.jpg'],
-    ['Jaden', 'Zhang', 'Co-Director of Engineering', 'assets/img/team/jaden.jpg'], ['Eric', 'Xu', 'Co-Director of Engineering', 'assets/img/team/eric.jpg'],
+    ['Jaden', 'Zhang', 'Co-Director of Engineering', 'assets/img/team/jaden.jpg'],
     // everyone else (carousel)
     ['Alyssa', 'Kang', 'Finance', 'assets/img/team/alyssa.jpg'], ['Athena', 'Zhou', 'Finance', 'assets/img/team/athena.jpg'],
     ['Smera', 'Sachin', 'Finance', 'assets/img/team/smera.jpg'], ['Shiwaum', 'Khera', 'Finance', 'assets/img/team/shiwaum.jpg'],
@@ -47,10 +47,10 @@
     ['Ellen', 'Wang', 'Hacker Experience', 'assets/img/team/ellen.jpg'],
     ['Neeraja', 'Kumar', 'Marketing & Design'], ['Hector', 'Montellano-Bahena', 'Marketing & Design', 'assets/img/team/hector.jpg'],
     ['Sophia', 'Liu', 'Technology'], ['Iban', 'Palomanes', 'Technology', 'assets/img/team/iban.jpg'],
-    ['Joe', 'Liang', 'Technology', 'assets/img/team/joe.jpg'],
+    ['Joe', 'Liang', 'Technology', 'assets/img/team/joe.jpg'], ['Eric', 'Xu', 'Technology', 'assets/img/team/eric.jpg'],
   ];
   // Which member titles each director leads, in TEAM order (null = the whole team). Hovering a director filters the carousel.
-  const LEADS = [null, null, ['Finance'], ['Marketing & Design'], ['Logistics', 'Hacker Experience'], ['Technology'], ['Technology']];
+  const LEADS = [null, null, ['Finance'], ['Marketing & Design'], ['Logistics', 'Hacker Experience'], ['Technology']];
 
   /* ---------------------------------------------------------------- Loader */
   // Beams of light draw out and spin, a small star spins up into the supernova,
