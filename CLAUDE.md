@@ -87,3 +87,7 @@ Open http://localhost:5173 and check the changed section at desktop and 375px. M
 ## ✦ Code style
 
 Match `main.js`: terse arrow functions, `const`, 2-space indent, short `//` comments only where intent isn't obvious. Keep each feature inside its own `/* ---- */` block.
+
+## ✦ Commit cadence
+
+**Every 3 user prompts, commit and push everything** (`git add -A`, a short descriptive message, `git push` to `main`) without asking. Count prompts within the session; before committing, check that the cache version is bumped if CSS/JS changed.

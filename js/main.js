@@ -551,8 +551,9 @@
 
     // Everyone else: a simpler star per person
     const GLOWS = ['#ffdd00', '#ff0aa8', '#7dffaa', '#5686bb', '#fecd6d', '#e0e14f'];
-    const starSVG = k => {
-      const c = GLOWS[k % GLOWS.length], id = `ts${k % GLOWS.length}`;
+    // each star gets its own gradient id; shared ids only resolve for the first cards that define them
+    const starSVG = (k, copy) => {
+      const c = GLOWS[k % GLOWS.length], id = `ts${copy}-${k}`;
       return `<svg viewBox="-50 -50 100 100" aria-hidden="true">
         <defs><radialGradient id="${id}"><stop offset="0" stop-color="#f2e9b0"/><stop offset=".45" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient></defs>
         <path d="M0 -36Q5 -5 36 0Q5 5 0 36Q-5 5 -36 0Q-5 -5 0 -36Z" fill="url(#${id})" opacity=".55" transform="rotate(45)"/>
@@ -567,14 +568,14 @@
       return `<figure class="uplanet" tabindex="0" data-lead="${i}"><div class="uplanet__art">${bigStarSVG(FEATURED[i], i)}${face(name, photo)}</div>${caption(name, title)}</figure>`;
     }).join('');
 
-    const cards = TEAM.slice(FEATURED_COUNT).map(([first, last, title, photo], k) => {
+    const cards = copy => TEAM.slice(FEATURED_COUNT).map(([first, last, title, photo], k) => {
       const name = `${esc(first)} ${esc(last)}`;
-      return `<figure class="tstar" data-title="${esc(title)}" style="--glow:${GLOWS[k % GLOWS.length]};--delay:${-(k % 5) * .8}s"><div class="tstar__art">${starSVG(k)}${face(name, photo)}</div>${caption(name, title)}</figure>`;
+      return `<figure class="tstar" data-title="${esc(title)}" style="--glow:${GLOWS[k % GLOWS.length]};--delay:${-(k % 5) * .8}s"><div class="tstar__art">${starSVG(k, copy)}${face(name, photo)}</div>${caption(name, title)}</figure>`;
     }).join('');
     const row = document.createElement('div');
     row.className = 'team__row';
     // the list is repeated once so the loop is seamless; the copy is hidden from screen readers
-    row.innerHTML = `<div class="team__track">${cards}<div style="display:contents" aria-hidden="true">${cards}</div></div>`;
+    row.innerHTML = `<div class="team__track">${cards(0)}<div style="display:contents" aria-hidden="true">${cards(1)}</div></div>`;
 
     host.append(featured, row);
 
