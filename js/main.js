@@ -150,10 +150,13 @@
     let trail = [];                      // recent cursor points (canvas px) for the shooting-star tail
     const TAIL_MS = 380;
 
+    let lastW = 0;
     const resize = () => {
       dpr = Math.min(devicePixelRatio || 1, 2);
-      w = canvas.width = innerWidth * dpr;
       h = canvas.height = innerHeight * dpr;
+      if (innerWidth === lastW && stars.length) return;    // height-only change (mobile toolbar): keep the field
+      lastW = innerWidth;
+      w = canvas.width = innerWidth * dpr;
       const n = Math.round((innerWidth * innerHeight) / 4200);
       stars = Array.from({ length: n }, () => ({
         x: Math.random() * w, y: Math.random() * h,
@@ -421,11 +424,14 @@
 
     let active = -1, rot = 0, target = 0, dragging = false, lastInteract = 0;
 
+    let raf = 0;
+    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
     const select = i => {
       i = ((i % TRACKS.length) + TRACKS.length) % TRACKS.length;
       // rotate the shortest way so the chosen pavilion sits on the right, next to the info panel
       const base = -i * STEP;
       target = base + 360 * Math.round((target - base) / 360);
+      kick();
       if (i === active) return;
       active = i;
       modules.forEach((m, k) => m.classList.toggle('is-active', k === i));
@@ -458,7 +464,7 @@
       const a = angleAt(e);
       let da = a - prevA; if (da > 180) da -= 360; if (da < -180) da += 360;
       prevA = a; moved += Math.abs(da); vel = da;
-      rot += da; target = rot;
+      rot += da; target = rot; kick();
     });
     const end = e => {
       if (!dragging) return;
@@ -481,15 +487,17 @@
       if (visible && !dragging && performance.now() - lastInteract > 7000) select(active + 1);
     }, 4200);
 
-    const loop = () => {
+    function loop() {
+      raf = 0;
       if (!dragging) rot += (target - rot) * (reduceMotion ? 1 : 0.08);
+      if (!dragging && Math.abs(target - rot) < .02) rot = target;
       rig.setAttribute('transform', `rotate(${rot.toFixed(2)})`);
       modules.forEach((m, i) => {
         const a = (rot + i * STEP) * Math.PI / 180;
         m.setAttribute('transform', `translate(${(R * Math.cos(a)).toFixed(1)} ${(R * Math.sin(a)).toFixed(1)})`);
       });
-      requestAnimationFrame(loop);
-    };
+      if (dragging || rot !== target) kick();             // idle once settled — no per-frame work
+    }
     select(0); rot = target; loop();
   };
 
