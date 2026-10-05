@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-320 -320 640 640" width="640" height="640">
+<defs>
+<radialGradient id="rose-halo" r=".5"><stop offset="0.6" stop-color="#ff0aa8" stop-opacity="0.35"/><stop offset="0.8" stop-color="#ff0aa8" stop-opacity="0.1"/><stop offset="1" stop-color="#ff0aa8" stop-opacity="0"/></radialGradient>
+<radialGradient id="rose-body" cx=".42" cy=".4" r=".62"><stop offset="0" stop-color="#f2e9b0"/><stop offset="0.22" stop-color="#fecd6d"/><stop offset="0.52" stop-color="#ff0aa8"/><stop offset="0.8" stop-color="#ff0aa8"/><stop offset="0.92" stop-color="#0ca550"/><stop offset="1" stop-color="#0b4a9a"/></radialGradient>
+<linearGradient id="rose-ring" x1="0" x2="1"><stop offset="0" stop-color="#0ca550"/><stop offset="0.5" stop-color="#0a0f1c"/><stop offset="1" stop-color="#ff0aa8"/></linearGradient>
+<clipPath id="rose-front"><rect x="-320" y="0" width="640" height="320"/></clipPath>
+</defs>
+<circle r="320" fill="url(#rose-halo)"/>
+<g transform="rotate(-24)"><ellipse rx="292" ry="58" fill="none" stroke="url(#rose-ring)" stroke-width="16" stroke-linecap="round" opacity=".9"/></g>
+<circle r="200" fill="url(#rose-body)"/>
+<g transform="rotate(-24)" clip-path="url(#rose-front)"><ellipse rx="292" ry="58" fill="none" stroke="url(#rose-ring)" stroke-width="16"/></g>
+</svg>

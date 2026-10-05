@@ -15,7 +15,7 @@
       <stop offset="0" stop-color="#f2e9b0"/><stop offset=".6" stop-color="#fecd6d"/><stop offset="1" stop-color="#ff0aa8"/>
     </linearGradient>
     <linearGradient id="jh-hair" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#5b1030"/><stop offset="1" stop-color="#13111a"/>
+      <stop offset="0" stop-color="#5b1030"/><stop offset="1" stop-color="#0a0f1c"/>
     </linearGradient>
     <linearGradient id="jh-chair" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0" stop-color="#ff0aa8"/><stop offset=".35" stop-color="#f2e9b0"/>
@@ -112,8 +112,8 @@
     <rect x="198" y="402" width="36" height="9" fill="#f2e9b0" opacity=".7"/>
     <rect x="283" y="402" width="34" height="9" fill="#f2e9b0" opacity=".7"/>
     <!-- buckled shoes -->
-    <path d="M186 462Q186 478 214 480L240 480Q244 466 232 462Z" fill="#13111a"/>
-    <path d="M280 452Q280 466 302 468L324 468Q326 456 316 452Z" fill="#13111a"/>
+    <path d="M186 462Q186 478 214 480L240 480Q244 466 232 462Z" fill="#0a0f1c"/>
+    <path d="M280 452Q280 466 302 468L324 468Q326 456 316 452Z" fill="#0a0f1c"/>
     <rect x="211" y="465" width="9" height="8" fill="none" stroke="#ffdd00" stroke-width="2"/>
     <rect x="297" y="455" width="9" height="8" fill="none" stroke="#ffdd00" stroke-width="2"/>
 

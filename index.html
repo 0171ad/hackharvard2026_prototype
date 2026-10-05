@@ -14,7 +14,7 @@
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20261005i" />
+  <link rel="stylesheet" href="css/style.css?v=20261005o" />
 </head>
 <body class="is-loading">
 
@@ -40,7 +40,7 @@
         <a href="#team">Team</a>
       </nav>
       <div class="phase" title="Scroll progress" aria-hidden="true"><span class="phase__shadow"></span></div>
-      <a class="btn btn--small" href="https://portal.hackharvard.io">Apply</a>
+      <a class="btn btn--small" href="https://portal.hackharvard.io">Portal</a>
       <button class="nav__burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </header>
@@ -48,7 +48,7 @@
   <div class="menu" aria-hidden="true">
     <a href="#about">About</a><a href="#tracks">Tracks</a><a href="#sponsors">Sponsors</a>
     <a href="#schedule">Schedule</a><a href="#faq">FAQ</a><a href="#global">Global</a><a href="#team">Team</a>
-    <a class="btn" href="https://portal.hackharvard.io">Apply</a>
+    <a class="btn" href="https://portal.hackharvard.io">Portal</a>
   </div>
 
   <main id="top">
@@ -60,29 +60,26 @@
       </div>
 
       <div class="hero__copy">
-        <!-- Main lockup: H mark + HACK / HARVARD (italic) -->
-        <!-- Main lockup + effects: chromatic split ghosts (added in JS) and a sparkle on the H mark's star -->
-        <div class="lockup-fx" data-logo-fx>
-          <h1 class="lockup" aria-label="HackHarvard">
-            <span class="lockup__markwrap">
-              <span class="lockup__mark" aria-hidden="true"></span>
-              <span class="spark" aria-hidden="true">
-                <span class="spark__ring"></span>
-                <svg viewBox="-50 -50 100 100">
-                  <g class="spark__rays"><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(0)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(45)"/><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(90)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(135)"/><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(180)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(225)"/><line x1="0" y1="-14" x2="0" y2="-40" transform="rotate(270)"/><line x1="0" y1="-14" x2="0" y2="-30" transform="rotate(315)"/></g>
-                  <path class="spark__star" d="M0 -26Q-1.5 -1.5 26 0Q-1.5 1.5 0 26Q1.5 1.5 -26 0Q1.5 -1.5 0 -26Z"/>
-                </svg>
-              </span>
+        <!-- Main lockup: H mark (with the brand's sparkle star) + HACK / HARVARD (italic) -->
+        <h1 class="lockup" aria-label="HackHarvard">
+          <span class="lockup__markwrap">
+            <span class="lockup__mark" aria-hidden="true"></span>
+            <span class="spark" aria-hidden="true">
+              <span class="spark__ring"></span>
+              <svg viewBox="-50 -50 100 100">
+                <g class="spark__star"><path class="spark__gap" d="M0 -21Q5 -5 21 0Q5 5 0 21Q-5 5 -21 0Q-5 -5 0 -21Z"/><path d="M0 -21Q5 -5 21 0Q5 5 0 21Q-5 5 -21 0Q-5 -5 0 -21Z"/></g>
+                <path class="spark__glint" d="M0 -46Q1 -6 3 -3Q6 -1 46 0Q6 1 3 3Q1 6 0 46Q-1 6 -3 3Q-6 1 -46 0Q-6 -1 -3 -3Q-1 -6 0 -46Z"/>
+              </svg>
             </span>
-            <span class="lockup__text">
-              <span class="lockup__line"><span>HACK</span></span>
-              <span class="lockup__line"><em>HARVARD</em></span>
-            </span>
-          </h1>
-        </div>
+          </span>
+          <span class="lockup__text">
+            <span class="lockup__line"><span>HACK</span></span>
+            <span class="lockup__line"><em>HARVARD</em></span>
+          </span>
+        </h1>
         <p class="hero__date">October 16–18, 2026 <span>·</span> Cambridge, MA</p>
         <div class="hero__cta">
-          <a class="btn" href="https://portal.hackharvard.io">Apply</a>
+          <span class="btn btn--closed">Applications closed</span>
         </div>
         <div class="countdown" aria-label="Countdown to HackHarvard">
           <div><b data-cd="d">00</b><span>days</span></div>
@@ -112,10 +109,14 @@
       <img class="deco deco--tower" data-depth=".05" src="assets/svg/utopia-tower.svg" alt="" aria-hidden="true" />
       <img class="deco deco--orb-about" data-depth="-.2" src="assets/svg/orb-secondary.svg" alt="" aria-hidden="true" />
 
-      <h2 class="wordmark reveal" aria-label="Hack to the Moon">
-        <span class="line"><span>HACK</span></span>
-        <span class="ribbon">to the</span>
-        <span class="line"><span>MOON</span></span>
+      <!-- HACK to the MOON lockup (same component as the footer) -->
+      <h2 class="moonlock reveal" aria-label="Hack to the Moon">
+        <span class="moonlock__word" aria-hidden="true">HACK</span>
+        <span class="moonlock__mid" aria-hidden="true">
+          <span class="btn moonlock__tag">to the</span>
+          <img class="moonlock__rocket" src="assets/svg/rocket.svg" alt="" />
+        </span>
+        <span class="moonlock__word" aria-hidden="true">MOON</span>
       </h2>
 
       <!-- About copy set inside a utopian Greek temple standing on a podium -->
@@ -178,7 +179,7 @@
               <linearGradient id="m3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5686bb"/><stop offset="1" stop-color="#0b4a9a"/></linearGradient>
               <linearGradient id="m4" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7dffaa"/><stop offset="1" stop-color="#0ca550"/></linearGradient>
               <mask id="satLogo" maskContentUnits="userSpaceOnUse">
-                <image href="assets/img/h-mark.png" x="-34" y="-35" width="68" height="70" />
+                <image href="assets/img/h-mark.svg" x="-31.5" y="-35" width="63" height="70" />
               </mask>
             </defs>
             <circle class="sat__orbit" r="300"/>
@@ -366,25 +367,33 @@
 
     <!-- ============ FOOTER ============ -->
     <footer class="footer">
-      <h2 class="lockup lockup--footer reveal" aria-label="HackHarvard">
-        <span class="lockup__mark" aria-hidden="true"></span>
-        <span class="lockup__text"><span class="lockup__line">HACK</span><span class="lockup__line"><em>HARVARD</em></span></span>
+      <div class="footer__bar">
+        <nav class="footer__social" aria-label="Social">
+          <a href="https://www.instagram.com/hackharvard/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2"/></svg></a>
+          <a href="https://www.linkedin.com/company/hackharvard/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="3.6" height="11.5" rx=".6"/><circle cx="5.3" cy="5.2" r="2.1"/><path d="M10 9h3.4v1.7c.6-1.1 2-2 3.8-2 3.1 0 4.3 2 4.3 5.1v6.7h-3.6v-6c0-1.5-.4-2.6-1.9-2.6-1.6 0-2.4 1.1-2.4 2.6v6H10z"/></svg></a>
+          <a href="https://x.com/hackharvard" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </nav>
+        <span>© 2026 HackHarvard</span>
+      </div>
+      <!-- HACK to the MOON lockup: Makcasa's ligatures give the crossed HA and linked OO; the ribbon reuses the tilted tag -->
+      <h2 class="moonlock reveal" aria-label="Hack to the Moon">
+        <span class="moonlock__word" aria-hidden="true">HACK</span>
+        <span class="moonlock__mid" aria-hidden="true">
+          <span class="btn moonlock__tag">to the</span>
+          <img class="moonlock__rocket" src="assets/svg/rocket.svg" alt="" />
+        </span>
+        <span class="moonlock__word" aria-hidden="true">MOON</span>
       </h2>
-      <a class="btn btn--big reveal" href="https://portal.hackharvard.io">Apply</a>
+      <span class="btn btn--big btn--closed reveal">Applications closed</span>
       <button class="rocket" aria-label="Back to top" title="Back to top">
         <img src="assets/svg/rocket.svg" alt="" />
       </button>
+      <img class="deco deco--planet deco--planet-l" src="assets/svg/planet-rose.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--planet deco--planet-r" src="assets/svg/planet-tide.svg" alt="" aria-hidden="true" />
       <img class="deco deco--skyline" src="assets/svg/utopia-skyline.svg" alt="" aria-hidden="true" />
-      <div class="footer__bar">
-        <span>© 2026 HackHarvard · Harvard University, Cambridge MA</span>
-        <nav aria-label="Footer">
-          <a href="https://portal.hackharvard.io">Portal</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-      </div>
     </footer>
   </main>
 
-  <script src="js/main.js?v=20261005i" defer></script>
+  <script src="js/main.js?v=20261005o" defer></script>
 </body>
 </html>
