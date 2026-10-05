@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 820" width="520" height="820">
+  <defs>
+    <!-- bronze, re-cast in the utopia palette: iridescent magenta / cream / blue -->
+    <linearGradient id="jh-bronze" x1="0" x2="1">
+      <stop offset="0" stop-color="#5b1030"/><stop offset=".28" stop-color="#ff0aa8"/>
+      <stop offset=".5" stop-color="#f2e9b0"/><stop offset=".72" stop-color="#ff0aa8"/><stop offset="1" stop-color="#0b4a9a"/>
+    </linearGradient>
+    <linearGradient id="jh-robe" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff0aa8"/><stop offset=".45" stop-color="#5b1030"/><stop offset="1" stop-color="#0b4a9a"/>
+    </linearGradient>
+    <linearGradient id="jh-robeLight" x1="0" x2="1">
+      <stop offset="0" stop-color="#ff0aa8"/><stop offset=".55" stop-color="#fecd6d"/><stop offset="1" stop-color="#ff0aa8"/>
+    </linearGradient>
+    <linearGradient id="jh-skin" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f2e9b0"/><stop offset=".6" stop-color="#fecd6d"/><stop offset="1" stop-color="#ff0aa8"/>
+    </linearGradient>
+    <linearGradient id="jh-hair" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#5b1030"/><stop offset="1" stop-color="#13111a"/>
+    </linearGradient>
+    <linearGradient id="jh-chair" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff0aa8"/><stop offset=".35" stop-color="#f2e9b0"/>
+      <stop offset=".65" stop-color="#0ca550"/><stop offset="1" stop-color="#0b4a9a"/>
+    </linearGradient>
+    <linearGradient id="jh-col" x1="0" x2="1">
+      <stop offset="0" stop-color="#ff0aa8"/><stop offset=".35" stop-color="#f2e9b0"/>
+      <stop offset=".65" stop-color="#f2e9b0"/><stop offset="1" stop-color="#0b4a9a"/>
+    </linearGradient>
+    <linearGradient id="jh-stone" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b4a9a"/><stop offset=".25" stop-color="#0ca550"/>
+      <stop offset=".5" stop-color="#f2e9b0"/><stop offset=".75" stop-color="#ff0aa8"/><stop offset="1" stop-color="#5b1030"/>
+    </linearGradient>
+    <linearGradient id="jh-stoneV" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff0aa8"/><stop offset=".6" stop-color="#5b1030"/><stop offset="1" stop-color="#0b4a9a"/>
+    </linearGradient>
+    <linearGradient id="jh-book" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffdd00"/><stop offset="1" stop-color="#fecd6d"/>
+    </linearGradient>
+    <radialGradient id="jh-moon" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#f2e9b0"/><stop offset=".6" stop-color="#fecd6d"/><stop offset="1" stop-color="#ff0aa8"/>
+    </radialGradient>
+    <radialGradient id="jh-halo">
+      <stop offset="0" stop-color="#ff0aa8" stop-opacity=".35"/><stop offset="1" stop-color="#ff0aa8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- halo + crescent moon behind the statue -->
+  <circle cx="260" cy="300" r="250" fill="url(#jh-halo)"/>
+  <path d="M392 70a62 62 0 1 0 50 98a50 50 0 1 1 -50 -98Z" fill="url(#jh-moon)"/>
+
+  <!-- ===== CHAIR (high-backed, carved) ===== -->
+  <g>
+    <rect x="168" y="150" width="184" height="210" rx="6" fill="url(#jh-chair)"/>
+    <rect x="186" y="170" width="148" height="170" rx="4" fill="#01151e" opacity=".55"/>
+    <!-- carved arch in the backrest -->
+    <path d="M206 340V230a54 54 0 0 1 108 0V340Z" fill="#0a0f1c" opacity=".55"/>
+    <path d="M206 230a54 54 0 0 1 108 0" fill="none" stroke="#ffdd00" stroke-width="2" stroke-dasharray="3 5"/>
+    <!-- finials -->
+    <rect x="160" y="138" width="24" height="14" fill="#f2e9b0"/>
+    <rect x="336" y="138" width="24" height="14" fill="#f2e9b0"/>
+    <circle cx="172" cy="128" r="11" fill="url(#jh-moon)"/>
+    <circle cx="348" cy="128" r="11" fill="url(#jh-moon)"/>
+    <!-- arms of the chair -->
+    <rect x="140" y="300" width="44" height="16" rx="4" fill="url(#jh-col)"/>
+    <rect x="336" y="300" width="44" height="16" rx="4" fill="url(#jh-col)"/>
+    <rect x="148" y="316" width="14" height="70" fill="url(#jh-col)"/>
+    <rect x="358" y="316" width="14" height="70" fill="url(#jh-col)"/>
+    <!-- seat + legs -->
+    <rect x="150" y="380" width="220" height="26" rx="4" fill="url(#jh-chair)"/>
+    <rect x="156" y="406" width="16" height="78" fill="url(#jh-col)"/>
+    <rect x="348" y="406" width="16" height="78" fill="url(#jh-col)"/>
+  </g>
+
+  <!-- ===== FIGURE ===== -->
+  <g>
+    <!-- hair falling behind the neck -->
+    <path d="M228 190Q224 224 236 234L286 234Q296 222 292 190Z" fill="url(#jh-hair)"/>
+    <!-- cloak falling behind the shoulders -->
+    <path d="M196 226Q170 300 176 392L344 392Q350 300 322 226Z" fill="url(#jh-robe)"/>
+    <!-- doublet / torso -->
+    <path d="M208 226Q258 214 312 226L322 348Q260 364 198 348Z" fill="url(#jh-bronze)"/>
+    <path d="M258 234V350" stroke="#5b1030" stroke-width="2"/>
+    <g fill="#ffdd00"><circle cx="258" cy="252" r="2.5"/><circle cx="258" cy="272" r="2.5"/><circle cx="258" cy="292" r="2.5"/><circle cx="258" cy="312" r="2.5"/></g>
+    <!-- falling-band collar -->
+    <path d="M226 218L258 224L292 218L284 246L258 238L234 246Z" fill="#f2e9b0"/>
+    <path d="M258 224V238" stroke="#fecd6d" stroke-width="2"/>
+
+    <!-- right arm (viewer's left) resting on the chair arm -->
+    <path d="M210 232Q180 256 176 296L196 304Q204 270 222 252Z" fill="url(#jh-robeLight)"/>
+    <path d="M168 292h32v16h-32z" fill="#f2e9b0"/>
+    <ellipse cx="172" cy="312" rx="13" ry="10" fill="url(#jh-skin)"/>
+
+    <!-- lap / robe skirt over the thighs -->
+    <path d="M196 344Q258 360 324 344L338 394Q300 410 258 404Q214 410 182 394Z" fill="url(#jh-robe)"/>
+    <path d="M196 360Q258 376 330 360" fill="none" stroke="#fecd6d" stroke-opacity=".5" stroke-width="2"/>
+
+    <!-- left arm (viewer's right) bent forward, hand on the book -->
+    <path d="M308 236Q338 262 336 312L314 318Q312 278 296 256Z" fill="url(#jh-robeLight)"/>
+    <path d="M312 312h28v14h-28z" fill="#f2e9b0"/>
+
+    <!-- book on the knee -->
+    <g transform="rotate(-10 300 360)">
+      <rect x="270" y="342" width="62" height="40" rx="3" fill="url(#jh-book)"/>
+      <rect x="270" y="342" width="62" height="40" rx="3" fill="none" stroke="#5b1030" stroke-width="2"/>
+      <path d="M301 342V382" stroke="#5b1030" stroke-width="2"/>
+      <path d="M278 352h16M278 360h18M278 368h14M308 352h16M308 360h18M308 368h12" stroke="#5b1030" stroke-opacity=".45" stroke-width="1.6"/>
+    </g>
+    <ellipse cx="324" cy="336" rx="13" ry="10" fill="url(#jh-skin)"/>
+
+    <!-- lower legs: one stretched forward, one drawn back -->
+    <path d="M204 398L196 462L232 462L236 400Z" fill="url(#jh-bronze)"/>
+    <path d="M282 400L284 452L316 452L318 398Z" fill="url(#jh-bronze)"/>
+    <rect x="198" y="402" width="36" height="9" fill="#f2e9b0" opacity=".7"/>
+    <rect x="283" y="402" width="34" height="9" fill="#f2e9b0" opacity=".7"/>
+    <!-- buckled shoes -->
+    <path d="M186 462Q186 478 214 480L240 480Q244 466 232 462Z" fill="#13111a"/>
+    <path d="M280 452Q280 466 302 468L324 468Q326 456 316 452Z" fill="#13111a"/>
+    <rect x="211" y="465" width="9" height="8" fill="none" stroke="#ffdd00" stroke-width="2"/>
+    <rect x="297" y="455" width="9" height="8" fill="none" stroke="#ffdd00" stroke-width="2"/>
+
+    <!-- head -->
+    <ellipse cx="260" cy="178" rx="30" ry="36" fill="url(#jh-skin)"/>
+    <!-- long hair framing the face -->
+    <path d="M228 176Q226 136 262 136Q296 136 292 178Q290 160 276 152Q258 160 238 154Q230 162 228 176Z" fill="url(#jh-hair)"/>
+    <path d="M230 172Q224 202 232 222L240 218Q236 198 238 178Z" fill="url(#jh-hair)"/>
+    <path d="M290 172Q296 202 288 222L280 218Q284 198 282 178Z" fill="url(#jh-hair)"/>
+    <!-- features, kept minimal -->
+    <path d="M247 176h9M266 176h9" stroke="#5b1030" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M261 180v12" stroke="#ff0aa8" stroke-opacity=".5" stroke-width="2"/>
+    <path d="M252 200q8 4 16 0" fill="none" stroke="#5b1030" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- ===== PEDESTAL ===== -->
+  <g>
+    <!-- lantern balcony on the cornice -->
+    <g fill="#ffdd00">
+      <path d="M140 478l3 5l-3 5l-3 -5Z"/><path d="M176 478l3 5l-3 5l-3 -5Z" fill="#ff0aa8"/><path d="M212 478l3 5l-3 5l-3 -5Z"/>
+      <path d="M248 478l3 5l-3 5l-3 -5Z" fill="#ff0aa8"/><path d="M284 478l3 5l-3 5l-3 -5Z"/><path d="M320 478l3 5l-3 5l-3 -5Z" fill="#ff0aa8"/>
+      <path d="M356 478l3 5l-3 5l-3 -5Z"/><path d="M380 478l3 5l-3 5l-3 -5Z" fill="#ff0aa8"/>
+    </g>
+    <rect x="118" y="490" width="284" height="12" fill="#f2e9b0"/>
+    <rect x="128" y="502" width="264" height="22" fill="url(#jh-stone)"/>
+    <!-- dentils -->
+    <path d="M136 524h8v7h-8zM156 524h8v7h-8zM176 524h8v7h-8zM196 524h8v7h-8zM216 524h8v7h-8zM236 524h8v7h-8zM256 524h8v7h-8zM276 524h8v7h-8zM296 524h8v7h-8zM316 524h8v7h-8zM336 524h8v7h-8zM356 524h8v7h-8zM376 524h8v7h-8z" fill="#01151e" opacity=".45"/>
+    <!-- die of the pedestal -->
+    <rect x="146" y="524" width="228" height="190" fill="url(#jh-stoneV)"/>
+    <rect x="146" y="524" width="18" height="190" fill="url(#jh-col)"/>
+    <rect x="356" y="524" width="18" height="190" fill="url(#jh-col)"/>
+    <!-- inscription panel ("JOHN HARVARD · FOUNDER · 1638") as bars -->
+    <rect x="184" y="572" width="152" height="92" rx="3" fill="#01151e" opacity=".75"/>
+    <rect x="184" y="572" width="152" height="92" rx="3" fill="none" stroke="#ffdd00" stroke-width="1.5"/>
+    <g fill="#ffdd00">
+      <rect x="208" y="592" width="104" height="8" rx="2"/>
+      <rect x="226" y="612" width="68" height="6" rx="2" opacity=".8"/>
+      <rect x="240" y="630" width="40" height="6" rx="2" opacity=".8"/>
+    </g>
+    <circle cx="260" cy="652" r="3" fill="#ff0aa8"/>
+    <!-- plinth + steps -->
+    <rect x="132" y="714" width="256" height="18" fill="#f2e9b0"/>
+    <rect x="120" y="732" width="280" height="22" fill="url(#jh-stone)"/>
+    <rect x="100" y="754" width="320" height="18" fill="url(#jh-stone)" opacity=".75"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#f2e9b0">
+    <path d="M90 230q2 12 14 14q-12 2 -14 14q-2 -12 -14 -14q12 -2 14 -14Z"/>
+    <path d="M450 330q1.5 9 10 10q-8.5 1.5 -10 10q-1.5 -8.5 -10 -10q8.5 -1 10 -10Z"/>
+    <path d="M110 560q1.2 7 8 8q-6.8 1.2 -8 8q-1.2 -6.8 -8 -8q6.8 -1 8 -8Z" opacity=".7"/>
+    <path d="M430 600q1.5 9 10 10q-8.5 1.5 -10 10q-1.5 -8.5 -10 -10q8.5 -1 10 -10Z" opacity=".8"/>
+  </g>
+</svg>

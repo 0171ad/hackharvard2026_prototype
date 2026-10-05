@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SVG Asset Review</title>
+<link rel="icon" href="assets/img/favicon-32.png">
+<style>
+  :root { --space:#01151e; --light:#f4f1e4; --ink:#0a0f1c; --cream:#f2e9b0; --pale:#dbeec2; --magenta:#ff0aa8; --cobalt:#5686bb; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--space); color:var(--pale); font:15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { padding:32px 24px 8px; max-width:1500px; margin:0 auto; display:flex; flex-wrap:wrap; gap:16px; align-items:end; justify-content:space-between; }
+  h1 { margin:0; font-size:28px; color:var(--cream); letter-spacing:.01em; }
+  header p { margin:4px 0 0; color:var(--cobalt); }
+  .controls { display:flex; gap:8px; flex-wrap:wrap; }
+  button { font:inherit; font-size:13px; color:var(--pale); background:transparent; border:1px solid rgba(219,238,194,.3); border-radius:999px; padding:6px 14px; cursor:pointer; }
+  button:hover { border-color:var(--magenta); }
+  button[aria-pressed="true"] { background:var(--pale); color:var(--ink); border-color:var(--pale); }
+  main { max-width:1500px; margin:0 auto; padding:16px 24px 64px; display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:20px; align-items:start; grid-auto-flow:dense; }
+  .card { margin:0; background:rgba(10,15,28,.55); border:1px solid rgba(86,134,187,.25); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+  .card.wide { grid-column:1 / -1; }
+  .stage { background:var(--space); aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; padding:18px; transition:background .2s; }
+  .card:not(.wide) .stage { aspect-ratio:auto; height:400px; }
+  .wide .stage { aspect-ratio:auto; min-height:300px; }
+  .stage.light { background:var(--light); }
+  .stage img { max-width:100%; max-height:100%; width:100%; height:100%; object-fit:contain; display:block; }
+  .wide .stage img { height:auto; max-height:520px; }
+  .meta { padding:12px 14px 14px; display:flex; gap:10px; align-items:flex-start; justify-content:space-between; border-top:1px solid rgba(86,134,187,.2); }
+  .meta code { font:600 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color:var(--cream); }
+  .meta a { color:inherit; text-decoration:none; }
+  .meta a:hover code { color:var(--magenta); }
+  .meta p { margin:4px 0 0; font-size:13px; color:rgba(219,238,194,.75); }
+  .meta .size { color:var(--cobalt); font-size:12px; }
+  .meta button { flex:none; }
+  @media (max-width:760px) { .card.wide { grid-column:auto; } main { grid-template-columns:1fr; padding:16px; } header { padding:24px 16px 8px; } }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Hack to the Moon: SVG asset review</h1>
+    <p>Procedural and hand-built illustrations in <code>assets/svg-review/</code>. Transparent backgrounds; toggle a card to check translucency on light.</p>
+  </div>
+  <div class="controls">
+    <button id="allDark" aria-pressed="true">All dark</button>
+    <button id="allLight" aria-pressed="false">All light</button>
+  </div>
+</header>
+<main id="grid"></main>
+<script>
+  const A = [
+    ['explosion-supernova', 'Radial burst: layered spiky flares, gradient rays, glowing core, debris.'],
+    ['explosion-shockwave', 'Concentric translucent shockwave bands and iridescent rings with flying petals and shards.'],
+    ['explosion-confetti-burst', 'Small celebratory pop for click/hover: streaks, dots, sparkles.'],
+    ['utopia-tower', 'Utopian bell tower: fluted column, colonnade, lantern balconies, belfry, dome, spire.'],
+    ['utopia-skyline', 'Floating utopian city on a rock island with a pixel staircase into space.', 1],
+    ['john-harvard', 'John Harvard statue, utopia style: seated figure with book on a high-backed chair, pedestal with inscription panel, crescent moon.'],
+    ['utopia-arch-gate', 'Classical arch portal with fluted columns framing a starfield and crescent moon.'],
+    ['stardust-field', 'Wide stardust scatter with a diagonal milky-way band and a few sparkles.', 1],
+    ['stardust-comet-trail', 'Curved comet trail of particles tapering and fading from a bright head.', 1],
+    ['moon-galaxy', 'Hero piece: crescent moon in front of a procedural spiral galaxy.'],
+    ['galaxy-spiral', 'Standalone spiral galaxy with glowing core.'],
+    ['orb-main', 'Signature Main orb: cream/yellow core, magenta, green ring, blue, dark edge.'],
+    ['orb-secondary', 'Signature Secondary orb: lime core, blue, black, yellow rim.'],
+    ['orb-full', 'Signature Full orb: yellow core, red, burgundy, navy, cobalt rim.'],
+    ['translucent-glass-orbs', 'Overlapping glass bubbles with thin iridescent rims and specular highlights.'],
+    ['translucent-prism-shards', 'Floating faceted glass shards with iridescent fills and a split light beam.'],
+    ['translucent-ribbon', 'Flowing semi-transparent petal/ribbon swooshes like the key art.', 1],
+    ['sparkles-set', 'Sheet of six sparkle variants: 4-point, 8-point, ring, flare, cluster, starburst.', 1],
+    ['rocket', 'Stylized rocket: banded gradient body, porthole orb, fins, flame.'],
+    ['constellation-set', 'Line-art constellations: rocket, crescent moon, and H.', 1],
+  ];
+  const grid = document.getElementById('grid');
+  for (const [name, desc, wide] of A) {
+    const src = `assets/svg-review/${name}.svg`;
+    const fig = document.createElement('figure');
+    fig.className = 'card' + (wide ? ' wide' : '');
+    fig.innerHTML = `<div class="stage"><img src="${src}" alt="${desc}" loading="eager"></div>
+      <figcaption class="meta"><div><a href="${src}" target="_blank"><code>${name}.svg</code></a> <span class="size"></span><p>${desc}</p></div>
+      <button aria-pressed="false">Light bg</button></figcaption>`;
+    const stage = fig.querySelector('.stage'), btn = fig.querySelector('button');
+    btn.onclick = () => { const on = stage.classList.toggle('light'); btn.setAttribute('aria-pressed', on); };
+    fetch(src, { method: 'HEAD' }).then(r => { const l = r.headers.get('content-length'); if (l) fig.querySelector('.size').textContent = (l / 1024).toFixed(1) + ' KB'; }).catch(() => {});
+    grid.appendChild(fig);
+  }
+  const setAll = light => {
+    document.querySelectorAll('.stage').forEach(s => s.classList.toggle('light', light));
+    document.querySelectorAll('.card button').forEach(b => b.setAttribute('aria-pressed', light));
+    allDark.setAttribute('aria-pressed', !light); allLight.setAttribute('aria-pressed', light);
+  };
+  allDark.onclick = () => setAll(false);
+  allLight.onclick = () => setAll(true);
+</script>
+</body>
+</html>

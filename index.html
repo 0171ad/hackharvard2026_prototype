@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HackHarvard 2026 — Hack to the Moon</title>
+  <meta name="description" content="HackHarvard is a 36-hour undergraduate hackathon hosted at Harvard University. October 16–18, 2026 · Cambridge, MA." />
+  <meta name="theme-color" content="#01151e" />
+  <meta property="og:title" content="HackHarvard 2026 — Hack to the Moon" />
+  <meta property="og:description" content="A 36-hour undergraduate hackathon at Harvard University. October 16–18, 2026 · Cambridge, MA." />
+  <meta property="og:image" content="assets/img/og-art.jpg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+  <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="is-loading">
+
+  <!-- Preloader: beams draw and spin, a star becomes the supernova, moon phases fill, then a flash reveals the site -->
+  <div class="loader" aria-hidden="true">
+    <svg class="loader__art" viewBox="-420 -320 840 640" data-loader-art></svg>
+    <div class="loader__flash"></div>
+  </div>
+
+  <canvas class="stars" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#tracks">Tracks</a>
+      <a href="#sponsors">Sponsors</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav__right">
+      <nav class="nav__links" aria-label="More">
+        <a href="#global">Global</a>
+        <a href="#team">Team</a>
+      </nav>
+      <div class="phase" title="Scroll progress" aria-hidden="true"><span class="phase__shadow"></span></div>
+      <a class="btn btn--small" href="https://portal.hackharvard.io">Apply</a>
+      <button class="nav__burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="menu" aria-hidden="true">
+    <a href="#about">About</a><a href="#tracks">Tracks</a><a href="#sponsors">Sponsors</a>
+    <a href="#schedule">Schedule</a><a href="#faq">FAQ</a><a href="#global">Global</a><a href="#team">Team</a>
+    <a class="btn" href="https://portal.hackharvard.io">Apply</a>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <img class="deco deco--milkyway" src="assets/svg/stardust-milkyway.svg" alt="" />
+      </div>
+
+      <div class="hero__copy">
+        <!-- Main lockup: H mark + HACK / HARVARD (italic) -->
+        <h1 class="lockup" aria-label="HackHarvard">
+          <span class="lockup__mark" aria-hidden="true"></span>
+          <span class="lockup__text">
+            <span class="lockup__line"><span style="--d:.2s">HACK</span></span>
+            <span class="lockup__line"><em style="--d:.32s">HARVARD</em></span>
+          </span>
+        </h1>
+        <p class="hero__date">October 16–18, 2026 <span>·</span> Cambridge, MA</p>
+        <div class="hero__cta">
+          <a class="btn" href="https://portal.hackharvard.io">Apply</a>
+        </div>
+        <div class="countdown" aria-label="Countdown to HackHarvard">
+          <div><b data-cd="d">00</b><span>days</span></div>
+          <div><b data-cd="h">00</b><span>hours</span></div>
+          <div><b data-cd="m">00</b><span>min</span></div>
+          <div><b data-cd="s">00</b><span>sec</span></div>
+        </div>
+      </div>
+
+      <a class="scroll-hint" href="#about" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee">
+      <div class="marquee__track">
+        <span>36 hours</span><i>✦</i><span class="serif">Hack to the Moon</span><i>✦</i><span>500+ students</span><i>✦</i>
+        <span class="serif">Cambridge</span><i>✦</i><span>10 countries</span><i>✦</i><span class="serif">Harvard University</span><i>✦</i><span>Oct 16–18</span><i>✦</i>
+        <span>36 hours</span><i>✦</i><span class="serif">Hack to the Moon</span><i>✦</i><span>500+ students</span><i>✦</i>
+        <span class="serif">Cambridge</span><i>✦</i><span>10 countries</span><i>✦</i><span class="serif">Harvard University</span><i>✦</i><span>Oct 16–18</span><i>✦</i>
+      </div>
+    </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <img class="deco deco--tower" data-depth=".05" src="assets/svg/utopia-tower.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--orb-about" data-depth="-.2" src="assets/svg/orb-secondary.svg" alt="" aria-hidden="true" />
+
+      <h2 class="wordmark reveal" aria-label="Hack to the Moon">
+        <span class="line"><span>HACK</span></span>
+        <span class="ribbon">to the</span>
+        <span class="line"><span>MOON</span></span>
+      </h2>
+
+      <!-- About copy set inside a utopian Greek temple standing on a podium -->
+      <div class="temple reveal" style="--d:.15s">
+        <div class="temple__pediment" aria-hidden="true"><span class="temple__orb"></span></div>
+        <div class="temple__entablature" aria-hidden="true"></div>
+        <div class="temple__body">
+          <span class="temple__col" aria-hidden="true"></span>
+          <span class="temple__col" aria-hidden="true"></span>
+          <div class="temple__cella">
+            <p class="scrub" data-scrub>HackHarvard is a 36-hour undergraduate hackathon hosted at Harvard University. Every year, over 500 students from around the world come to our campus to build, learn, and create.</p>
+            <p class="temple__note">Note — HackHarvard cannot provide overnight accommodations this year.</p>
+          </div>
+          <span class="temple__col" aria-hidden="true"></span>
+          <span class="temple__col" aria-hidden="true"></span>
+        </div>
+        <div class="temple__podium">
+          <div class="stat"><b data-count="30" data-suffix="+">0</b><span>universities</span></div>
+          <i aria-hidden="true"></i>
+          <div class="stat"><b data-count="500" data-suffix="+">0</b><span>students</span></div>
+          <i aria-hidden="true"></i>
+          <div class="stat"><b data-count="10">0</b><span>countries</span></div>
+        </div>
+        <div class="temple__step" aria-hidden="true"></div>
+        <div class="temple__step temple__step--2" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ============ TRACKS ============ -->
+    <section class="section tracks" id="tracks">
+      <img class="deco deco--orb-tracks" data-depth="-.25" src="assets/svg/orb-main.svg" alt="" aria-hidden="true" />
+      <h2 class="title reveal">Tracks</h2>
+
+      <div class="sat-wrap reveal">
+        <div class="sat" data-satellite>
+          <svg class="sat__svg" viewBox="-330 -330 660 660" role="group" aria-label="Track station — select a pavilion">
+            <defs>
+              <!-- banded, iridescent fills borrowed from the utopia arch / skyline art -->
+              <linearGradient id="uBand" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#ff0aa8"/><stop offset=".35" stop-color="#f2e9b0"/><stop offset=".65" stop-color="#0ca550"/><stop offset="1" stop-color="#0b4a9a"/>
+              </linearGradient>
+              <linearGradient id="uCol" x1="0" x2="1">
+                <stop offset="0" stop-color="#ff0aa8"/><stop offset=".3" stop-color="#f2e9b0"/><stop offset=".7" stop-color="#f2e9b0"/><stop offset="1" stop-color="#0b4a9a"/>
+              </linearGradient>
+              <linearGradient id="uBody" x1="0" x2="1">
+                <stop offset="0" stop-color="#5b1030"/><stop offset=".25" stop-color="#ff0aa8"/><stop offset=".6" stop-color="#f2e9b0"/><stop offset="1" stop-color="#5686bb"/>
+              </linearGradient>
+              <linearGradient id="uRock" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#ff0aa8"/><stop offset=".45" stop-color="#5b1030"/><stop offset="1" stop-color="#0b4a9a"/>
+              </linearGradient>
+              <linearGradient id="uSpoke" x1="0" x2="1">
+                <stop offset="0" stop-color="#f2e9b0"/><stop offset=".5" stop-color="#ff0aa8"/><stop offset="1" stop-color="#5686bb"/>
+              </linearGradient>
+              <radialGradient id="uCore" cx=".42" cy=".38" r=".7">
+                <stop offset="0" stop-color="#f2e9b0"/><stop offset=".35" stop-color="#ff0aa8"/><stop offset=".62" stop-color="#0ca550"/><stop offset=".85" stop-color="#0b4a9a"/><stop offset="1" stop-color="#01151e"/>
+              </radialGradient>
+              <linearGradient id="m0" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffdd00"/><stop offset="1" stop-color="#ff0aa8"/></linearGradient>
+              <linearGradient id="m1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5aff00"/><stop offset="1" stop-color="#0ca550"/></linearGradient>
+              <linearGradient id="m2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f2e9b0"/><stop offset="1" stop-color="#e41e2d"/></linearGradient>
+              <linearGradient id="m3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5686bb"/><stop offset="1" stop-color="#0b4a9a"/></linearGradient>
+              <linearGradient id="m4" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7dffaa"/><stop offset="1" stop-color="#0ca550"/></linearGradient>
+              <mask id="satLogo" maskContentUnits="userSpaceOnUse">
+                <image href="assets/img/h-mark.png" x="-34" y="-35" width="68" height="70" />
+              </mask>
+            </defs>
+            <circle class="sat__orbit" r="300"/>
+            <!-- spokes + ring rotate; pavilions ride the ring and stay upright -->
+            <g class="sat__rig" data-rig></g>
+            <g class="sat__core">
+              <circle r="74" fill="url(#uCore)"/>
+              <circle r="74" fill="none" stroke="#f2e9b0" stroke-opacity=".5" stroke-width="2"/>
+              <rect x="-40" y="-40" width="80" height="80" fill="#ffffff" mask="url(#satLogo)"/>
+            </g>
+            <g data-mods></g>
+          </svg>
+        </div>
+
+        <div class="sat-info" aria-live="polite">
+          <h3 class="sat-info__title" data-track-title>Money Moves</h3>
+          <p class="sat-info__name" data-track-name>Fintech</p>
+          <div class="sat-info__nav">
+            <button class="btn btn--outline btn--icon" data-track-prev aria-label="Previous track">←</button>
+            <button class="btn btn--outline btn--icon" data-track-next aria-label="Next track">→</button>
+          </div>
+          <ol class="sat-info__list" data-track-list></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPONSORS ============ -->
+    <section class="section sponsors" id="sponsors">
+      <img class="deco deco--nova" data-depth="-.12" src="assets/svg/explosion-supernova.svg" alt="" aria-hidden="true" />
+      <h2 class="title reveal">Sponsors</h2>
+      <!-- Ordered by sponsorship level, highest first -->
+      <div class="logo-grid">
+        <div class="logo logo--diamond reveal"><img src="assets/img/sponsors/daytona.png" alt="Daytona" loading="lazy" /></div>
+        <div class="logo logo--feature reveal"><img src="assets/img/sponsors/spacexai.png" alt="SpaceXAI" loading="lazy" /></div>
+        <div class="logo logo--feature reveal"><img src="assets/img/sponsors/asus.svg" alt="ASUS" loading="lazy" style="max-height: 44px" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/afterquery.png" alt="AfterQuery" loading="lazy" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/modal.png" alt="Modal" loading="lazy" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/factory.png" alt="Factory" loading="lazy" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/capitalone.png" alt="Capital One" loading="lazy" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/mercury.png" alt="Mercury" loading="lazy" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/rigetti.png" alt="Rigetti Computing" loading="lazy" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/hrt.png" alt="Hudson River Trading" loading="lazy" /></div>
+        <div class="logo reveal"><img src="assets/img/sponsors/marshall.png" alt="Marshall Wace" loading="lazy" /></div>
+        <div class="logo logo--last reveal"><img src="assets/img/sponsors/anthropic.png" alt="Anthropic" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <!-- ============ SCHEDULE ============ -->
+    <section class="section schedule" id="schedule">
+      <div class="schedule__head">
+        <h2 class="title reveal">Schedule</h2>
+        <span class="schedule__note reveal">Tentative · subject to change</span>
+      </div>
+      <div class="sched">
+      <div class="sched__day reveal">
+        <h3>Friday, October <span>16</span></h3>
+        <ol>
+          <li><time>12:00–3:00 PM</time><div><b>Hacker registration</b><span>Lobby</span></div></li>
+          <li class="is-key"><time>3:00–4:00 PM</time><div><b>Opening ceremony</b><span>Main Ballroom · hacking starts after</span></div></li>
+          <li><time>4:00 PM onward</time><div><b>Talks, workshops &amp; hacker activities</b></div></li>
+        </ol>
+      </div>
+      <div class="sched__day reveal">
+        <h3>Saturday, October <span>17</span></h3>
+        <ol>
+          <li><time>10:00 AM–12:00 PM</time><div><b>Sponsor fair</b><span>Main Ballroom</span></div></li>
+          <li><time>12:00–1:30 PM</time><div><b>Lunch</b></div></li>
+          <li><time>1:30–2:30 PM</time><div><b>SpaceXAI workshop</b></div></li>
+          <li><time>2:30 PM onward</time><div><b>Talks, workshops &amp; hacker activities</b></div></li>
+        </ol>
+      </div>
+      <div class="sched__day reveal">
+        <h3>Sunday, October <span>18</span></h3>
+        <ol>
+          <li class="is-key"><time>8:00 AM</time><div><b>Project submissions due</b><span>On Devpost</span></div></li>
+          <li><time>8:00–9:00 AM</time><div><b>Judge debrief &amp; training</b></div></li>
+          <li><time>9:00–10:30 AM</time><div><b>Judging period 1</b></div></li>
+          <li><time>10:30 AM–12:00 PM</time><div><b>Judging period 2</b></div></li>
+          <li><time>12:00–1:00 PM</time><div><b>Lunch</b></div></li>
+          <li><time>1:00–2:30 PM</time><div><b>Judge deliberations</b></div></li>
+          <li class="is-key"><time>3:00–4:00 PM</time><div><b>Closing ceremony</b><span>Winners announced</span></div></li>
+        </ol>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section faq" id="faq">
+      <div class="faq__aside">
+        <h2 class="title reveal">FAQ</h2>
+        <img class="deco deco--gate" src="assets/svg/utopia-arch-gate.svg" alt="" aria-hidden="true" />
+      </div>
+      <div class="faq__list">
+        <details class="reveal"><summary>What is a hackathon?<i></i></summary>
+          <div><p>A weekend-long building sprint where students team up to make software, hardware, art, tools, and experiments from scratch.</p></div></details>
+        <details class="reveal"><summary>Who can come?<i></i></summary>
+          <div><p>HackHarvard is open to undergraduate students. Teams can include students from different schools and experience levels.</p></div></details>
+        <details class="reveal"><summary>What does it cost?<i></i></summary>
+          <div><p>The event is free for accepted hackers, including meals, workshops, mentorship, and event programming.</p></div></details>
+        <details class="reveal"><summary>What if I do not have a team?<i></i></summary>
+          <div><p>You can form a team at the event. There will be time and space to meet other hackers before building begins.</p></div></details>
+        <details class="reveal"><summary>What is the HackHarvard 2026 schedule?<i></i></summary>
+          <div>
+            <p><b>Friday, October 16</b></p>
+            <ul><li>12:00–3:00 PM — Hacker registration</li><li>3:00–4:00 PM — Opening ceremony</li><li>4:00 PM onward — Hacking, talks, workshops, and activities</li></ul>
+            <p><b>Saturday, October 17</b></p>
+            <ul><li>10:00 AM–12:00 PM — Sponsor fair</li><li>12:00–1:30 PM — Lunch</li><li>1:30–2:30 PM — SpaceX AI workshop</li><li>2:30 PM onward — Hacking, talks, workshops, and activities</li></ul>
+            <p><b>Sunday, October 18</b></p>
+            <ul><li>8:00 AM — Project submissions due</li><li>8:00–9:00 AM — Judge training</li><li>9:00 AM–12:00 PM — Judging</li><li>12:00–1:00 PM — Lunch</li><li>1:00–2:30 PM — Judge deliberations</li><li>3:00–4:00 PM — Closing ceremony</li></ul>
+          </div></details>
+        <details class="reveal"><summary>When does hacking officially begin?<i></i></summary>
+          <div><p>Hacking officially begins after the opening ceremony at approximately 4:00 PM on Friday, October 16.</p></div></details>
+        <details class="reveal"><summary>Do I need to attend the opening ceremony?<i></i></summary>
+          <div><p>The opening ceremony takes place Friday from 3:00–4:00 PM. We strongly encourage all hackers to attend so they do not miss important event information.</p></div></details>
+        <details class="reveal"><summary>What if I arrive late on Friday?<i></i></summary>
+          <div><p>Please contact the HackHarvard team as soon as possible if you expect to miss the 12:00–3:00 PM registration window. Late arrival may affect your ability to participate.</p></div></details>
+        <details class="reveal"><summary>Are there activities besides hacking?<i></i></summary>
+          <div><p>Yes. HackHarvard includes talks, workshops, sponsor activities, mentorship, and other programming. The schedule includes a sponsor fair on Saturday morning and a SpaceX AI workshop on Saturday afternoon.</p></div></details>
+        <details class="reveal"><summary>When are projects due?<i></i></summary>
+          <div><p>All projects must be submitted on Devpost by 8:00 AM on Sunday, October 18.</p></div></details>
+        <details class="reveal"><summary>When does judging take place?<i></i></summary>
+          <div><p>Judging takes place from 9:00 AM–12:00 PM on Sunday, October 18. Judges will complete training and debriefing from 8:00–9:00 AM.</p></div></details>
+        <details class="reveal"><summary>What happens after I submit my project?<i></i></summary>
+          <div><p>After submissions close at 8:00 AM, judges evaluate projects from 9:00 AM–12:00 PM. Judges deliberate from 1:00–2:30 PM, and winners are announced during the closing ceremony.</p></div></details>
+        <details class="reveal"><summary>Do I need to attend on Sunday?<i></i></summary>
+          <div><p>Yes. Hackers should be present at the venue by 9:00 AM on Sunday for judging. The closing ceremony will take place from 3:00–4:00 PM.</p></div></details>
+        <details class="reveal"><summary>Is virtual judging available?<i></i></summary>
+          <div><p>No. Judging for HackHarvard 2026 will take place in person.</p></div></details>
+        <details class="reveal"><summary>Does the venue stay open overnight?<i></i></summary>
+          <div><p>No. The venue closes overnight, and overnight stays are not permitted. Participants must arrange their own accommodations and return the following day. Daily re-check-in is not required.</p></div></details>
+        <details class="reveal"><summary>Where can I stay?<i></i></summary>
+          <div><p>Participants are responsible for arranging their own accommodations for the duration of HackHarvard. While we are not able to offer housing this year, we encourage attendees to explore nearby hotels, hostels, or short-term rentals.</p></div></details>
+        <details class="reveal"><summary>How does travel reimbursement and financial aid work?<i></i></summary>
+          <div><p>Travel reimbursement and financial aid are limited and are not guaranteed. Selected participants will receive separate communication with information about eligibility, amounts, covered expenses, and next steps. Participants should not assume funding will be available unless they receive confirmation.</p></div></details>
+        <details class="reveal"><summary>Can I apply after the deadline?<i></i></summary>
+          <div><p>Applications are closed. Late applications and requests to take another participant’s place are not guaranteed and will only be considered if space becomes available.</p></div></details>
+        <details class="reveal"><summary>Can I appeal an admissions decision?<i></i></summary>
+          <div><p>Applicants may contact the HackHarvard team with a substantive reason for reconsideration. Appeals are reviewed individually and do not guarantee admission.</p></div></details>
+        <details class="reveal"><summary>Can I still volunteer as a judge?<i></i></summary>
+          <div><p>The judge panel is currently full. Mentor opportunities may still be available.</p></div></details>
+        <details class="reveal"><summary>Can I volunteer as a mentor?<i></i></summary>
+          <div><p>Yes. Mentors may come and go during Friday and Saturday. The busiest building periods are generally Friday from 4:00–8:00 PM and Saturday from 12:00–8:00 PM.</p></div></details>
+        <details class="reveal"><summary>Does HackHarvard provide travel or lodging for mentors?<i></i></summary>
+          <div><p>HackHarvard does not currently provide travel reimbursement or lodging for mentors.</p></div></details>
+      </div>
+    </section>
+
+    <!-- ============ GLOBAL ============ -->
+    <section class="section global" id="global">
+      <div class="orbit" aria-hidden="true">
+        <img class="orbit__core" src="assets/svg/orb-full.svg" alt="" />
+        <div class="orbit__ring r1"><span></span></div>
+        <div class="orbit__ring r2"><span></span></div>
+        <div class="orbit__ring r3"><span></span></div>
+      </div>
+      <img class="deco deco--comet" data-depth=".15" src="assets/svg/stardust-comet-trail.svg" alt="" aria-hidden="true" />
+      <h2 class="title reveal">Global</h2>
+      <div class="sites">
+        <a class="site reveal" href="https://hhuh.io/china">
+          <h3>China</h3>
+          <b>Learn more ↗</b>
+        </a>
+        <a class="site reveal" style="--d:.1s" href="https://hhuh.io/india">
+          <h3>India</h3>
+          <b>Learn more ↗</b>
+        </a>
+        <a class="site reveal" style="--d:.2s" href="https://hhuh.io/vietnam">
+          <h3>Vietnam</h3>
+          <b>Learn more ↗</b>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ TEAM ============ -->
+    <section class="section team" id="team">
+      <h2 class="title team__title reveal">Made with
+        <svg class="heart" viewBox="0 0 24 24" role="img" aria-label="love">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </h2>
+      <p class="team__sub reveal">to the moon and back</p>
+    </section>
+    <!-- Team planets: built in js/main.js from the TEAM list (placeholders for now) -->
+    <div class="team__rows" data-team aria-label="The HackHarvard 2026 team"></div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <h2 class="lockup lockup--footer reveal" aria-label="HackHarvard">
+        <span class="lockup__mark" aria-hidden="true"></span>
+        <span class="lockup__text"><span class="lockup__line">HACK</span><span class="lockup__line"><em>HARVARD</em></span></span>
+      </h2>
+      <a class="btn btn--big reveal" href="https://portal.hackharvard.io">Apply</a>
+      <button class="rocket" aria-label="Back to top" title="Back to top">
+        <img src="assets/svg/rocket.svg" alt="" />
+      </button>
+      <img class="deco deco--skyline" src="assets/svg/utopia-skyline.svg" alt="" aria-hidden="true" />
+      <div class="footer__bar">
+        <span>© 2026 HackHarvard · Harvard University, Cambridge MA</span>
+        <nav aria-label="Footer">
+          <a href="https://portal.hackharvard.io">Portal</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

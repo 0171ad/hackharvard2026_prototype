@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"><defs><radialGradient id="orb-main-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff0aa8" stop-opacity=".5"/><stop offset=".55" stop-color="#ff0aa8" stop-opacity=".22"/><stop offset=".75" stop-color="#ff0aa8" stop-opacity=".08"/><stop offset="1" stop-color="#ff0aa8" stop-opacity="0"/></radialGradient><radialGradient id="orb-main-body" cx=".5" cy=".5" r=".5" fx=".44" fy=".42"><stop offset="0" stop-color="#f2e9b0"/><stop offset=".16" stop-color="#fecd6d"/><stop offset=".38" stop-color="#ff0aa8"/><stop offset=".58" stop-color="#0ca550"/><stop offset=".78" stop-color="#0b4a9a"/><stop offset="1" stop-color="#0a0f1c"/></radialGradient><radialGradient id="orb-main-hl" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#dbeec2" stop-opacity=".45"/><stop offset="1" stop-color="#dbeec2" stop-opacity="0"/></radialGradient></defs>
+<circle cx="200" cy="200" r="198" fill="url(#orb-main-glow)"/>
+<circle cx="200" cy="200" r="122" fill="url(#orb-main-body)"/>
+<ellipse cx="160" cy="150" rx="42" ry="22" transform="rotate(-38 160 150)" fill="url(#orb-main-hl)"/>
+</svg>
