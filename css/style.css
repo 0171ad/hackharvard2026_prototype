@@ -223,11 +223,32 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero__date span { color: var(--magenta); margin: 0 8px; }
 .hero__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
 
-.countdown { display: flex; gap: clamp(16px, 2.6vw, 30px); margin-top: 30px; }
-.countdown div { display: grid; gap: 6px; justify-items: center; }
-.countdown b { font: italic 900 clamp(26px, 3vw, 40px)/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
-.countdown span { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
-.countdown div + div { padding-left: clamp(16px, 2.6vw, 30px); border-left: 1px solid var(--line); }
+/* ---------- Countdown: glowing seven-segment digits with blinking colons, straight on the sky ---------- */
+.countdown { display: flex; align-items: flex-start; gap: clamp(10px, 1.8vw, 18px); margin-top: 30px; }
+.countdown div { display: grid; gap: 10px; justify-items: center; }
+.countdown b { display: flex; gap: .12em; font-size: clamp(30px, 3.4vw, 46px); color: var(--yellow); transform: skewX(-6deg); filter: drop-shadow(0 0 6px rgba(255, 221, 0, .55)); }
+.countdown div > span { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.countdown__colon { align-self: flex-start; width: 5px; height: clamp(30px, 3.4vw, 46px);
+  background: radial-gradient(circle, var(--yellow) 60%, transparent 62%) center 28% / 5px 5px no-repeat, radial-gradient(circle, var(--yellow) 60%, transparent 62%) center 72% / 5px 5px no-repeat;
+  animation: pulse 1s steps(1) infinite; }
+/* seven-segment digit: unlit segments stay faintly visible, like a real display */
+.seg { position: relative; width: .56em; height: 1em; }
+.seg i { position: absolute; background: currentColor; opacity: .09; }
+.seg .a, .seg .d, .seg .g { left: .06em; right: .06em; height: .11em; clip-path: polygon(.055em 0, calc(100% - .055em) 0, 100% 50%, calc(100% - .055em) 100%, .055em 100%, 0 50%); }
+.seg .a { top: 0; } .seg .g { top: calc(50% - .055em); } .seg .d { bottom: 0; }
+.seg .b, .seg .c, .seg .e, .seg .f { width: .11em; height: calc(50% - .06em); clip-path: polygon(50% 0, 100% .055em, 100% calc(100% - .055em), 50% 100%, 0 calc(100% - .055em), 0 .055em); }
+.seg .f { left: 0; top: .055em; } .seg .b { right: 0; top: .055em; } .seg .e { left: 0; bottom: .055em; } .seg .c { right: 0; bottom: .055em; }
+.seg[data-n="0"] :is(.a, .b, .c, .d, .e, .f) { opacity: 1; }
+.seg[data-n="1"] :is(.b, .c) { opacity: 1; }
+.seg[data-n="2"] :is(.a, .b, .d, .e, .g) { opacity: 1; }
+.seg[data-n="3"] :is(.a, .b, .c, .d, .g) { opacity: 1; }
+.seg[data-n="4"] :is(.b, .c, .f, .g) { opacity: 1; }
+.seg[data-n="5"] :is(.a, .c, .d, .f, .g) { opacity: 1; }
+.seg[data-n="6"] :is(.a, .c, .d, .e, .f, .g) { opacity: 1; }
+.seg[data-n="7"] :is(.a, .b, .c) { opacity: 1; }
+.seg[data-n="8"] :is(.a, .b, .c, .d, .e, .f, .g) { opacity: 1; }
+.seg[data-n="9"] :is(.a, .b, .c, .d, .f, .g) { opacity: 1; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* Hero entrance (runs after loader) */
 
@@ -389,11 +410,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .site b { font-weight: 700; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--yellow); }
 
 /* ---------- Team: made with ♥ — planets carousel ---------- */
-.team { padding-bottom: 32px; text-align: center; }
+.team { padding-top: clamp(48px, 6vw, 72px); padding-bottom: 12px; text-align: center; }   /* tight, so heading + both rows fit one screen */
 .team__title { display: inline-flex; align-items: center; gap: .18em; margin-bottom: 8px; font-size: clamp(36px, 4.4vw, 64px); }
 .heart { width: .72em; height: .72em; fill: var(--yellow); }
 .team__sub { margin: 0; font: italic 300 clamp(16px, 1.6vw, 21px)/1.3 var(--sans); color: var(--cream); }
-.team__rows { display: grid; gap: clamp(48px, 6vw, 80px); padding: 72px 0 clamp(64px, 8vw, 104px); }
+.team__rows { display: grid; gap: clamp(16px, 2vw, 28px); padding: 28px 0 clamp(48px, 6vw, 80px); }
 
 /* featured: seven hand-built utopian planets, static */
 .team__featured { display: flex; flex-wrap: nowrap; justify-content: center; align-items: flex-start; gap: clamp(20px, 3vw, 44px); max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
@@ -421,7 +442,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .team__row { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .team__track { display: flex; align-items: flex-start; gap: clamp(20px, 3vw, 40px); width: max-content; padding: 12px 0; animation: marquee 80s linear infinite; }
 .team__row:hover .team__track { animation-play-state: paused; }
-.tstar { margin: 0; width: 130px; display: grid; justify-items: center; gap: 8px; }
+/* director filter: hovering a director shows only their members (a still, centred row when they fit) */
+.uplanet { outline: none; transition: opacity .4s var(--ease); }
+.uplanet:focus-visible .uplanet__art { scale: 1.06; }
+.team__rows.is-filtered .uplanet:not(.is-active) { opacity: .4; }
+.team__rows.is-static .team__track { animation: none; width: auto; max-width: var(--max); margin: 0 auto; flex-wrap: wrap; justify-content: center; row-gap: 28px; }
+.team__rows.is-static .team__track > [aria-hidden] { display: none !important; }   /* beats the copy's inline display: contents */
+.team__rows.is-filtered .tstar:not(.is-out) { animation: memberIn .5s var(--ease) both; }
+.tstar.is-out { display: none; }
+.tstar { margin: 0; min-width: 130px; display: grid; justify-items: center; gap: 8px; }
 .tstar__art { position: relative; width: 104px; aspect-ratio: 1; display: grid; place-items: center; }
 .tstar__art svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 10px var(--glow)); animation: twinkleStar 4s ease-in-out infinite; animation-delay: var(--delay); }
 .tstar .face { width: 60%; position: relative; box-shadow: 0 0 0 1.5px var(--yellow); }
@@ -430,9 +459,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .uplanet figcaption span, .tstar figcaption span { font: italic 300 12px/1.25 var(--sans); color: var(--muted); }
 @keyframes twinkleStar { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
 
-/* ---------- Schedule (tentative): three joined day columns, like the sponsor grid ---------- */
+/* ---------- Schedule: three joined day columns, like the sponsor grid ---------- */
 .schedule__head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; }
-.schedule__note { font: italic 500 13px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--yellow); }
 .sched { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .sched__day { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px clamp(18px, 2vw, 28px) 18px; }
 .sched__day h3 { margin: 0 0 14px; font: 400 clamp(26px, 2.4vw, 36px)/1 var(--serif); }
@@ -447,6 +475,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- FAQ ---------- */
 .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
 .faq__aside { position: sticky; top: 100px; }
+.faq__contact { margin: 28px 0 0; max-width: 300px; font: 300 clamp(16px, 1.4vw, 18px)/1.5 var(--sans); color: var(--muted); }
+.faq__contact a { color: var(--yellow); font-weight: 500; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .3s; }
+.faq__contact a:hover { text-decoration-color: currentColor; }
 .faq__list { border-top: 1px solid var(--line); }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq summary {
@@ -474,15 +505,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: radial-gradient(closest-side, rgba(255, 10, 168, .28), rgba(11, 74, 154, .18) 50%, transparent);
 }
 .moonlock { display: grid; justify-items: center; width: max-content; max-width: 100%; margin: 0 auto; font: 400 clamp(76px, 15vw, 220px)/.78 var(--serif); color: var(--yellow); }
-.footer .moonlock { margin: clamp(72px, 9vw, 120px) auto 32px; }
+/* solar system behind the FAQ: planet-scale, the sun half off the right edge, dim enough to read over */
+.sol { right: -55vw; top: 26%; width: 110vw; height: auto; overflow: visible; opacity: .55; }
+.sol__orbit { fill: none; stroke: var(--text); stroke-opacity: .16; stroke-width: 1; stroke-dasharray: 2 6; vector-effect: non-scaling-stroke; }
+.sol__spin { transform-origin: 0 0; animation: spin var(--t) linear infinite; animation-delay: var(--d); }
+.sol__keep { transform-box: fill-box; transform-origin: center; animation: spin var(--t) linear infinite reverse; animation-delay: var(--d); }
+.sol__sun { transform-box: fill-box; transform-origin: center; animation: nova 6s ease-in-out infinite; }
+.sol__halo { transform-box: fill-box; transform-origin: center; animation: nova 6s ease-in-out infinite reverse; }
+.sol__spark { fill: var(--cream); animation: twinkle 2.4s ease-in-out infinite alternate; animation-delay: var(--d); }
 .moonlock__mid { position: relative; width: 100%; height: .36em; z-index: 1; }
 .moonlock__tag { position: absolute; left: 50%; top: 50%; translate: -50% -50%; rotate: 13deg; padding: .26em 2em; font: 700 .24em/1 var(--sans); text-transform: none; letter-spacing: 0; white-space: nowrap; cursor: default; }
 .moonlock__tag:hover { filter: none; }
-.rocket { display: block; width: 42px; margin: 40px auto 0; transition: transform .4s var(--ease); }
+.rocket { display: block; width: 42px; margin: clamp(64px, 8vw, 104px) auto 0; transition: transform .4s var(--ease); }
 .rocket:hover { transform: translateY(-8px); }
 .rocket img { width: 100%; animation: hover 3s ease-in-out infinite; }
 .rocket.is-launching { animation: launch 1.2s var(--ease-in-out) forwards; }
-.footer__bar { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: var(--max); margin: 0 auto; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.footer__bar { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: var(--max); margin: 0 auto; padding-top: 24px; font-size: 14px; color: var(--muted); }
 .footer__social { display: flex; gap: 12px; }
 .footer__social a { display: grid; place-items: center; width: 44px; height: 44px; color: var(--text); transition: color .3s, transform .4s var(--ease); }
 .footer__social a:hover { color: var(--yellow); transform: translateY(-3px); }
@@ -506,6 +544,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .gate__lamp { fill: var(--ink); stroke: var(--cream); stroke-opacity: .35; stroke-width: 1.5; transform-box: fill-box; transform-origin: center; transition: fill .5s, stroke-opacity .5s, scale .6s var(--ease); }
 .gate__lamp.is-lit { fill: var(--yellow); stroke: var(--cream); stroke-opacity: 1; scale: 1.25; filter: drop-shadow(0 0 6px rgba(255, 221, 0, .9)); }   /* one lamp per question opened */
 .orbit__core { position: absolute; left: 34%; top: 34%; width: 32%; animation: nova 7s ease-in-out infinite; }
+/* big ribbon backdrops (one composition per section, from the brand art): soft, slow, behind everything */
+.deco--ribbons { opacity: .58; animation: drift 26s ease-in-out infinite alternate; }
+.deco--ribbons-sweep { right: -22vw; top: -10%; width: min(1240px, 90vw); }
+.deco--ribbons-arc { left: -20vw; bottom: -30%; width: min(1160px, 84vw); opacity: .5; animation-duration: 31s; }
+.deco--ribbons-cascade { right: -26vw; top: -12%; width: min(1160px, 84vw); animation-duration: 23s; }
+.deco--ribbons-wave { left: -6vw; top: -40%; width: 112vw; opacity: .4; animation-duration: 34s; }
+/* floating islands: small utopian outposts framing open space at the page edges (never behind copy) */
+.deco--island { animation: float 10s ease-in-out infinite; }
+.deco--island-steps { right: 3vw; top: 0; width: clamp(140px, 14vw, 210px); }
+.deco--island-dome { left: 3vw; top: -10px; width: clamp(140px, 14vw, 200px); animation-duration: 12s; animation-direction: reverse; }
+.deco--ribbons-orbit { right: -24vw; top: -14%; width: min(1180px, 86vw); opacity: .5; animation-duration: 29s; }
+.deco--ribbons-veil { left: -30vw; top: 2%; width: min(1100px, 80vw); opacity: .4; animation-duration: 33s; }
+.deco--ribbons-drift { left: -10vw; top: 8%; width: 120vw; opacity: .5; animation-duration: 27s; }
+.deco--sparkles { right: -4%; bottom: -22%; width: clamp(260px, 30vw, 460px); opacity: .45; animation: float 15s ease-in-out infinite; }
+.deco--sparkles-schedule { right: auto; left: 24%; bottom: -16%; animation-direction: reverse; }
+.deco--planet-sponsors { right: -60px; bottom: -110px; width: clamp(200px, 22vw, 340px); opacity: .7; animation: float 17s ease-in-out infinite; }
+.deco--orb-schedule { left: -40px; bottom: 4%; width: clamp(100px, 11vw, 170px); opacity: .8; animation: float 10s ease-in-out infinite reverse; }
+.deco--planet-faq { right: -9vw; top: 52%; width: clamp(220px, 26vw, 400px); opacity: .55; animation: float 18s ease-in-out infinite reverse; }
+.deco--stardust { left: -6vw; top: 8%; width: 112vw; opacity: .35; }
 .deco--planet { z-index: -1; animation: float 16s ease-in-out infinite; }
 .deco--planet-l { left: -11vw; top: 30%; width: clamp(300px, 44vw, 760px); }
 .deco--planet-r { right: -13vw; bottom: 6%; width: clamp(280px, 40vw, 680px); animation-duration: 19s; animation-direction: reverse; }
@@ -513,6 +570,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- Keyframes ---------- */
 @keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes memberIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-16px) rotate(.6deg); } }
 @keyframes milkyway { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(2.5deg) scale(1.05) translate(1%, -1.5%); } }   /* transform only: an animated filter repaints the whole layer each frame */
 @keyframes drift { from { transform: translate(-2%, 0) rotate(-1deg); } to { transform: translate(2%, 3%) rotate(1deg); } }
@@ -535,7 +593,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav__links { display: none; }
   .nav__burger { display: block; }
   .faq { grid-template-columns: 1fr; gap: 0; }
-  .faq__aside { position: static; }
+  .faq__aside { display: contents; }                       /* its children join the single column… */
+  .faq__contact { order: 1; margin-top: 28px; }             /* …so the contact line can follow the questions */
   .gate { display: none; }
 }
 @media (max-width: 960px) {
@@ -565,6 +624,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .sponsor-cta { flex-direction: column; text-align: center; }
   .tag { align-self: center; }
   .faq summary { text-align: left; }
+  .faq__contact { margin: 28px auto 0; text-align: center; }
   .gate { margin: 8px auto 0; }
   .footer__bar { flex-direction: column; align-items: center; text-align: center; }
   .deco--nova { right: -70px; top: auto; bottom: -50px; width: 170px; opacity: .45; }
@@ -582,11 +642,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   body { font-size: 16px; }
   .logo-grid { grid-template-columns: repeat(4, 1fr); }
   .logo--last, .sponsor-cta { grid-column: 1 / -1; }
-  .countdown div + div { padding-left: 14px; }
-  .countdown { gap: 14px; }
+  .countdown { gap: 6px; }
+  .countdown b { font-size: 28px; }
+  .countdown__colon { height: 28px; }
   .temple__podium { padding: 14px 8px; }
   .lockup { font-size: 13.5vw; }
   .btn--closed { padding: 14px 30px; font-size: 16px; }
+  .deco--ribbons { width: 120vw; opacity: .3; }
+  .sol { width: 170vw; right: -85vw; top: 40%; opacity: .45; }
+  .deco--island { width: 30vw; top: auto; bottom: -20px; }
+  .deco--island-steps { right: -6vw; }
+  .deco--island-dome { left: -6vw; }
+  .deco--ribbons-sweep { right: -50vw; }
+  .deco--ribbons-arc { left: -50vw; }
+  .deco--ribbons-cascade { right: -45vw; }
+  .deco--ribbons-orbit { right: -50vw; }
+  .deco--ribbons-veil { left: -40vw; }
+  .deco--ribbons-drift { width: 160vw; left: -30vw; }
+  .deco--sparkles { width: 70vw; opacity: .3; }
+  .deco--planet-sponsors { width: 44vw; right: -16vw; bottom: -60px; }
+  .deco--orb-schedule { display: none; }
+  .deco--planet-faq { width: 52vw; right: -24vw; opacity: .35; }
   .deco--planet-l { width: 64vw; left: -26vw; top: 46%; }
   .deco--planet-r { width: 58vw; right: -22vw; bottom: 14%; }
   .faq details p { padding-right: 0; }
@@ -598,6 +674,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .team__row { overflow-x: auto; }
   .team__track { animation: none !important; }
   .tstar__art svg { animation: none !important; }
+  .tstar { animation: none !important; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
   .hero__bg .deco--milkyway { opacity: .68 !important; }

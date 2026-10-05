@@ -30,26 +30,27 @@
   const TEAM = [
     // directors (featured novas, in this order)
     ['Luna', 'Yin', 'Co-Director', 'assets/img/team/luna.jpg'], ['Ian', 'Park', 'Co-Director', 'assets/img/team/ian.jpg'],
-    ['Andy', 'Dieu', 'Director of Finance', 'assets/img/team/andy.jpg'], ['Chi', 'Le', 'Director of Marketing', 'assets/img/team/chi.jpg'],
+    ['Andy', 'Dieu', 'Director of Finance', 'assets/img/team/andy.jpg'], ['Chi', 'Le', 'Director of Design', 'assets/img/team/chi.jpg'],
     ['Kelly', 'Olmos', 'Director of Logistics & HX', 'assets/img/team/kelly.jpg'],
     ['Jaden', 'Zhang', 'Co-Director of Engineering', 'assets/img/team/jaden.jpg'], ['Eric', 'Xu', 'Co-Director of Engineering', 'assets/img/team/eric.jpg'],
-    // everyone else (carousel) — placeholders
-    ['Sofia', 'Petrov', 'Web Lead'], ['Kai', 'Andersen', 'Frontend Engineer'],
-    ['Amara', 'Diallo', 'Backend Engineer'], ['Ethan', 'Whitlock', 'Logistics Lead'],
-    ['Lina', 'Haddad', 'Logistics'], ['Mateo', 'Ferreira', 'Hacker Experience Lead'],
-    ['Hana', 'Kobayashi', 'Hacker Experience'], ['Noah', 'Brennan', 'Marketing Lead'],
-    ['Zara', 'Qureshi', 'Social Media'], ['Felix', 'Schreiber', 'Finance Lead'],
-    ['Imani', 'Waweru', 'Outreach Lead'], ['Leo', 'Marchetti', 'Outreach'],
-    ['Ines', 'Delacroix', 'Operations'], ['Ravi', 'Subramanian', 'Mentorship Lead'],
-    ['Clara', 'Johansson', 'Workshops Lead'], ['Diego', 'Alvarado', 'Judging Lead'],
-    ['Mei', 'Zhang', 'Global Lead · China'], ['Arjun', 'Mehta', 'Global · India'],
-    ['Linh', 'Tran', 'Global · Vietnam'], ['Grace', 'Oyelaran', 'Content Writer'],
-    ['Oscar', 'Lindgren', 'Photographer'], ['Yara', 'Nasser', 'Videographer'],
-    ['Samuel', 'Achebe', 'Volunteer Coordinator'], ['Elena', 'Vasquez', 'Food & Catering'],
-    ['Hugo', 'Beaumont', 'Venue Coordinator'], ['Nadia', 'Rahimi', 'Partnerships'],
-    ['Jonah', 'Feldman', 'Product Designer'], ['Aiko', 'Tanaka', 'Data & Analytics'],
-    ['Marcus', 'Holloway', 'Security'], ['Freya', 'Sorensen', 'Swag & Merch'],
+    // everyone else (carousel)
+    ['Alyssa', 'Kang', 'Finance'], ['Athena', 'Zhou', 'Finance'],
+    ['Smera', 'Sachin', 'Finance'], ['Shiwaum', 'Khera', 'Finance'],
+    ['Sophia', 'Zhang', 'Finance'], ['Emilie', 'Efendy', 'Finance'],
+    ['Eric', 'Gong', 'Logistics'], ['Gabe', 'Cooper', 'Logistics'],
+    ['Sophia', 'Liu', 'Logistics'], ['Ha', 'Le', 'Logistics'],
+    ['Amy', 'Zhang', 'Logistics'], ['Joshua', 'Gupta', 'Logistics'],
+    ['Michael', '', 'Logistics'],
+    ['Rick', 'Yang', 'Hacker Experience'], ['Radhik', 'Wickramasinghe', 'Hacker Experience'],
+    ['Anh', 'Nguyen', 'Hacker Experience'], ['Katherine', 'Guo', 'Hacker Experience'],
+    ['Radha', 'Munver', 'Hacker Experience'], ['Caitlyn', 'Gonzalez', 'Hacker Experience'],
+    ['Ellen', 'Wang', 'Hacker Experience'],
+    ['Neeraja', 'Kumar', 'Marketing & Design'], ['Hector', 'Montellano-Bahena', 'Marketing & Design'],
+    ['Sophia', 'Liu', 'Technology'], ['Iban', 'Palomanes', 'Technology'],
+    ['Joe', 'Liang', 'Technology'],
   ];
+  // Which member titles each director leads, in TEAM order (null = the whole team). Hovering a director filters the carousel.
+  const LEADS = [null, null, ['Finance'], ['Marketing & Design'], ['Logistics', 'Hacker Experience'], ['Technology'], ['Technology']];
 
   /* ---------------------------------------------------------------- Loader */
   // Beams of light draw out and spin, a small star spins up into the supernova,
@@ -302,14 +303,21 @@
 
   /* --------------------------------------------------------------- Countdown */
   const countdown = () => {
-    const els = { d: $('[data-cd="d"]'), h: $('[data-cd="h"]'), m: $('[data-cd="m"]'), s: $('[data-cd="s"]') };
+    // each [data-cd] becomes two seven-segment digits (segments a–g) plus hidden text for screen readers
+    const digit = '<span class="seg" aria-hidden="true">' + 'abcdefg'.split('').map(c => `<i class="${c}"></i>`).join('') + '</span>';
+    const els = Object.fromEntries(['d', 'h', 'm', 's'].map(k => {
+      const el = $(`[data-cd="${k}"]`);
+      el.innerHTML = digit + digit + '<span class="sr"></span>';
+      return [k, { segs: $$('.seg', el), sr: $('.sr', el) }];
+    }));
     const pad = n => String(n).padStart(2, '0');
+    const show = (k, n) => { const t = pad(n); els[k].segs.forEach((s, i) => { s.dataset.n = t[i]; }); els[k].sr.textContent = t; };
     const tick = () => {
       const diff = Math.max(0, EVENT_START - Date.now());
-      els.d.textContent = pad(Math.floor(diff / 864e5));
-      els.h.textContent = pad(Math.floor(diff / 36e5) % 24);
-      els.m.textContent = pad(Math.floor(diff / 6e4) % 60);
-      els.s.textContent = pad(Math.floor(diff / 1e3) % 60);
+      show('d', Math.min(99, Math.floor(diff / 864e5)));
+      show('h', Math.floor(diff / 36e5) % 24);
+      show('m', Math.floor(diff / 6e4) % 60);
+      show('s', Math.floor(diff / 1e3) % 60);
     };
     tick(); setInterval(tick, 1000);
   };
@@ -556,12 +564,12 @@
     featured.className = 'team__featured';
     featured.innerHTML = TEAM.slice(0, FEATURED_COUNT).map(([first, last, title, photo], i) => {
       const name = `${esc(first)} ${esc(last)}`;
-      return `<figure class="uplanet"><div class="uplanet__art">${bigStarSVG(FEATURED[i], i)}${face(name, photo)}</div>${caption(name, title)}</figure>`;
+      return `<figure class="uplanet" tabindex="0" data-lead="${i}"><div class="uplanet__art">${bigStarSVG(FEATURED[i], i)}${face(name, photo)}</div>${caption(name, title)}</figure>`;
     }).join('');
 
     const cards = TEAM.slice(FEATURED_COUNT).map(([first, last, title, photo], k) => {
       const name = `${esc(first)} ${esc(last)}`;
-      return `<figure class="tstar" style="--glow:${GLOWS[k % GLOWS.length]};--delay:${-(k % 5) * .8}s"><div class="tstar__art">${starSVG(k)}${face(name, photo)}</div>${caption(name, title)}</figure>`;
+      return `<figure class="tstar" data-title="${esc(title)}" style="--glow:${GLOWS[k % GLOWS.length]};--delay:${-(k % 5) * .8}s"><div class="tstar__art">${starSVG(k)}${face(name, photo)}</div>${caption(name, title)}</figure>`;
     }).join('');
     const row = document.createElement('div');
     row.className = 'team__row';
@@ -569,6 +577,22 @@
     row.innerHTML = `<div class="team__track">${cards}<div style="display:contents" aria-hidden="true">${cards}</div></div>`;
 
     host.append(featured, row);
+
+    // hover (or focus/tap) a director to show only their members; leaving the team area shows everyone again
+    const filter = i => {
+      const leads = LEADS[i] ?? null;
+      host.classList.toggle('is-filtered', !!leads);
+      $$('.uplanet', featured).forEach(u => u.classList.toggle('is-active', !!leads && u.dataset.lead === String(i)));
+      $$('.tstar', row).forEach(t => t.classList.toggle('is-out', !!leads && !leads.includes(t.dataset.title)));
+      // the track holds two copies so the marquee can loop; a filtered group stands still instead, showing one copy
+      host.classList.toggle('is-static', !!leads);
+    };
+    $$('.uplanet', featured).forEach(u => {
+      u.addEventListener('mouseenter', () => filter(+u.dataset.lead));
+      u.addEventListener('focus', () => filter(+u.dataset.lead));
+    });
+    host.addEventListener('mouseleave', () => filter(null));
+    host.addEventListener('focusout', e => { if (!host.contains(e.relatedTarget)) filter(null); });
   };
 
   /* ------------------------------------------------------ Sponsor logo glow */

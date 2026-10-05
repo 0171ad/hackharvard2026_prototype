@@ -42,6 +42,7 @@ Source art: `/Users/chi/Desktop/HackHarvard/` (merch, stickers, banners, `300ppi
 🪐 ringed planets and gradient orbs · ☄ small rockets with dotted stardust trails
 ⌂ domes, cupolas, columns, arches, stepped stairs · ◇ rows of diamond "bulb" lights along ledges
 ✧ golden dust / particle sprays · ⊙ starburst sun with thin radiating rays · ⋆ constellation lines
+〰 big banded gradient petals / ribbons with cream crescent slivers (section backdrops: `assets/svg/ribbons-*.svg`, one composition per section)
 
 ### Don'ts
 ✕ pure `#000` or white backgrounds · ✕ flat, single-color fills on big shapes · ✕ neon-cyberpunk or glassmorphism-SaaS looks

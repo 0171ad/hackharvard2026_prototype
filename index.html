@@ -9,12 +9,12 @@
   <meta property="og:title" content="HackHarvard 2026 — Hack to the Moon" />
   <meta property="og:description" content="A 36-hour undergraduate hackathon at Harvard University. October 16–18, 2026 · Cambridge, MA." />
   <meta property="og:image" content="assets/img/og-art.jpg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=20261007g" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261007g" />
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20261006o" />
+  <link rel="stylesheet" href="css/style.css?v=20261007g" />
 </head>
 <body class="is-loading">
 
@@ -81,10 +81,11 @@
         <div class="hero__cta">
           <span class="btn btn--closed">Applications closed</span>
         </div>
-        <div class="countdown" aria-label="Countdown to HackHarvard">
-          <div><b data-cd="d">00</b><span>days</span></div>
-          <div><b data-cd="h">00</b><span>hours</span></div>
-          <div><b data-cd="m">00</b><span>min</span></div>
+        <!-- Countdown: glowing seven-segment digits (built in js/main.js), blinking colons -->
+        <div class="countdown" role="timer" aria-label="Countdown to HackHarvard">
+          <div><b data-cd="d">00</b><span>days</span></div><i class="countdown__colon" aria-hidden="true"></i>
+          <div><b data-cd="h">00</b><span>hours</span></div><i class="countdown__colon" aria-hidden="true"></i>
+          <div><b data-cd="m">00</b><span>min</span></div><i class="countdown__colon" aria-hidden="true"></i>
           <div><b data-cd="s">00</b><span>sec</span></div>
         </div>
       </div>
@@ -106,6 +107,7 @@
 
     <!-- ============ ABOUT ============ -->
     <section class="section about" id="about">
+      <img class="deco deco--ribbons deco--ribbons-sweep" data-depth=".06" src="assets/svg/ribbons-sweep.svg" alt="" aria-hidden="true" />
       <img class="deco deco--tower" data-depth=".05" src="assets/svg/utopia-tower.svg" alt="" aria-hidden="true" />
       <img class="deco deco--orb-about" data-depth="-.2" src="assets/svg/orb-secondary.svg" alt="" aria-hidden="true" />
 
@@ -146,6 +148,8 @@
 
     <!-- ============ TRACKS ============ -->
     <section class="section tracks" id="tracks">
+      <img class="deco deco--ribbons deco--ribbons-orbit" data-depth=".05" src="assets/svg/ribbons-orbit.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--sparkles" data-depth="-.08" src="assets/svg/sparkles-set.svg" alt="" aria-hidden="true" />
       <img class="deco deco--orb-tracks" data-depth="-.25" src="assets/svg/orb-main.svg" alt="" aria-hidden="true" />
       <h2 class="title reveal">Tracks</h2>
 
@@ -207,7 +211,9 @@
 
     <!-- ============ SPONSORS ============ -->
     <section class="section sponsors" id="sponsors">
+      <img class="deco deco--ribbons deco--ribbons-arc" data-depth="-.05" src="assets/svg/ribbons-arc.svg" alt="" aria-hidden="true" />
       <img class="deco deco--nova" data-depth="-.12" src="assets/svg/explosion-supernova.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--planet-sponsors" data-depth="-.1" src="assets/svg/planet-tide.svg" alt="" aria-hidden="true" />
       <h2 class="title reveal">Sponsors</h2>
       <!-- Ordered by sponsorship level, highest first -->
       <div class="logo-grid">
@@ -234,9 +240,11 @@
 
     <!-- ============ SCHEDULE ============ -->
     <section class="section schedule" id="schedule">
+      <img class="deco deco--ribbons deco--ribbons-cascade" data-depth=".08" src="assets/svg/ribbons-cascade.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--sparkles deco--sparkles-schedule" data-depth=".1" src="assets/svg/sparkles-set.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--orb-schedule" data-depth="-.18" src="assets/svg/orb-secondary.svg" alt="" aria-hidden="true" />
       <div class="schedule__head">
         <h2 class="title reveal">Schedule</h2>
-        <span class="schedule__note reveal">Tentative · subject to change</span>
       </div>
       <div class="sched">
       <div class="sched__day reveal">
@@ -273,12 +281,25 @@
 
     <!-- ============ FAQ ============ -->
     <section class="section faq" id="faq">
+      <img class="deco deco--stardust" data-depth=".05" src="assets/svg/stardust-field.svg" alt="" aria-hidden="true" />
+      <!-- A big solar system drifting behind the questions: planets orbit on tilted ellipses (each counter-spins to stay round once flattened) -->
+      <svg class="deco sol" data-depth=".04" viewBox="-310 -130 620 260" aria-hidden="true">
+        <defs><radialGradient id="sol-halo"><stop offset="0" style="stop-color:var(--cream);stop-opacity:0.9"/><stop offset="0.25" style="stop-color:var(--butter);stop-opacity:0.55"/><stop offset="0.55" style="stop-color:var(--magenta);stop-opacity:0.18"/><stop offset="1" style="stop-color:var(--magenta);stop-opacity:0"/></radialGradient><radialGradient id="sol-sun" cx=".42" cy=".4" r=".62"><stop offset="0" style="stop-color:var(--cream)"/><stop offset="0.45" style="stop-color:var(--butter)"/><stop offset="1" style="stop-color:var(--magenta)"/></radialGradient><linearGradient id="sol-ring" x1="0" x2="1"><stop offset="0" style="stop-color:var(--green)"/><stop offset="0.5" style="stop-color:var(--ink)"/><stop offset="1" style="stop-color:var(--magenta)"/></linearGradient><radialGradient id="sol-p0" cx=".38" cy=".38" r=".7"><stop offset="0" style="stop-color:var(--cream)"/><stop offset="0.5" style="stop-color:var(--magenta)"/><stop offset="1" style="stop-color:var(--wine)"/></radialGradient><radialGradient id="sol-p1" cx=".38" cy=".38" r=".7"><stop offset="0" style="stop-color:var(--glow)"/><stop offset="0.5" style="stop-color:var(--green)"/><stop offset="1" style="stop-color:var(--blue)"/></radialGradient><radialGradient id="sol-p2" cx=".38" cy=".38" r=".7"><stop offset="0" style="stop-color:var(--cream)"/><stop offset="0.5" style="stop-color:var(--butter)"/><stop offset="1" style="stop-color:var(--magenta)"/></radialGradient><radialGradient id="sol-p3" cx=".38" cy=".38" r=".7"><stop offset="0" style="stop-color:var(--glow)"/><stop offset="0.5" style="stop-color:var(--blue-l)"/><stop offset="1" style="stop-color:var(--blue)"/></radialGradient><radialGradient id="sol-p4" cx=".38" cy=".38" r=".7"><stop offset="0" style="stop-color:var(--cream)"/><stop offset="0.5" style="stop-color:var(--mint)"/><stop offset="1" style="stop-color:var(--green)"/></radialGradient></defs>
+        <path class="sol__spark" d="M0 -7Q1 -1 7 0Q1 1 0 7Q-1 1 -7 0Q-1 -1 0 -7Z" transform="translate(-250 -95) scale(1)" style="--d:0s"/><path class="sol__spark" d="M0 -7Q1 -1 7 0Q1 1 0 7Q-1 1 -7 0Q-1 -1 0 -7Z" transform="translate(232 -104) scale(0.7)" style="--d:-1.2s"/><path class="sol__spark" d="M0 -7Q1 -1 7 0Q1 1 0 7Q-1 1 -7 0Q-1 -1 0 -7Z" transform="translate(-120 96) scale(0.6)" style="--d:-2.1s"/><path class="sol__spark" d="M0 -7Q1 -1 7 0Q1 1 0 7Q-1 1 -7 0Q-1 -1 0 -7Z" transform="translate(286 62) scale(0.9)" style="--d:-0.6s"/><path class="sol__spark" d="M0 -7Q1 -1 7 0Q1 1 0 7Q-1 1 -7 0Q-1 -1 0 -7Z" transform="translate(40 -118) scale(0.5)" style="--d:-1.7s"/>
+        <g transform="rotate(-12)"><g transform="scale(1 0.34)"><circle class="sol__orbit" r="70"/><circle class="sol__orbit" r="115"/><circle class="sol__orbit" r="165"/><circle class="sol__orbit" r="220"/><circle class="sol__orbit" r="275"/></g></g>
+        <circle class="sol__halo" r="78" fill="url(#sol-halo)"/>
+        <circle class="sol__sun" r="22" fill="url(#sol-sun)"/>
+        <g transform="rotate(-12)"><g transform="scale(1 0.34)"><g class="sol__spin" style="--t:9s;--d:-0.0s"><g transform="translate(70 0)"><g class="sol__keep"><ellipse rx="6" ry="17.65" fill="url(#sol-p0)"/></g></g></g><g class="sol__spin" style="--t:15s;--d:-5.55s"><g transform="translate(115 0)"><g class="sol__keep"><ellipse rx="9" ry="26.47" fill="url(#sol-p1)"/></g></g></g><g class="sol__spin" style="--t:24s;--d:-17.76s"><g transform="translate(165 0)"><g class="sol__keep"><ellipse rx="26.400000000000002" ry="17.65" fill="none" stroke="url(#sol-ring)" stroke-width="2.4"/><ellipse rx="12" ry="35.29" fill="url(#sol-p2)"/></g></g></g><g class="sol__spin" style="--t:34s;--d:-3.74s"><g transform="translate(220 0)"><g class="sol__keep"><ellipse rx="8" ry="23.53" fill="url(#sol-p3)"/></g></g></g><g class="sol__spin" style="--t:48s;--d:-23.04s"><g transform="translate(275 0)"><g class="sol__keep"><ellipse rx="5" ry="14.71" fill="url(#sol-p4)"/></g></g></g></g></g>
+      </svg>
+      <img class="deco deco--ribbons deco--ribbons-veil" data-depth=".06" src="assets/svg/ribbons-veil.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--planet-faq" data-depth="-.12" src="assets/svg/planet-rose.svg" alt="" aria-hidden="true" />
       <div class="faq__aside">
         <h2 class="title reveal">FAQ</h2>
         <div class="gate" data-gate aria-hidden="true">
           <img class="deco deco--gate" src="assets/svg/utopia-arch-gate.svg" alt="" />
           <svg class="gate__lamps" viewBox="0 0 600 800"></svg>
         </div>
+        <p class="faq__contact">Have more questions? Contact us at <a href="mailto:team@hackharvard.io">team@hackharvard.io</a></p>
       </div>
       <div class="faq__list">
         <details class="reveal"><summary>What is a hackathon?<i></i></summary>
@@ -337,6 +358,7 @@
 
     <!-- ============ GLOBAL ============ -->
     <section class="section global" id="global">
+      <img class="deco deco--ribbons deco--ribbons-drift" data-depth="-.05" src="assets/svg/ribbons-drift.svg" alt="" aria-hidden="true" />
       <div class="orbit" aria-hidden="true">
         <img class="orbit__core" src="assets/svg/orb-full.svg" alt="" />
         <div class="orbit__ring r1"><span></span></div>
@@ -364,6 +386,10 @@
 
     <!-- ============ TEAM ============ -->
     <section class="section team" id="team">
+      <!-- two floating islands flank the heading -->
+      <img class="deco deco--island deco--island-dome" src="assets/svg/island-dome.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--island deco--island-steps" src="assets/svg/island-steps.svg" alt="" aria-hidden="true" />
+      <img class="deco deco--ribbons deco--ribbons-wave" data-depth="-.04" src="assets/svg/ribbons-wave.svg" alt="" aria-hidden="true" />
       <h2 class="title team__title reveal">Made with
         <svg class="heart" viewBox="0 0 24 24" role="img" aria-label="love">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -384,14 +410,6 @@
         </nav>
         <span>© 2026 HackHarvard</span>
       </div>
-      <!-- HACK to the MOON lockup: Makcasa's ligatures give the crossed HA and linked OO; the ribbon reuses the tilted tag -->
-      <h2 class="moonlock reveal" aria-label="Hack to the Moon">
-        <span class="moonlock__word" aria-hidden="true">HACK</span>
-        <span class="moonlock__mid" aria-hidden="true">
-          <span class="btn moonlock__tag">to the</span>
-        </span>
-        <span class="moonlock__word" aria-hidden="true">MOON</span>
-      </h2>
       <button class="rocket" aria-label="Back to top" title="Back to top">
         <img src="assets/svg/rocket.svg" alt="" />
       </button>
@@ -401,6 +419,6 @@
     </footer>
   </main>
 
-  <script src="js/main.js?v=20261006o" defer></script>
+  <script src="js/main.js?v=20261007g" defer></script>
 </body>
 </html>
