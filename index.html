@@ -14,7 +14,7 @@
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20261005p" />
+  <link rel="stylesheet" href="css/style.css?v=20261006c" />
 </head>
 <body class="is-loading">
 
@@ -114,7 +114,7 @@
         <span class="moonlock__word" aria-hidden="true">HACK</span>
         <span class="moonlock__mid" aria-hidden="true">
           <span class="btn moonlock__tag">to the</span>
-          <img class="moonlock__rocket" src="assets/svg/rocket.svg" alt="" />
+          <img class="moonlock__rocket" src="assets/svg/rocket.svg" alt="" data-voyage-start />
         </span>
         <span class="moonlock__word" aria-hidden="true">MOON</span>
       </h2>
@@ -224,13 +224,13 @@
         <a class="logo reveal" href="https://www.hudsonrivertrading.com" target="_blank" rel="noopener"><img src="assets/img/sponsors/hrt.png" alt="Hudson River Trading" loading="lazy" /></a>
         <a class="logo reveal" href="https://www.mwam.com" target="_blank" rel="noopener"><img src="assets/img/sponsors/marshall.png" alt="Marshall Wace" loading="lazy" /></a>
         <a class="logo logo--last reveal" href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="assets/img/sponsors/anthropic.png" alt="Anthropic" loading="lazy" /></a>
-      </div>
-      <div class="sponsor-cta reveal">
-        <p class="sponsor-cta__q">Interested in sponsoring?</p>
-        <a class="sponsor-cta__link" href="mailto:team@hackharvard.io?subject=Sponsoring%20HackHarvard%202026">
-          Contact us! <span aria-hidden="true">→</span>
-        </a>
-        <span class="sponsor-cta__mail">team@hackharvard.io</span>
+        <div class="sponsor-cta reveal">
+          <p class="sponsor-cta__q">Interested in sponsoring?</p>
+          <a class="sponsor-cta__link" href="mailto:team@hackharvard.io?subject=Sponsoring%20HackHarvard%202026">
+            Contact us! <span aria-hidden="true">→</span>
+          </a>
+          <span class="sponsor-cta__mail">team@hackharvard.io</span>
+        </div>
       </div>
     </section>
 
@@ -277,7 +277,10 @@
     <section class="section faq" id="faq">
       <div class="faq__aside">
         <h2 class="title reveal">FAQ</h2>
-        <img class="deco deco--gate" src="assets/svg/utopia-arch-gate.svg" alt="" aria-hidden="true" />
+        <div class="gate" data-gate aria-hidden="true">
+          <img class="deco deco--gate" src="assets/svg/utopia-arch-gate.svg" alt="" />
+          <svg class="gate__lamps" viewBox="0 0 600 800"></svg>
+        </div>
       </div>
       <div class="faq__list">
         <details class="reveal"><summary>What is a hackathon?<i></i></summary>
@@ -343,6 +346,7 @@
         <div class="orbit__ring r3"><span></span></div>
       </div>
       <img class="deco deco--comet" data-depth=".15" src="assets/svg/stardust-comet-trail.svg" alt="" aria-hidden="true" />
+      <svg class="constellation" viewBox="0 0 400 400" aria-hidden="true" data-constellation></svg>
       <h2 class="title reveal">Global</h2>
       <div class="sites">
         <a class="site reveal" href="https://hhuh.io/china">
@@ -387,7 +391,6 @@
         <span class="moonlock__word" aria-hidden="true">HACK</span>
         <span class="moonlock__mid" aria-hidden="true">
           <span class="btn moonlock__tag">to the</span>
-          <img class="moonlock__rocket" src="assets/svg/rocket.svg" alt="" />
         </span>
         <span class="moonlock__word" aria-hidden="true">MOON</span>
       </h2>
@@ -401,6 +404,6 @@
     </footer>
   </main>
 
-  <script src="js/main.js?v=20261005p" defer></script>
+  <script src="js/main.js?v=20261006c" defer></script>
 </body>
 </html>

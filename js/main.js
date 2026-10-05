@@ -599,15 +599,143 @@
     });
   };
 
-  /* -------------------------------------------------------- Rocket back-to-top */
-  const rocket = () => {
-    const r = $('.rocket');
-    r.addEventListener('click', () => {
-      if (reduceMotion) return scrollTo(0, 0);
-      r.classList.add('is-launching');
-      setTimeout(() => scrollTo({ top: 0, behavior: 'smooth' }), 350);
-      setTimeout(() => r.classList.remove('is-launching'), 2200);
+  /* ------------------------------------- FAQ gate: one diamond lamp per question opened */
+  const gateLamps = () => {
+    const gate = $('[data-gate]'), svg = $('.gate__lamps', gate || document);
+    const qs = $$('.faq details');
+    if (!gate || !svg || !qs.length) return;
+    // lamps hang just outside the arch (centre 300,330 · r 150 in the gate SVG), left to right
+    const lamps = qs.map((_, k) => {
+      const a = Math.PI + (k + .5) / qs.length * Math.PI, r = 166;
+      const x = 300 + r * Math.cos(a), y = 330 + r * Math.sin(a);
+      const d = svgEl('path', { class: 'gate__lamp', d: `M${x.toFixed(1)} ${(y - 14).toFixed(1)}Q${(x + 6).toFixed(1)} ${y.toFixed(1)} ${x.toFixed(1)} ${(y + 14).toFixed(1)}Q${(x - 6).toFixed(1)} ${y.toFixed(1)} ${x.toFixed(1)} ${(y - 14).toFixed(1)}Z` });
+      svg.append(d);
+      return d;
     });
+    const read = new Set();
+    qs.forEach(d => d.addEventListener('toggle', () => {
+      if (!d.open || read.has(d)) return;
+      read.add(d);
+      lamps[read.size - 1].classList.add('is-lit');
+      gate.classList.toggle('is-full', read.size === lamps.length);
+    }));
+  };
+
+  /* ------------------------------- Global: hover a country to trace its outline as a constellation */
+  // Simplified borders [lon, lat]; the capital gets the brand sparkle
+  const COUNTRIES = {
+    China: { cap: [116.4, 39.9], pts: [[134.7, 48.3], [130.6, 42.4], [124.3, 39.9], [121.6, 38.9], [122.3, 36.9], [120.3, 34.3], [121.9, 31], [121, 28], [119.5, 25.4], [116.6, 23.3], [113.5, 22.2], [110, 20.3], [108, 21.5], [106.7, 22.8], [101, 21.5], [98.7, 24.1], [97.4, 28.3], [92, 27.8], [88.9, 27.9], [81, 30.2], [79.5, 32.5], [74.9, 37.2], [73.5, 39.5], [80.2, 42.2], [82.9, 45.4], [87.3, 49.1], [90.9, 45.3], [97, 42.7], [104.9, 41.6], [111.9, 43.7], [116.7, 46], [119.8, 47], [117.9, 49.6], [121, 53.3], [126.9, 51.4], [130.6, 48.9]] },
+    India: { cap: [77.2, 28.6], pts: [[77.5, 35.4], [79, 32.4], [81, 30.2], [84, 27.4], [88.2, 26.7], [88.9, 27.9], [92, 27.8], [97.3, 28.2], [95.2, 26.5], [93.3, 24], [92.6, 21.9], [88.7, 22], [85.8, 20], [82.3, 16.6], [80.3, 13.1], [79.9, 10.3], [77.5, 8.1], [76.3, 9.9], [74.8, 12.9], [73, 19], [72.8, 21.2], [70, 21], [68.6, 23.3], [70.1, 25.8], [71.9, 27.9], [74.5, 31.8], [73.8, 34.5]] },
+    Vietnam: { cap: [105.8, 21], pts: [[102.2, 22.4], [105.3, 23.3], [106.7, 22.8], [108, 21.5], [106.8, 20.4], [105.9, 19], [106.6, 17.5], [108.2, 16.1], [109.2, 13.8], [109.2, 12.2], [108.1, 10.9], [107.1, 10.3], [106, 9.2], [104.8, 8.6], [104.5, 10.4], [105.9, 11], [107.5, 12.5], [107.5, 14.6], [106.5, 16.6], [105.6, 18.2], [104, 19.5], [103.2, 20.8]] },
+  };
+  const constellation = () => {
+    const svg = $('[data-constellation]'), section = $('.global');
+    if (!svg || !finePointer) return;
+    const STAR = ['#f4f1e4', '#f2e9b0', '#ffdd00', '#ff0aa8', '#7dffaa', '#5686bb'];
+    const groups = {};
+    for (const [name, { cap, pts }] of Object.entries(COUNTRIES)) {
+      // equirectangular, squeezed by cos(latitude) so shapes aren't stretched, fitted into the 400×400 box
+      const k = Math.cos(pts.reduce((a, p) => a + p[1], 0) / pts.length * Math.PI / 180);
+      const xy = ([lo, la]) => [lo * k, -la];
+      const all = pts.map(xy), xs = all.map(p => p[0]), ys = all.map(p => p[1]);
+      const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+      const sc = 340 / Math.max(x1 - x0, y1 - y0), ox = 200 - (x0 + x1) / 2 * sc, oy = 200 - (y0 + y1) / 2 * sc;
+      const P = p => { const [x, y] = xy(p); return [x * sc + ox, y * sc + oy]; };
+      const g = svgEl('g');
+      g.append(svgEl('path', { d: 'M' + pts.map(p => P(p).map(n => n.toFixed(1)).join(' ')).join('L') + 'Z', pathLength: 1 }));
+      pts.forEach((p, i) => {
+        const [x, y] = P(p);
+        g.append(svgEl('circle', { cx: x.toFixed(1), cy: y.toFixed(1), r: (1.3 + (i * 7 % 5) * .45).toFixed(2), fill: STAR[i % STAR.length], style: `--d:${(i / pts.length * 1.4).toFixed(2)}s` }));
+      });
+      const [cx, cy] = P(cap);
+      g.append(svgEl('path', { class: 'cap', d: `M${cx} ${cy - 9}Q${cx + 2} ${cy - 2} ${cx + 9} ${cy}Q${cx + 2} ${cy + 2} ${cx} ${cy + 9}Q${cx - 2} ${cy + 2} ${cx - 9} ${cy}Q${cx - 2} ${cy - 2} ${cx} ${cy - 9}Z` }));
+      svg.append(g);
+      groups[name] = g;
+    }
+    $$('.site').forEach(site => {
+      const g = groups[$('h3', site).textContent.trim()];
+      if (!g) return;
+      const on = () => { g.classList.add('is-on'); section.classList.add('is-tracing'); };
+      const off = () => { g.classList.remove('is-on'); section.classList.remove('is-tracing'); };
+      site.addEventListener('pointerenter', on); site.addEventListener('focus', on);
+      site.addEventListener('pointerleave', off); site.addEventListener('blur', off);
+    });
+  };
+
+  /* ------------------------------- The rocket: one ship from the About lockup to the footer and back */
+  // It leaves the lockup as you scroll, rides the right edge (nose toward where you're heading, tilting with
+  // scroll speed), flips upright and docks on the back-to-top pad. Docked, it stays put until clicked.
+  const voyage = () => {
+    const start = $('[data-voyage-start]'), btn = $('.rocket'), pad = $('img', btn);
+    const launch = () => {
+      btn.classList.add('is-launching');
+      setTimeout(() => scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }), reduceMotion ? 0 : 350);
+      setTimeout(() => btn.classList.remove('is-launching'), 2200);
+    };
+    if (reduceMotion || !start) return btn.addEventListener('click', () => scrollTo(0, 0));
+
+    const ship = document.createElement('img');
+    ship.className = 'voyager'; ship.src = start.src; ship.alt = ''; ship.setAttribute('aria-hidden', 'true');
+    document.body.append(ship);
+    document.documentElement.classList.add('has-voyager');
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const ease = t => t * t * (3 - 2 * t);
+    const centre = el => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: el.offsetWidth }; };
+    let state = 'flying', lastY = scrollY, vel = 0, heading = 180, hd = 180, raf = 0;
+
+    const dock = () => { state = 'docked'; btn.classList.add('is-docked'); ship.style.visibility = 'hidden'; };
+    const frame = () => {
+      raf = 0;
+      if (state !== 'flying') return;
+      const vh = innerHeight, vw = innerWidth, small = vw < 600;
+      const v = scrollY - lastY; lastY = scrollY;
+      vel = lerp(vel, v, .2);
+      if (Math.abs(v) > .5) heading = v > 0 ? 180 : 0;          // nose down while scrolling down, up while scrolling back
+      hd = lerp(hd, heading, .12);
+      const s = centre(start), e = centre(pad);
+      // a lazy, uneven weave (two out-of-step waves) and a gentle bob, driven by scroll distance — not the pointer;
+      // the nose banks into each turn along the curve, plus a little lean with scroll speed
+      const sy = scrollY, amp = small ? 7 : 26, L1 = 520, L2 = 1370;
+      const sway = amp * (Math.sin(sy / L1) + .55 * Math.sin(sy / L2 + 1.3));
+      const slope = amp * (Math.cos(sy / L1) / L1 + .55 * Math.cos(sy / L2 + 1.3) / L2);   // d(sway)/d(scroll)
+      const bank = Math.atan(slope * 5) * 180 / Math.PI;
+      const cruise = { x: vw - (small ? 22 : 64) + sway, y: vh * (.55 + .04 * Math.sin(sy / 830)), w: small ? 22 : 36,
+        r: hd - bank + clamp(vel * .8, -16, 16) };
+      const dep = ease(clamp((vh * .6 - s.y) / (vh * .35), 0, 1));   // lockup scrolls up → the ship peels off
+      const land = ease(clamp((vh - e.y) / (vh * .35), 0, 1));       // pad scrolls in → the ship flips upright onto it
+      const landRot = cruise.r > 90 ? 360 : 0;
+      const x = lerp(lerp(s.x, cruise.x, dep), e.x, land);
+      const y = lerp(lerp(s.y, cruise.y, dep), e.y, land);
+      const w = lerp(lerp(s.w, cruise.w, dep), e.w, land);
+      const r = lerp(lerp(150, cruise.r, dep), landRot, land);
+      ship.style.width = w + 'px';
+      ship.style.transform = `translate(${(x - w / 2).toFixed(1)}px, ${(y - w * 5 / 6).toFixed(1)}px) rotate(${r.toFixed(1)}deg)`;
+      const atEnd = scrollY > 0 && scrollY + vh >= document.documentElement.scrollHeight - 2;
+      if (land > .999 && atEnd) return dock();                  // reached the end: stay docked until clicked
+      if (Math.abs(vel) > .05 || Math.abs(hd - heading) > .5) raf = requestAnimationFrame(frame);
+    };
+    const go = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    addEventListener('scroll', go, { passive: true });
+    addEventListener('resize', go);
+    addEventListener('load', go);                                       // images change the layout
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(go);   // lockup size settles once Makcasa loads
+
+    btn.addEventListener('click', () => {
+      if (state === 'launching') return;
+      state = 'launching';
+      launch();
+      // once we're back at the top, the ship is waiting in the lockup again
+      const home = () => {
+        if (scrollY > 4) return setTimeout(home, 120);
+        btn.classList.remove('is-docked');
+        ship.style.visibility = '';
+        state = 'flying'; lastY = scrollY; vel = 0; heading = hd = 180;
+        go();
+      };
+      setTimeout(home, 900);
+    });
+    go();
   };
 
   fitLockups();
@@ -623,5 +751,7 @@
   team();
   logoGlow();
   faq();
-  rocket();
+  gateLamps();
+  constellation();
+  voyage();
 })();
