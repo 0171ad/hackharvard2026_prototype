@@ -27,8 +27,13 @@
 
   // Team roster. The first FEATURED_COUNT people get a featured nova; the rest scroll as stars. Format: [first, last, title, photo (optional, e.g. 'assets/img/team/avery.jpg')]
   const FEATURED_COUNT = 6;
+  const LINKEDIN = {
+    'Luna Yin': 'https://www.linkedin.com/in/luna-yin/', 'Andy Dieu': 'https://www.linkedin.com/in/andy-dieu/',
+    'Chi Le': 'https://www.linkedin.com/in/tue-chi-le/', 'Kelly Olmos': 'https://www.linkedin.com/in/kelly-olmos/',
+    'Jaden Zhang': 'https://www.linkedin.com/in/jadenqzhang/',
+  };
   const TEAM = [
-    // directors (featured novas, in this order)
+    // directors (featured novas, in this order); LINKEDIN below adds a profile link by first+last name
     ['Luna', 'Yin', 'Co-Director', 'assets/img/team/luna.jpg'], ['Ian', 'Park', 'Co-Director', 'assets/img/team/ian.jpg'],
     ['Andy', 'Dieu', 'Director of Finance', 'assets/img/team/andy.jpg'], ['Chi', 'Le', 'Director of Design', 'assets/img/team/chi.jpg'],
     ['Kelly', 'Olmos', 'Director of Logistics & HX', 'assets/img/team/kelly.jpg'],
@@ -515,7 +520,11 @@
     if (!host) return;
     const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const face = (name, photo) => `<span class="face" role="img" aria-label="Photo of ${name}">${photo ? `<img src="${esc(photo)}" alt="" loading="lazy" />` : ''}</span>`;
-    const caption = (name, title) => `<figcaption><b>${name}</b><span>${esc(title)}</span></figcaption>`;
+    const caption = (name, title) => {
+      const url = LINKEDIN[name];
+      const who = url ? `<a class="member__link" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${name} on LinkedIn">${name}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13V21h-4v-4.94c0-1.18-.02-2.7-1.64-2.7-1.65 0-1.9 1.29-1.9 2.62V21h-4z"/></svg></a>` : name;
+      return `<figcaption><b>${who}</b><span>${esc(title)}</span></figcaption>`;
+    };
 
     // Featured seven: each gets its own little nova (spike count, colours, spin) with a ring of thin rays
     const FEATURED = [
