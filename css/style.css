@@ -500,6 +500,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .faq details p:has(+ ul) { padding-bottom: 18px; }
 
 /* ---------- Footer ---------- */
+main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not extend the page below the footer */
 .footer { position: relative; text-align: center; padding: 0 var(--gutter) 28px; overflow: hidden; }
 .footer::before {
   content: ""; position: absolute; left: 50%; bottom: -50vw; width: 120vw; height: 80vw; transform: translateX(-50%); z-index: -1; border-radius: 50%;

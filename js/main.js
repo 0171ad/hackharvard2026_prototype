@@ -34,9 +34,9 @@
     ['Kelly', 'Olmos', 'Director of Logistics & HX', 'assets/img/team/kelly.jpg'],
     ['Jaden', 'Zhang', 'Co-Director of Engineering', 'assets/img/team/jaden.jpg'], ['Eric', 'Xu', 'Co-Director of Engineering', 'assets/img/team/eric.jpg'],
     // everyone else (carousel)
-    ['Alyssa', 'Kang', 'Finance'], ['Athena', 'Zhou', 'Finance'],
+    ['Alyssa', 'Kang', 'Finance', 'assets/img/team/alyssa.jpg'], ['Athena', 'Zhou', 'Finance', 'assets/img/team/athena.jpg'],
     ['Smera', 'Sachin', 'Finance', 'assets/img/team/smera.jpg'], ['Shiwaum', 'Khera', 'Finance', 'assets/img/team/shiwaum.jpg'],
-    ['Sophia', 'Zhang', 'Finance'], ['Emilie', 'Efendy', 'Finance', 'assets/img/team/emilie.jpg'],
+    ['Sophia', 'Zhang', 'Finance', 'assets/img/team/sophia-zhang.jpg'], ['Emilie', 'Efendy', 'Finance', 'assets/img/team/emilie.jpg'],
     ['Eric', 'Gong', 'Logistics', 'assets/img/team/eric-gong.jpg'], ['Gabe', 'Cooper', 'Logistics', 'assets/img/team/gabe.jpg'],
     ['Sophia', 'Liu', 'Logistics'], ['Ha', 'Le', 'Logistics', 'assets/img/team/ha.jpg'],
     ['Amy', 'Zhang', 'Logistics'], ['Joshua', 'Gupta', 'Logistics', 'assets/img/team/joshua.jpg'],
