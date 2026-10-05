@@ -662,116 +662,15 @@
     });
   };
 
-  /* ------------------------------- The rocket: one ship from the About lockup to the footer and back */
-  // It leaves the lockup as you scroll and drifts down the page on a wide, lazy weave, steering around the orbs,
-  // the supernova and the buildings. A soft spring smooths its path and the nose follows its actual direction of
-  // travel. Near the footer it flips upright and docks on the back-to-top pad, and stays there until clicked.
-  const OBSTACLES = '.deco--orb-about, .deco--orb-tracks, .orbit__core, .deco--nova, .deco--tower, .temple, .sat, .gate, .deco--planet, .deco--skyline';
-  const voyage = () => {
-    const start = $('[data-voyage-start]'), btn = $('.rocket'), pad = $('img', btn);
-    const launch = () => {
-      btn.classList.add('is-launching');
-      setTimeout(() => scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }), reduceMotion ? 0 : 350);
-      setTimeout(() => btn.classList.remove('is-launching'), 2200);
-    };
-    if (reduceMotion || !start) return btn.addEventListener('click', () => scrollTo(0, 0));
-
-    const ship = document.createElement('img');
-    ship.className = 'voyager'; ship.src = start.src; ship.alt = ''; ship.setAttribute('aria-hidden', 'true');
-    document.body.append(ship);
-    document.documentElement.classList.add('has-voyager');
-    const obstacles = $$(OBSTACLES);
-
-    const lerp = (a, b, t) => a + (b - a) * t;
-    const ease = t => t * t * (3 - 2 * t);
-    const turn = (from, to, t) => from + ((((to - from) % 360) + 540) % 360 - 180) * t;   // shortest way round
-    const centre = el => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: el.offsetWidth }; };
-
-    // steer a point clear of every obstacle: as one comes within `reach` (vertically) of the point's lane, ease the
-    // point out to whichever side of it has more room, so the swerve happens in open sky, not across the obstacle
-    const avoid = (x, y, m, vw, vh, ship) => {
-      const reach = 180;
-      for (let pass = 0; pass < 2; pass++) for (const o of obstacles) {
-        const r = o.getBoundingClientRect();
-        if (!r.width || r.bottom < -reach || r.top > vh + reach) continue;
-        const L = r.left - m, R = r.right + m, T = r.top - m, B = r.bottom + m;
-        if (x <= L || x >= R) continue;                                // lane already clear of this one
-        const gap = y < T ? T - y : y > B ? y - B : 0;
-        const w = 1 - ease(clamp(gap / reach, 0, 1));
-        if (!w) continue;
-        const roomL = L - ship, roomR = vw - ship - R;
-        const side = roomR >= roomL ? Math.min(R, vw - ship) : Math.max(L, ship);
-        x = lerp(x, side, w);
-      }
-      return x;
-    };
-    // u = scroll distance since take-off; the weave starts on the lockup's side of the screen (away from the
-    // About temple), so the ship peels off into open sky
-    const target = (vw, vh, small, u, dir) => {
-      const sy = scrollY, m = small ? 26 : 44;
-      const wave = dir * (.62 * Math.cos(u / 950) + .38 * Math.cos(u / 2300));
-      const y = clamp(vh * (.5 + .14 * Math.sin(sy / 1500 + .8)), 96, vh - 60);
-      return { x: avoid(clamp(vw * (.5 + (small ? .34 : .38) * wave), m, vw - m), y, m, vw, vh, small ? 16 : 26), y };
-    };
-
-    let state = 'flying', lastY = scrollY, raf = 0;
-    let px = null, py = 0, vx = 0, vy = 0;           // sprung cruise point
-    let ox = null, oy = 0, hdg = 150;                // last drawn position + heading (deg, 0 = nose up)
-
-    const dock = () => { state = 'docked'; btn.classList.add('is-docked'); ship.style.visibility = 'hidden'; };
-    const frame = () => {
-      raf = 0;
-      if (state !== 'flying') return;
-      const vh = innerHeight, vw = innerWidth, small = vw < 600;
-      const ds = scrollY - lastY; lastY = scrollY;
-      const s = centre(start), e = centre(pad);
-      const t = target(vw, vh, small, vh * .7 - s.y, s.x < vw / 2 ? -1 : 1);
-      if (px === null) { px = t.x; py = t.y; }
-      vx = (vx + (t.x - px) * .08) * .78;            // soft spring: steering changes become smooth curves, never jumps
-      vy = (vy + (t.y - py) * .08) * .78;
-      px += vx; py += vy;
-
-      const dep = ease(clamp((vh * .7 - s.y) / (vh * .6), 0, 1));     // lockup scrolls up → the ship peels off
-      const land = ease(clamp((vh * 1.05 - e.y) / (vh * .5), 0, 1));     // pad scrolls in → the ship settles onto it
-      const x = lerp(lerp(s.x, px, dep), e.x, land);
-      const y = lerp(lerp(s.y, py, dep), e.y, land);
-      const w = lerp(lerp(s.w, small ? 24 : 38, dep), e.w, land);
-
-      // nose follows the ship's motion relative to the page (only while scrolling, so settling doesn't spin it)
-      if (ox !== null && ds) {
-        const mx = x - ox, my = y - oy + ds;
-        if (Math.hypot(mx, my) > .6) hdg = turn(hdg, Math.atan2(mx, -my) * 180 / Math.PI, .14);
-      }
-      ox = x; oy = y;
-      const r = turn(turn(150, hdg, dep), 0, land);                  // lockup pose → heading → upright on the pad
-
-      ship.style.width = w + 'px';
-      ship.style.transform = `translate(${(x - w / 2).toFixed(1)}px, ${(y - w * 5 / 6).toFixed(1)}px) rotate(${r.toFixed(1)}deg)`;
-      const atEnd = scrollY > 0 && scrollY + vh >= document.documentElement.scrollHeight - 2;
-      if (land > .999 && atEnd) return dock();                      // reached the end: stay docked until clicked
-      if (Math.abs(vx) + Math.abs(vy) > .03 || Math.hypot(t.x - px, t.y - py) > .4 || ds) raf = requestAnimationFrame(frame);
-    };
-    const go = () => { if (!raf) raf = requestAnimationFrame(frame); };
-    addEventListener('scroll', go, { passive: true });
-    addEventListener('resize', go);
-    addEventListener('load', go);                                       // images change the layout
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(go);   // lockup size settles once Makcasa loads
-
-    btn.addEventListener('click', () => {
-      if (state === 'launching') return;
-      state = 'launching';
-      launch();
-      // once we're back at the top, the ship is waiting in the lockup again
-      const home = () => {
-        if (scrollY > 4) return setTimeout(home, 120);
-        btn.classList.remove('is-docked');
-        ship.style.visibility = '';
-        state = 'flying'; lastY = scrollY; px = ox = null; vx = vy = 0; hdg = 150;
-        go();
-      };
-      setTimeout(home, 900);
+  /* -------------------------------------------------------- Rocket back-to-top */
+  const rocket = () => {
+    const r = $('.rocket');
+    r.addEventListener('click', () => {
+      if (reduceMotion) return scrollTo(0, 0);
+      r.classList.add('is-launching');
+      setTimeout(() => scrollTo({ top: 0, behavior: 'smooth' }), 350);
+      setTimeout(() => r.classList.remove('is-launching'), 2200);
     });
-    go();
   };
 
   fitLockups();
@@ -789,5 +688,5 @@
   faq();
   gateLamps();
   constellation();
-  voyage();
+  rocket();
 })();
