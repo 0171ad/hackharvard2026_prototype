@@ -342,7 +342,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sat-info__list button[aria-current="true"] { color: var(--yellow); padding-left: 8px; }
 
 /* ---------- Sponsors ---------- */
-.logo-grid { display: grid; grid-template-columns: repeat(8, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.logo-grid { position: relative; display: grid; grid-template-columns: repeat(8, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .logo {
   position: relative; display: grid; place-items: center; grid-column: span 2; aspect-ratio: 2 / 1; padding: 12% 16%;
   border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;
@@ -379,6 +379,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- Global ---------- */
 .global { overflow: hidden; }
+.global .title { text-align: center; }
 .orbit { position: absolute; right: -180px; top: 60px; width: 640px; height: 640px; z-index: -1; opacity: .9; transition: opacity .5s; }
 .orbit__ring { position: absolute; border: 1px dashed rgba(244, 241, 228, .18); border-radius: 50%; animation: spin linear infinite; }
 .orbit__ring span { position: absolute; top: -6px; left: 50%; width: 12px; height: 12px; border-radius: 50%; }
@@ -474,8 +475,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- FAQ ---------- */
 .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
-.faq__aside { position: sticky; top: 100px; }
-.faq__contact { margin: 28px 0 0; max-width: 300px; font: 300 clamp(16px, 1.4vw, 18px)/1.5 var(--sans); color: var(--muted); }
+.faq__aside { position: sticky; top: 100px; text-align: center; }
+.faq__contact { margin: 28px auto 0; max-width: 300px; font: 300 clamp(16px, 1.4vw, 18px)/1.5 var(--sans); color: var(--muted); }
 .faq__contact a { color: var(--yellow); font-weight: 500; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .3s; }
 .faq__contact a:hover { text-decoration-color: currentColor; }
 .faq__list { border-top: 1px solid var(--line); }
@@ -529,12 +530,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- Decorative assets (all gently in motion) ---------- */
 .deco { position: absolute; pointer-events: none; user-select: none; z-index: -1; max-width: none; translate: 0 var(--sy, 0px); }
 .marquee-wrap { position: relative; }
-.deco--tower { left: 31%; bottom: 12%; height: clamp(260px, 30vw, 400px); width: auto; opacity: .9; animation: float 11s ease-in-out infinite; }
+.deco--tower { right: calc(100% - min(4.8vw, 64px)); bottom: 2%; height: clamp(260px, 30vw, 400px); width: auto; opacity: .9; animation: float 11s ease-in-out infinite; }
 .deco--orb-about { left: 2%; bottom: 8%; width: clamp(90px, 9vw, 140px); animation: float 8s ease-in-out infinite reverse; }
 .deco--orb-tracks { left: -70px; bottom: 6%; width: clamp(120px, 14vw, 210px); opacity: .85; animation: float 9s ease-in-out infinite; }
 .deco--comet { left: -2%; bottom: 2%; width: min(520px, 44vw); opacity: .85; animation: comet 10s ease-in-out infinite; }
-.deco--nova { right: 6%; top: -10px; width: clamp(180px, 18vw, 260px); opacity: .9; animation: spin 120s linear infinite, nova 6s ease-in-out infinite; }
-.gate { position: relative; z-index: 0; width: min(280px, 80%); margin-top: 8px; animation: float 12s ease-in-out infinite; }
+.deco--nova { --w: clamp(150px, 13vw, 200px); grid-area: 4 / 1; left: calc(var(--w) * -.62); top: calc(var(--w) * -.5); width: var(--w); opacity: .9; animation: spin 120s linear infinite, nova 6s ease-in-out infinite; }
+.gate { position: relative; z-index: 0; width: min(280px, 80%); margin: 8px auto 0; animation: float 12s ease-in-out infinite; }
 .gate::before { content: ""; position: absolute; inset: -18% -30%; z-index: -1; border-radius: 50%; opacity: 0; transition: opacity 1.2s var(--ease);
   background: radial-gradient(closest-side, rgba(255, 221, 0, .32), rgba(255, 10, 168, .16) 55%, transparent); }
 .gate.is-full::before { opacity: 1; }
@@ -557,12 +558,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .deco--ribbons-orbit { right: -24vw; top: -14%; width: min(1180px, 86vw); opacity: .5; animation-duration: 29s; }
 .deco--ribbons-veil { left: -30vw; top: 2%; width: min(1100px, 80vw); opacity: .4; animation-duration: 33s; }
 .deco--ribbons-drift { left: -10vw; top: 8%; width: 120vw; opacity: .5; animation-duration: 27s; }
-.deco--sparkles { right: -4%; bottom: -22%; width: clamp(260px, 30vw, 460px); opacity: .45; animation: float 15s ease-in-out infinite; }
-.deco--sparkles-schedule { right: auto; left: 24%; bottom: -16%; animation-direction: reverse; }
+/* Sponsors heading: a comet garden trails off to the right of the title */
+.sponsors__head { display: flex; align-items: flex-start; gap: clamp(12px, 2vw, 28px); margin-bottom: clamp(28px, 3.5vw, 48px); }
+.sponsors__head .title { margin: 0; flex: none; }
+.sponsors__garden { position: relative; z-index: -1; container-type: inline-size; align-self: stretch; flex: 0 1 680px; min-width: 0; pointer-events: none; user-select: none; }   /* only as tall as the title */
+.sponsors__garden img { position: absolute; left: 0; top: calc(50% - 23cqw); width: 100%; height: auto; max-width: none; }   /* still; the streak's yellow head sits level with the title (23cqw = its depth in the art), the rest of the arc hangs behind the grid */
 .deco--planet-sponsors { right: -60px; bottom: -110px; width: clamp(200px, 22vw, 340px); opacity: .7; animation: float 17s ease-in-out infinite; }
 .deco--orb-schedule { left: -40px; bottom: 4%; width: clamp(100px, 11vw, 170px); opacity: .8; animation: float 10s ease-in-out infinite reverse; }
 .deco--planet-faq { right: -9vw; top: 52%; width: clamp(220px, 26vw, 400px); opacity: .55; animation: float 18s ease-in-out infinite reverse; }
 .deco--stardust { left: -6vw; top: 8%; width: 112vw; opacity: .35; }
+/* Tracks backdrop: a whole floating park behind the wheel; the right side is kept faint so the track list reads */
+.deco--park { left: -7vw; bottom: calc(-2% - 10.75vw); width: 86vw; opacity: .48; }   /* extra canvas below = room for the cloud bank */   /* island edge + waterfall land in the gap left of the list */
 .deco--planet { z-index: -1; animation: float 16s ease-in-out infinite; }
 .deco--planet-l { left: -11vw; top: 30%; width: clamp(300px, 44vw, 760px); }
 .deco--planet-r { right: -13vw; bottom: 6%; width: clamp(280px, 40vw, 680px); animation-duration: 19s; animation-direction: reverse; }
@@ -596,6 +602,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .faq__aside { display: contents; }                       /* its children join the single column… */
   .faq__contact { order: 1; margin-top: 28px; }             /* …so the contact line can follow the questions */
   .gate { display: none; }
+  .deco--tower { height: 24vw; }
 }
 @media (max-width: 960px) {
   .team__featured { flex-wrap: wrap; }
@@ -627,7 +634,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .faq__contact { margin: 28px auto 0; text-align: center; }
   .gate { margin: 8px auto 0; }
   .footer__bar { flex-direction: column; align-items: center; text-align: center; }
-  .deco--nova { right: -70px; top: auto; bottom: -50px; width: 170px; opacity: .45; }
+  .deco--nova { --w: 150px; opacity: .6; }
   .sites { grid-template-columns: 1fr; }
   .site { min-height: 140px; }
   .orbit { width: 420px; height: 420px; right: -200px; top: 20px; opacity: .5; }
@@ -635,6 +642,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .scroll-hint { display: none; }
 }
 @media (max-width: 560px) {
+  .sponsors__head { flex-wrap: wrap; }
+  .sponsors__garden { flex-basis: 100%; height: 64px; }
+  .sponsors__garden img { top: -30%; }
   .deco--tower { display: none; }
   .deco--comet { top: auto; bottom: -30px; opacity: .35; }
   .uplanet { flex-basis: 104px; }
@@ -642,6 +652,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   body { font-size: 16px; }
   .logo-grid { grid-template-columns: repeat(4, 1fr); }
   .logo--last, .sponsor-cta { grid-column: 1 / -1; }
+  .deco--nova { grid-area: 5 / 1; }   /* 2-up rows: AfterQuery sits above Factory here */
   .countdown { gap: 6px; }
   .countdown b { font-size: 28px; }
   .countdown__colon { height: 28px; }
@@ -649,6 +660,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .lockup { font-size: 13.5vw; }
   .btn--closed { padding: 14px 30px; font-size: 16px; }
   .deco--ribbons { width: 120vw; opacity: .3; }
+  .deco--park { width: 150vw; left: -25vw; bottom: -41vw; opacity: .35; }   /* island sits in the gap under the track list */
   .sol { width: 170vw; right: -85vw; top: 40%; opacity: .45; }
   .deco--island { width: 30vw; top: auto; bottom: -20px; }
   .deco--island-steps { right: -6vw; }
@@ -659,7 +671,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .deco--ribbons-orbit { right: -50vw; }
   .deco--ribbons-veil { left: -40vw; }
   .deco--ribbons-drift { width: 160vw; left: -30vw; }
-  .deco--sparkles { width: 70vw; opacity: .3; }
   .deco--planet-sponsors { width: 44vw; right: -16vw; bottom: -60px; }
   .deco--orb-schedule { display: none; }
   .deco--planet-faq { width: 52vw; right: -24vw; opacity: .35; }

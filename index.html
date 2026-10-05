@@ -9,12 +9,12 @@
   <meta property="og:title" content="HackHarvard 2026 — Hack to the Moon" />
   <meta property="og:description" content="A 36-hour undergraduate hackathon at Harvard University. October 16–18, 2026 · Cambridge, MA." />
   <meta property="og:image" content="assets/img/og-art.jpg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=20261007g" />
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261007g" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=20261007w" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261007w" />
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20261007g" />
+  <link rel="stylesheet" href="css/style.css?v=20261007w" />
 </head>
 <body class="is-loading">
 
@@ -108,7 +108,6 @@
     <!-- ============ ABOUT ============ -->
     <section class="section about" id="about">
       <img class="deco deco--ribbons deco--ribbons-sweep" data-depth=".06" src="assets/svg/ribbons-sweep.svg" alt="" aria-hidden="true" />
-      <img class="deco deco--tower" data-depth=".05" src="assets/svg/utopia-tower.svg" alt="" aria-hidden="true" />
       <img class="deco deco--orb-about" data-depth="-.2" src="assets/svg/orb-secondary.svg" alt="" aria-hidden="true" />
 
       <!-- HACK to the MOON lockup (same component as the footer) -->
@@ -122,6 +121,8 @@
 
       <!-- About copy set inside a utopian Greek temple standing on a podium -->
       <div class="temple reveal" style="--d:.15s">
+        <!-- bell tower stands just left of the temple -->
+        <img class="deco deco--tower" data-depth=".05" src="assets/svg/utopia-tower.svg" alt="" aria-hidden="true" />
         <div class="temple__pediment" aria-hidden="true"><span class="temple__orb"></span></div>
         <div class="temple__entablature" aria-hidden="true"></div>
         <div class="temple__body">
@@ -148,8 +149,9 @@
 
     <!-- ============ TRACKS ============ -->
     <section class="section tracks" id="tracks">
+      <!-- a floating park (gazebo, moon arch, lamp-lit paths, a pond spilling into a waterfall) behind the wheel -->
+      <img class="deco deco--park" data-depth=".05" src="assets/svg/tracks-park.svg" alt="" aria-hidden="true" />
       <img class="deco deco--ribbons deco--ribbons-orbit" data-depth=".05" src="assets/svg/ribbons-orbit.svg" alt="" aria-hidden="true" />
-      <img class="deco deco--sparkles" data-depth="-.08" src="assets/svg/sparkles-set.svg" alt="" aria-hidden="true" />
       <img class="deco deco--orb-tracks" data-depth="-.25" src="assets/svg/orb-main.svg" alt="" aria-hidden="true" />
       <h2 class="title reveal">Tracks</h2>
 
@@ -212,11 +214,16 @@
     <!-- ============ SPONSORS ============ -->
     <section class="section sponsors" id="sponsors">
       <img class="deco deco--ribbons deco--ribbons-arc" data-depth="-.05" src="assets/svg/ribbons-arc.svg" alt="" aria-hidden="true" />
-      <img class="deco deco--nova" data-depth="-.12" src="assets/svg/explosion-supernova.svg" alt="" aria-hidden="true" />
       <img class="deco deco--planet-sponsors" data-depth="-.1" src="assets/svg/planet-tide.svg" alt="" aria-hidden="true" />
-      <h2 class="title reveal">Sponsors</h2>
+      <div class="sponsors__head">
+        <h2 class="title reveal">Sponsors</h2>
+        <!-- a comet garden of blooms, ray bursts and light pillars arcing down from the title, behind the logos -->
+        <div class="sponsors__garden" aria-hidden="true"><img src="assets/svg/sponsors-garden.svg" alt="" /></div>
+      </div>
       <!-- Ordered by sponsorship level, highest first -->
       <div class="logo-grid">
+        <!-- the supernova sits on the grid's left edge, on the line between AfterQuery and Mercury -->
+        <img class="deco deco--nova" data-depth="-.12" src="assets/svg/explosion-supernova.svg" alt="" aria-hidden="true" />
         <a class="logo logo--diamond reveal" href="https://www.daytona.io" target="_blank" rel="noopener"><img src="assets/img/sponsors/daytona.png" alt="Daytona" loading="lazy" /></a>
         <a class="logo logo--feature reveal" href="https://www.spacex.com" target="_blank" rel="noopener"><img src="assets/img/sponsors/spacexai.png" alt="SpaceXAI" loading="lazy" /></a>
         <a class="logo logo--feature reveal" href="https://www.asus.com" target="_blank" rel="noopener"><img src="assets/img/sponsors/asus.svg" alt="ASUS" loading="lazy" style="max-height: 44px" /></a>
@@ -241,7 +248,6 @@
     <!-- ============ SCHEDULE ============ -->
     <section class="section schedule" id="schedule">
       <img class="deco deco--ribbons deco--ribbons-cascade" data-depth=".08" src="assets/svg/ribbons-cascade.svg" alt="" aria-hidden="true" />
-      <img class="deco deco--sparkles deco--sparkles-schedule" data-depth=".1" src="assets/svg/sparkles-set.svg" alt="" aria-hidden="true" />
       <img class="deco deco--orb-schedule" data-depth="-.18" src="assets/svg/orb-secondary.svg" alt="" aria-hidden="true" />
       <div class="schedule__head">
         <h2 class="title reveal">Schedule</h2>
@@ -419,6 +425,6 @@
     </footer>
   </main>
 
-  <script src="js/main.js?v=20261007g" defer></script>
+  <script src="js/main.js?v=20261007w" defer></script>
 </body>
 </html>
