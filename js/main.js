@@ -30,7 +30,7 @@
   const TEAM = [
     // directors (featured novas, in this order)
     ['Luna', 'Yin', 'Co-Director', 'assets/img/team/luna.jpg'], ['Ian', 'Park', 'Co-Director', 'assets/img/team/ian.jpg'],
-    ['Andy', 'Dieu', 'Director of Finance & Corporate Relations', 'assets/img/team/andy.jpg'], ['Chi', 'Le', 'Director of Marketing', 'assets/img/team/chi.jpg'],
+    ['Andy', 'Dieu', 'Director of Finance', 'assets/img/team/andy.jpg'], ['Chi', 'Le', 'Director of Marketing', 'assets/img/team/chi.jpg'],
     ['Kelly', 'Olmos', 'Director of Logistics & HX', 'assets/img/team/kelly.jpg'],
     ['Jaden', 'Zhang', 'Co-Director of Engineering', 'assets/img/team/jaden.jpg'], ['Eric', 'Xu', 'Co-Director of Engineering', 'assets/img/team/eric.jpg'],
     // everyone else (carousel) — placeholders
