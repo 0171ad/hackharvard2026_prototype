@@ -365,14 +365,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .logo--diamond { grid-column: 1 / -1; aspect-ratio: auto; padding: 4% 14%; }
 .logo--diamond img { max-height: 104px; }
 .logo--feature { grid-column: span 4; aspect-ratio: auto; padding: 6% 14%; }
-.logo--last { grid-column: span 3; aspect-ratio: auto; padding: 22px 14%; }   /* 1.5x a regular block */
+.logo--last { aspect-ratio: auto; padding: 22px 14%; }
 .logo--last img { max-height: 22px; }
+.logo--strip { aspect-ratio: auto; padding: 16px 12%; }
+.logo--strip img { max-height: 44px; }
 .logo--feature img { max-height: 72px; }
 
 /* sponsor call-to-action: a strip that continues the logo grid; the whole strip is the link */
 .sponsor-cta {
   position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px 28px; flex-wrap: wrap;
-  grid-column: span 5; padding: 26px clamp(20px, 3vw, 36px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  grid-column: span 4; padding: 26px clamp(20px, 3vw, 36px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
 .sponsor-cta::before {
   content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .5s; pointer-events: none;
@@ -712,7 +714,7 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .team__featured { gap: 22px 10px; }
   body { font-size: 16px; }
   .logo-grid { grid-template-columns: repeat(4, 1fr); }
-  .logo--last, .sponsor-cta { grid-column: 1 / -1; }
+  .logo--strip, .logo--last, .sponsor-cta { grid-column: 1 / -1; }
   .deco--nova { grid-area: 5 / 1; }   /* 2-up rows: AfterQuery sits above Factory here */
   .countdown { gap: 6px; }
   .countdown b { font-size: 28px; }
