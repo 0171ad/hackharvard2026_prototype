@@ -1,7 +1,7 @@
 # ✦ HACK *to the* MOON ✦
 
 **HackHarvard 2026** · Oct 16–18 · Harvard University, Cambridge MA
-☽ ◐ ● ◑ ☾  *the site for this year's theme. It's live, so make small, careful edits and don't rewrite things.*
+*the site for this year's theme. It's live, so make small, careful edits and don't rewrite things.*
 
 ---
 
@@ -9,7 +9,7 @@
 
 Source art: `/Users/chi/Desktop/HackHarvard/` (merch, stickers, banners, `300ppi/` logo + LinkedIn cover). **Look at it before any visual change.** The site should look like it came from the same print run.
 
-**The world:** a *utopian Harvard drifting through deep space.* Harvard architecture (domes, cupola spires, columns, arched windows, stepped stairs) is rebuilt as glowing, gradient-filled geometry and set among planets, moons and stars.
+**The world:** a *utopian architecture drifting through deep space.* Harvard architecture (domes, cupola spires, columns, arched windows, stepped stairs) is rebuilt as glowing, gradient-filled geometry and set among planets, moons and stars.
 
 **Mood:** dreamy and nocturnal, with a retro-futurist editorial feel. Elegant, not cartoonish or "techy". Think luminous gig poster, not SaaS landing page.
 
@@ -63,7 +63,7 @@ Source art: `/Users/chi/Desktop/HackHarvard/` (merch, stickers, banners, `300ppi
 
 ---
 
-## ✦ Map of the station
+## Map of the station
 
 | Path | What |
 | --- | --- |
@@ -76,7 +76,7 @@ Source art: `/Users/chi/Desktop/HackHarvard/` (merch, stickers, banners, `300ppi
 
 ---
 
-## ✦ Launch & check
+## Launch & check
 
 ```sh
 python3 -m http.server 5173
@@ -84,10 +84,12 @@ python3 -m http.server 5173
 
 Open http://localhost:5173 and check the changed section at desktop and 375px. Make sure the console is clean, then compare it side by side with the brand art: *does it look like the same poster?*
 
-## ✦ Code style
+## Code style
 
-Match `main.js`: terse arrow functions, `const`, 2-space indent, short `//` comments only where intent isn't obvious. Keep each feature inside its own `/* ---- */` block.
+Match `main.js`: terse arrow functions, `const`, 2-space indent. Keep each feature inside its own `/* ---- */` block.
+- **Minimal code.** No comments except section headers for large blocks.
+- **Short replies.** When done, give a brief update — a line or two, no long write-ups.
 
-## ✦ Commit cadence
+## Commit cadence
 
 **Every 3 user prompts, commit and push everything** (`git add -A`, a short descriptive message, `git push` to `main`) without asking. Count prompts within the session; before committing, check that the cache version is bumped if CSS/JS changed.

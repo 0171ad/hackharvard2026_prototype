@@ -490,10 +490,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .faq__contact a { color: var(--magenta); font-weight: 500; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .3s; }
 .faq__contact a:hover { text-decoration-color: currentColor; }
 .faq__list { display: grid; grid-template-columns: 1fr 1fr; gap: 64px clamp(28px, 3vw, 48px); align-items: start; }
-/* paired rows (General | Submission, Schedule | Mentors) share a start line; the odd group out centers below */
-.faq__group:nth-child(2) { grid-area: 2 / 1; }
-.faq__group:nth-child(3) { grid-area: 1 / 2; }
-.faq__group:nth-child(4) { grid-area: 2 / 2; }
 .faq__group:last-child { grid-column: 1 / -1; justify-self: center; width: calc(50% - clamp(28px, 3vw, 48px) / 2); }
 .faq__label { display: flex; align-items: center; gap: 12px; margin: 0; padding-bottom: 14px; border-bottom: 1px solid var(--line); font: 400 clamp(20px, 1.8vw, 26px)/1 var(--serif); letter-spacing: .12em; text-transform: uppercase; color: var(--yellow); }
 /* moon-phase marker: a cream disc with a space-coloured disc slid across it (--x), stepping crescent → full → crescent down the page */
@@ -654,7 +650,7 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .tag { align-self: center; }
   .faq summary { text-align: left; }
   .faq__list { grid-template-columns: 1fr; }
-  .faq__list .faq__group { grid-area: auto; width: auto; justify-self: stretch; }
+  .faq__list .faq__group { grid-column: auto; width: auto; justify-self: stretch; }
   .faq__contact { margin: 28px auto 0; text-align: center; }
   .gate { margin: 8px auto 0; }
   .footer__bar { flex-direction: column; align-items: center; text-align: center; }
