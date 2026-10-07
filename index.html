@@ -9,12 +9,12 @@
   <meta property="og:title" content="HackHarvard 2026 — Hack to the Moon" />
   <meta property="og:description" content="A 36-hour undergraduate hackathon at Harvard University. October 16–18, 2026 · Cambridge, MA." />
   <meta property="og:image" content="assets/img/og-art.jpg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=20261008o" />
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261008o" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=20261008y" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261008y" />
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20261008o" />
+  <link rel="stylesheet" href="css/style.css?v=20261008y" />
 </head>
 <body class="is-loading">
 
@@ -79,7 +79,7 @@
         </h1>
         <p class="hero__date">October 16–18, 2026 <span>·</span> Cambridge, MA</p>
         <div class="hero__cta">
-          <span class="btn btn--closed">Applications closed</span>
+          <a class="btn btn--hero" href="https://portal.hackharvard.io">Register now</a>
         </div>
         <!-- Countdown: glowing seven-segment digits (built in js/main.js), blinking colons -->
         <div class="countdown" role="timer" aria-label="Countdown to HackHarvard">
@@ -390,7 +390,10 @@
       </div>
       <img class="deco deco--comet" data-depth=".15" src="assets/svg/stardust-comet-trail.svg" alt="" aria-hidden="true" />
       <svg class="constellation" viewBox="0 0 400 400" aria-hidden="true" data-constellation></svg>
-      <h2 class="title reveal">Global</h2>
+      <div class="global__head">
+        <h2 class="title reveal">Global</h2>
+        <div class="global__garden" aria-hidden="true"><img src="assets/svg/global-garden.svg?v=20261006b" alt="" /></div>
+      </div>
       <div class="sites">
         <a class="site reveal" href="https://hhuh.io/china">
           <h3>China</h3>
@@ -442,6 +445,7 @@
     </footer>
   </main>
 
-  <script src="js/main.js?v=20261008o" defer></script>
+  <script src="js/main.js?v=20261008y" defer></script>
+  <script src="js/egg.js?v=20261008y" defer></script>
 </body>
 </html>

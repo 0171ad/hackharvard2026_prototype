@@ -61,6 +61,9 @@ Only `transform` and `opacity` are animated. Everything has a still fallback und
 ## Hidden features
 
 - **Rocket launch to the top:** click the rocket parked in the footer and it lifts off, carrying the page back to the beginning. Under reduced motion it jumps straight to the top.
+- **Confetti clicks** whenever there is a confetti, you can click and it will have a small confetti on the side too.
+- **Interactive final piece** small really easy puzzle
+- **FAQ Lights** Lights will be lighted in the altar once a question is opened
 - **WPM test in About** *(planned, not built yet):* type the About paragraph inside the temple, with letters lighting up as you go and a live words-per-minute readout on the podium. The copy stays fully readable for anyone who doesn't play.
 
 ## To do
@@ -68,5 +71,4 @@ Only `transform` and `opacity` are animated. Everything has a still fallback und
 - [ ] WPM typing test in the About section
 - [ ] Add a calendar to the Schedule
 - [ ] Add more decorations in the style of the Sponsors comet garden
-- [ ] Split the FAQ into smaller sections for readability and a better UI
-- [ ] Add more motion design to separate SVG objects
+- [ ] Add small interactions

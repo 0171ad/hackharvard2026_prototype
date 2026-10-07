@@ -233,10 +233,11 @@
 
   /* --------------------------------------------------------------------- Nav */
   const nav = () => {
-    const phase = $('.phase'), burger = $('.nav__burger'), menu = $('.menu');
+    const header = $('.nav'), phase = $('.phase'), burger = $('.nav__burger'), menu = $('.menu');
 
     const onScroll = () => {
       const y = scrollY;
+      header.classList.toggle('is-shown', y > innerHeight * .25 || document.body.classList.contains('menu-open'));
       const max = document.documentElement.scrollHeight - innerHeight;
       phase.style.setProperty('--p', (y / max).toFixed(3));   // moon waxes as you scroll
     };
@@ -600,6 +601,12 @@
     $$('.uplanet', featured).forEach(u => {
       u.addEventListener('mouseenter', () => filter(+u.dataset.lead));
       u.addEventListener('focus', () => filter(+u.dataset.lead));
+      const url = finePointer && LINKEDIN[$('figcaption b', u).textContent];
+      if (!url) return;
+      u.classList.add('is-link');
+      const go = () => window.open(url, '_blank', 'noopener');
+      u.addEventListener('click', e => { if (!e.target.closest('a')) go(); });
+      u.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.target.closest('a')) go(); });
     });
     host.addEventListener('mouseleave', () => filter(null));
     host.addEventListener('focusout', e => { if (!host.contains(e.relatedTarget)) filter(null); });
@@ -696,6 +703,40 @@
     });
   };
 
+  /* ---------------------------------------------- Confetti: click inside a garden to burst stardust */
+  const confetti = () => {
+    const gardens = $$('.sponsors__garden img, .global__garden img');
+    const layer = document.createElement('div');
+    layer.className = 'confetti';
+    layer.setAttribute('aria-hidden', 'true');
+    document.body.append(layer);
+    const COLORS = ['--magenta', '--cream', '--glow', '--butter', '--blue-l', '--mint', '--text'];
+    const SHAPES = ['spark', 'spark', 'diamond', 'dot'];
+    const inside = (x, y) => gardens.some(g => {
+      const r = g.getBoundingClientRect();
+      return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+    });
+    const burst = (x, y, n = 34, k = 1) => {
+      if (reduceMotion) n = 6;
+      for (let i = 0; i < n; i++) {
+        const b = document.createElement('i'), s = 5 + Math.random() * 9;
+        b.className = 'confetti__bit confetti__bit--' + SHAPES[i % SHAPES.length];
+        b.style.cssText = `left:${x}px;top:${y}px;width:${s}px;height:${s}px;background:var(${COLORS[i % COLORS.length]})`;
+        layer.append(b);
+        const a = Math.random() * Math.PI * 2, d = (50 + Math.random() * 120) * k, dx = Math.cos(a) * d, dy = Math.sin(a) * d - 30, rot = (Math.random() - .5) * 540;
+        const frames = reduceMotion
+          ? { opacity: [0, 1, 0], transform: [`translate(${dx * .4}px,${dy * .4}px)`, `translate(${dx * .4}px,${dy * .4}px)`] }
+          : { opacity: [1, 1, 0], transform: ['translate(0,0) scale(.3) rotate(0)', `translate(${dx}px,${dy}px) scale(1) rotate(${rot * .6}deg)`, `translate(${dx * 1.15}px,${dy + 70}px) scale(.7) rotate(${rot}deg)`], offset: [0, .35, 1] };
+        b.animate(frames, { duration: 900 + Math.random() * 700, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => b.remove();
+      }
+    };
+    document.addEventListener('click', e => {
+      if (e.target.closest('a, button, summary, input, label, .nav, .menu') || !inside(e.clientX, e.clientY)) return;
+      burst(e.clientX, e.clientY);
+    });
+    document.addEventListener('hh:confetti', e => burst(e.detail.x, e.detail.y, 90, 2.2));
+  };
+
   /* -------------------------------------------------------- Rocket back-to-top */
   const rocket = () => {
     const r = $('.rocket');
@@ -722,5 +763,6 @@
   faq();
   gateLamps();
   constellation();
+  confetti();
   rocket();
 })();
