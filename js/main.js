@@ -704,18 +704,17 @@
   };
 
   /* ---------------------------------------------- Confetti: click inside a garden to burst stardust */
+  const inGarden = (x, y) => $$('.sponsors__garden img, .global__garden img').some(g => {
+    const r = g.getBoundingClientRect();
+    return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+  });
   const confetti = () => {
-    const gardens = $$('.sponsors__garden img, .global__garden img');
     const layer = document.createElement('div');
     layer.className = 'confetti';
     layer.setAttribute('aria-hidden', 'true');
     document.body.append(layer);
     const COLORS = ['--magenta', '--cream', '--glow', '--butter', '--blue-l', '--mint', '--text'];
     const SHAPES = ['spark', 'spark', 'diamond', 'dot'];
-    const inside = (x, y) => gardens.some(g => {
-      const r = g.getBoundingClientRect();
-      return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
-    });
     const burst = (x, y, n = 34, k = 1) => {
       if (reduceMotion) n = 6;
       for (let i = 0; i < n; i++) {
@@ -731,10 +730,70 @@
       }
     };
     document.addEventListener('click', e => {
-      if (e.target.closest('a, button, summary, input, label, .nav, .menu') || !inside(e.clientX, e.clientY)) return;
+      if (e.target.closest('a, button, summary, input, label, .nav, .menu') || !inGarden(e.clientX, e.clientY)) return;
       burst(e.clientX, e.clientY);
     });
     document.addEventListener('hh:confetti', e => burst(e.detail.x, e.detail.y, 90, 2.2));
+  };
+
+  /* ---------------------------------------------- Sky: click empty space to draw a random constellation */
+  const sky = () => {
+    let data, last;
+    const load = () => data || (data = fetch('assets/data/constellations.csv').then(r => r.text()).then(t => {
+      const sets = {};
+      t.trim().split('\n').slice(1).forEach(line => {
+        const [c, star, ra, dec, mag, links] = line.split(',');
+        (sets[c] = sets[c] || []).push({ star, ra: ra * Math.PI / 12, dec: dec * Math.PI / 180, mag: +mag, links: links.split(';').filter(Boolean) });
+      });
+      return Object.entries(sets);
+    }));
+    const draw = (x, y, [name, stars]) => {
+      const v = stars.reduce((a, s) => [a[0] + Math.cos(s.dec) * Math.cos(s.ra), a[1] + Math.cos(s.dec) * Math.sin(s.ra), a[2] + Math.sin(s.dec)], [0, 0, 0]);
+      const ra0 = Math.atan2(v[1], v[0]), dec0 = Math.atan2(v[2], Math.hypot(v[0], v[1]));
+      const pts = stars.map(s => {
+        const d = s.ra - ra0;
+        return [-Math.cos(s.dec) * Math.sin(d), -(Math.sin(s.dec) * Math.cos(dec0) - Math.cos(s.dec) * Math.sin(dec0) * Math.cos(d))];
+      });
+      const ext = Math.max(...pts.flat().map(Math.abs)) || 1, size = innerWidth < 560 ? 70 : 110, k = size / ext;
+      const at = {};
+      stars.forEach((s, i) => { at[s.star] = [pts[i][0] * k, pts[i][1] * k]; });
+      const svg = svgEl('svg', { class: 'skymark', viewBox: `${-size - 20} ${-size - 20} ${size * 2 + 40} ${size * 2 + 60}`, style: `left:${x}px;top:${y}px;width:${size * 2 + 40}px` });
+      const lines = svgEl('g', { class: 'skymark__lines' });
+      stars.forEach(s => s.links.forEach(l => {
+        const [a, b] = [at[s.star], at[l]];
+        lines.append(svgEl('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1) }));
+      }));
+      svg.append(lines);
+      const dots = stars.map((s, i) => {
+        const [sx, sy] = at[s.star], r = clamp(3.4 - s.mag * .55, 1.1, 4.4);
+        const el = s.mag < 1.6
+          ? svgEl('path', { d: `M${sx} ${sy - r * 2.6}Q${sx + r * .4} ${sy - r * .4} ${sx + r * 2.6} ${sy}Q${sx + r * .4} ${sy + r * .4} ${sx} ${sy + r * 2.6}Q${sx - r * .4} ${sy + r * .4} ${sx - r * 2.6} ${sy}Q${sx - r * .4} ${sy - r * .4} ${sx} ${sy - r * 2.6}Z`, fill: 'var(--cream)' })
+          : svgEl('circle', { cx: sx.toFixed(1), cy: sy.toFixed(1), r: r.toFixed(2), fill: i % 4 ? 'var(--text)' : 'var(--magenta)' });
+        svg.append(el);
+        return el;
+      });
+      const label = svgEl('text', { class: 'skymark__name', x: 0, y: Math.max(...Object.values(at).map(p => p[1])) + 28 });
+      label.textContent = name;
+      svg.append(label);
+      $('.confetti').append(svg);
+      if (!reduceMotion) {
+        dots.forEach((d, i) => d.animate({ opacity: [0, 1], transform: ['scale(0)', 'scale(1.4)', 'scale(1)'] }, { duration: 500, delay: i * 70, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' }));
+        lines.animate({ opacity: [0, 1] }, { duration: 700, delay: dots.length * 70, fill: 'backwards' });
+        label.animate({ opacity: [0, 1], transform: ['translateY(6px)', 'none'] }, { duration: 600, delay: dots.length * 70 + 200, fill: 'backwards' });
+      }
+      svg.animate({ opacity: [1, 0] }, { duration: 900, delay: 2600 + dots.length * 70, fill: 'forwards' }).onfinish = () => svg.remove();
+    };
+    document.addEventListener('click', e => {
+      if (e.target.closest('a, button, summary, input, textarea, select, label, [tabindex], [role="button"], .nav, .menu, .is-draggable') || inGarden(e.clientX, e.clientY) || String(getSelection())) return;
+      const { clientX: x, clientY: y } = e;
+      load().then(sets => {
+        let i;
+        do i = Math.floor(Math.random() * sets.length); while (sets.length > 1 && i === last);
+        last = i;
+        $$('.skymark').slice(0, -3).forEach(m => m.remove());
+        draw(x, y, sets[i]);
+      });
+    });
   };
 
   /* -------------------------------------------------------- Rocket back-to-top */
@@ -764,5 +823,6 @@
   gateLamps();
   constellation();
   confetti();
+  sky();
   rocket();
 })();

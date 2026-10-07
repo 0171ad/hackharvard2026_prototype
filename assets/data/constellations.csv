@@ -1,0 +1,180 @@
+constellation,star,ra_h,dec_deg,mag,links
+Orion,Betelgeuse,5.919,7.41,0.5,Bellatrix;Alnitak;Meissa
+Orion,Bellatrix,5.419,6.35,1.6,Mintaka;Meissa
+Orion,Meissa,5.585,9.93,3.4,
+Orion,Mintaka,5.533,-0.30,2.2,Alnilam;Rigel
+Orion,Alnilam,5.604,-1.20,1.7,Alnitak
+Orion,Alnitak,5.679,-1.94,1.8,Saiph
+Orion,Saiph,5.796,-9.67,2.1,
+Orion,Rigel,5.242,-8.20,0.1,
+Ursa Major,Dubhe,11.062,61.75,1.8,Merak;Megrez
+Ursa Major,Merak,11.031,56.38,2.4,Phecda
+Ursa Major,Phecda,11.897,53.69,2.4,Megrez
+Ursa Major,Megrez,12.257,57.03,3.3,Alioth
+Ursa Major,Alioth,12.900,55.96,1.8,Mizar
+Ursa Major,Mizar,13.399,54.93,2.2,Alkaid
+Ursa Major,Alkaid,13.792,49.31,1.9,
+Ursa Minor,Polaris,2.530,89.26,2.0,Yildun
+Ursa Minor,Yildun,17.537,86.59,4.4,Epsilon UMi
+Ursa Minor,Epsilon UMi,16.766,82.04,4.2,Zeta UMi
+Ursa Minor,Zeta UMi,15.734,77.79,4.3,Kochab;Eta UMi
+Ursa Minor,Kochab,14.845,74.16,2.1,Pherkad
+Ursa Minor,Pherkad,15.345,71.83,3.0,Eta UMi
+Ursa Minor,Eta UMi,16.292,75.76,5.0,
+Cassiopeia,Caph,0.153,59.15,2.3,Schedar
+Cassiopeia,Schedar,0.675,56.54,2.2,Navi
+Cassiopeia,Navi,0.945,60.72,2.4,Ruchbah
+Cassiopeia,Ruchbah,1.430,60.24,2.7,Segin
+Cassiopeia,Segin,1.907,63.67,3.4,
+Cygnus,Deneb,20.690,45.28,1.3,Sadr
+Cygnus,Sadr,20.370,40.26,2.2,Eta Cyg;Fawaris;Aljanah
+Cygnus,Fawaris,19.750,45.13,2.9,
+Cygnus,Aljanah,20.770,33.97,2.5,
+Cygnus,Eta Cyg,19.938,35.08,3.9,Albireo
+Cygnus,Albireo,19.512,27.96,3.1,
+Lyra,Vega,18.616,38.78,0.0,Epsilon Lyr;Zeta Lyr
+Lyra,Epsilon Lyr,18.739,39.67,4.7,
+Lyra,Zeta Lyr,18.746,37.61,4.3,Delta Lyr;Sheliak
+Lyra,Delta Lyr,18.908,36.90,4.3,Sulafat
+Lyra,Sulafat,18.982,32.69,3.3,Sheliak
+Lyra,Sheliak,18.835,33.36,3.5,
+Aquila,Altair,19.846,8.87,0.8,Tarazed;Alshain;Delta Aql
+Aquila,Tarazed,19.771,10.61,2.7,Okab
+Aquila,Alshain,19.922,6.41,3.7,Theta Aql
+Aquila,Delta Aql,19.425,3.11,3.4,Lambda Aql;Okab
+Aquila,Okab,19.090,13.86,3.0,
+Aquila,Lambda Aql,19.104,-4.88,3.4,
+Aquila,Theta Aql,20.188,-0.82,3.2,
+Leo,Regulus,10.140,11.97,1.4,Eta Leo;Chertan
+Leo,Eta Leo,10.122,16.76,3.5,Algieba
+Leo,Algieba,10.333,19.84,2.0,Adhafera;Zosma
+Leo,Adhafera,10.278,23.42,3.4,Rasalas
+Leo,Rasalas,9.879,26.01,3.9,Ras Elased
+Leo,Ras Elased,9.764,23.77,3.0,
+Leo,Zosma,11.235,20.52,2.6,Denebola;Chertan
+Leo,Chertan,11.237,15.43,3.3,Denebola
+Leo,Denebola,11.818,14.57,2.1,
+Scorpius,Acrab,16.091,-19.81,2.6,Dschubba
+Scorpius,Dschubba,16.006,-22.62,2.3,Fang;Al Niyat
+Scorpius,Fang,15.981,-26.11,2.9,
+Scorpius,Al Niyat,16.353,-25.59,2.9,Antares
+Scorpius,Antares,16.490,-26.43,1.0,Paikauhale
+Scorpius,Paikauhale,16.598,-28.22,2.8,Larawag
+Scorpius,Larawag,16.836,-34.29,2.3,Xamidimura
+Scorpius,Xamidimura,16.864,-38.05,3.0,Zeta Sco
+Scorpius,Zeta Sco,16.910,-42.36,3.6,Eta Sco
+Scorpius,Eta Sco,17.203,-43.24,3.3,Sargas
+Scorpius,Sargas,17.622,-43.00,1.9,Iota Sco
+Scorpius,Iota Sco,17.793,-40.13,3.0,Girtab
+Scorpius,Girtab,17.708,-39.03,2.4,Shaula
+Scorpius,Shaula,17.560,-37.10,1.6,Lesath
+Scorpius,Lesath,17.512,-37.30,2.7,
+Gemini,Castor,7.577,31.89,1.6,Pollux;Tau Gem
+Gemini,Pollux,7.755,28.03,1.1,Wasat
+Gemini,Tau Gem,7.186,30.25,4.4,Mebsuta
+Gemini,Mebsuta,6.732,25.13,3.0,Tejat
+Gemini,Tejat,6.383,22.51,2.9,Propus
+Gemini,Propus,6.248,22.51,3.3,
+Gemini,Wasat,7.335,21.98,3.5,Mekbuda
+Gemini,Mekbuda,7.068,20.57,3.9,Alhena
+Gemini,Alhena,6.629,16.40,1.9,
+Taurus,Aldebaran,4.599,16.51,0.9,Theta Tau;Tianguan
+Taurus,Tianguan,5.627,21.14,3.0,
+Taurus,Theta Tau,4.478,15.87,3.4,Prima Hyadum
+Taurus,Prima Hyadum,4.330,15.63,3.7,Secunda Hyadum;Lambda Tau
+Taurus,Secunda Hyadum,4.382,17.54,3.8,Ain
+Taurus,Ain,4.477,19.18,3.5,Elnath
+Taurus,Elnath,5.438,28.61,1.7,
+Taurus,Lambda Tau,4.011,12.49,3.5,
+Taurus,Alcyone,3.791,24.11,2.9,
+Canis Major,Sirius,6.752,-16.72,-1.5,Mirzam;Muliphein;Omicron2 CMa
+Canis Major,Mirzam,6.378,-17.96,2.0,
+Canis Major,Muliphein,7.062,-15.63,4.1,
+Canis Major,Omicron2 CMa,6.903,-23.83,3.0,Wezen
+Canis Major,Wezen,7.140,-26.39,1.8,Adhara;Aludra
+Canis Major,Adhara,6.977,-28.97,1.5,Furud
+Canis Major,Furud,6.338,-30.06,3.0,
+Canis Major,Aludra,7.402,-29.30,2.4,
+Canis Minor,Procyon,7.655,5.22,0.4,Gomeisa
+Canis Minor,Gomeisa,7.453,8.29,2.9,
+Crux,Acrux,12.443,-63.10,0.8,Gacrux
+Crux,Gacrux,12.519,-57.11,1.6,
+Crux,Mimosa,12.795,-59.69,1.3,Imai
+Crux,Imai,12.252,-58.75,2.8,
+Crux,Ginan,12.356,-60.40,3.6,
+Pegasus,Markab,23.079,15.21,2.5,Scheat;Algenib;Homam
+Pegasus,Scheat,23.063,28.08,2.4,Alpheratz;Matar
+Pegasus,Alpheratz,0.140,29.09,2.1,Algenib
+Pegasus,Algenib,0.220,15.18,2.8,
+Pegasus,Matar,22.717,30.22,2.9,
+Pegasus,Homam,22.691,10.83,3.4,Biham
+Pegasus,Biham,22.170,6.20,3.5,Enif
+Pegasus,Enif,21.736,9.88,2.4,
+Andromeda,Alpheratz,0.140,29.09,2.1,Delta And
+Andromeda,Delta And,0.655,30.86,3.3,Mirach
+Andromeda,Mirach,1.162,35.62,2.1,Almach;Mu And
+Andromeda,Almach,2.065,42.33,2.1,
+Andromeda,Mu And,0.946,38.50,3.9,Nu And
+Andromeda,Nu And,0.830,41.08,4.5,
+Perseus,Mirfak,3.405,49.86,1.8,Gamma Per;Delta Per;Misam
+Perseus,Gamma Per,3.080,53.51,2.9,Miram
+Perseus,Miram,2.845,55.90,3.8,
+Perseus,Delta Per,3.715,47.79,3.0,Epsilon Per
+Perseus,Epsilon Per,3.964,40.01,2.9,Menkib
+Perseus,Menkib,3.902,31.88,2.9,
+Perseus,Misam,3.158,44.86,3.8,Algol
+Perseus,Algol,3.136,40.96,2.1,
+Auriga,Capella,5.278,46.00,0.1,Menkalinan;Almaaz
+Auriga,Menkalinan,5.992,44.95,1.9,Mahasim
+Auriga,Mahasim,5.995,37.21,2.6,Elnath
+Auriga,Elnath,5.438,28.61,1.7,Hassaleh
+Auriga,Hassaleh,4.950,33.17,2.7,Almaaz
+Auriga,Almaaz,5.033,43.82,3.0,
+Bootes,Arcturus,14.261,19.18,0.0,Izar;Rho Boo;Muphrid
+Bootes,Izar,14.750,27.07,2.4,Princeps
+Bootes,Princeps,15.258,33.31,3.5,Nekkar
+Bootes,Nekkar,15.032,40.39,3.5,Seginus
+Bootes,Seginus,14.535,38.31,3.0,Rho Boo
+Bootes,Rho Boo,14.530,30.37,3.6,
+Bootes,Muphrid,13.911,18.40,2.7,
+Corona Borealis,Theta CrB,15.549,31.36,4.1,Nusakan
+Corona Borealis,Nusakan,15.464,29.11,3.7,Alphecca
+Corona Borealis,Alphecca,15.578,26.71,2.2,Gamma CrB
+Corona Borealis,Gamma CrB,15.713,26.30,3.8,Delta CrB
+Corona Borealis,Delta CrB,15.826,26.07,4.6,Epsilon CrB
+Corona Borealis,Epsilon CrB,15.960,26.88,4.1,
+Hercules,Eta Her,16.715,38.92,3.5,Zeta Her;Pi Her
+Hercules,Zeta Her,16.688,31.60,2.8,Epsilon Her;Kornephoros
+Hercules,Epsilon Her,17.005,30.93,3.9,Pi Her;Sarin
+Hercules,Pi Her,17.251,36.81,3.2,Mu Her
+Hercules,Kornephoros,16.504,21.49,2.8,
+Hercules,Sarin,17.250,24.84,3.1,Rasalgethi
+Hercules,Rasalgethi,17.244,14.39,3.1,
+Hercules,Mu Her,17.774,27.72,3.4,
+Sagittarius,Alnasl,18.097,-30.42,3.0,Kaus Media;Kaus Australis
+Sagittarius,Kaus Media,18.350,-29.83,2.7,Kaus Australis;Kaus Borealis;Phi Sgr
+Sagittarius,Kaus Australis,18.403,-34.38,1.8,Ascella
+Sagittarius,Kaus Borealis,18.466,-25.42,2.8,Phi Sgr
+Sagittarius,Phi Sgr,18.761,-26.99,3.2,Nunki;Ascella
+Sagittarius,Nunki,18.921,-26.30,2.1,Tau Sgr
+Sagittarius,Tau Sgr,19.116,-27.67,3.3,Ascella
+Sagittarius,Ascella,19.044,-29.88,2.6,
+Virgo,Spica,13.420,-11.16,1.0,Porrima;Heze
+Virgo,Porrima,12.694,-1.45,2.7,Zaniah;Minelauva
+Virgo,Zaniah,12.332,-0.67,3.9,Zavijava
+Virgo,Zavijava,11.845,1.76,3.6,
+Virgo,Minelauva,12.927,3.40,3.4,Vindemiatrix;Heze
+Virgo,Vindemiatrix,13.036,10.96,2.8,
+Virgo,Heze,13.578,-0.60,3.4,
+Aries,41 Ari,2.833,27.26,3.6,Hamal
+Aries,Hamal,2.120,23.46,2.0,Sheratan
+Aries,Sheratan,1.911,20.81,2.6,Mesarthim
+Aries,Mesarthim,1.892,19.29,3.9,
+Triangulum,Mothallah,1.885,29.58,3.4,Beta Tri;Gamma Tri
+Triangulum,Beta Tri,2.159,34.99,3.0,Gamma Tri
+Triangulum,Gamma Tri,2.289,33.85,4.0,
+Delphinus,Sualocin,20.661,15.91,3.8,Rotanev;Gamma Del
+Delphinus,Rotanev,20.626,14.60,3.6,Delta Del;Aldulfin
+Delphinus,Delta Del,20.724,15.07,4.4,Gamma Del
+Delphinus,Gamma Del,20.777,16.12,4.3,
+Delphinus,Aldulfin,20.554,11.30,4.0,
