@@ -13,6 +13,13 @@
     for (const k in attrs) el.setAttribute(k, attrs[k]);
     return el;
   };
+  const onNear = (sel, fn) => {
+    const el = $(sel);
+    if (!el) return;
+    const io = new IntersectionObserver(([en]) => en.isIntersecting && (io.disconnect(), fn()), { rootMargin: '600px 0px' });
+    io.observe(el);
+  };
+  const idle = fn => (window.requestIdleCallback || setTimeout)(fn);
 
   const EVENT_START = new Date('2026-10-16T17:00:00-04:00');
 
@@ -279,15 +286,61 @@
     const highlight = /^(36-hour|500|build,|learn,|create)/i;
     el.innerHTML = el.textContent.trim().split(/\s+/)
       .map(w => `<span class="w${highlight.test(w) ? ' hl' : ''}">${w}</span>`).join(' ');
-    const words = $$('.w', el);
     const update = () => {
-      const r = el.getBoundingClientRect();
+      if (el.classList.contains('is-typing')) return;
+      const words = $$('.w', el), r = el.getBoundingClientRect();
       const p = clamp((innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35), 0, 1);
       const n = Math.round(p * words.length);
       words.forEach((w, i) => w.classList.toggle('on', i < n));
     };
-    if (reduceMotion) return words.forEach(w => w.classList.add('on'));
+    if (reduceMotion) return $$('.w', el).forEach(w => w.classList.add('on'));
     addEventListener('scroll', update, { passive: true }); update();
+  };
+
+  /* ---------------------------------------- Typing test: press H on About, result rings in the bell tower */
+  const typing = () => {
+    const el = $('[data-scrub]'), tower = $('[data-tower]'), bell = $('.tower__bell');
+    if (!el || !tower || !matchMedia('(min-width: 961px) and (hover: hover) and (pointer: fine)').matches) return;
+    let seen = false, saved = null, chars, i, t0;
+    const reset = () => {
+      if (saved !== null) { el.innerHTML = saved; saved = null; }
+      el.classList.remove('is-typing'); tower.classList.remove('is-done');
+      dispatchEvent(new Event('scroll'));
+    };
+    const start = () => {
+      saved = el.innerHTML;
+      el.classList.add('is-typing');
+      [...el.childNodes].forEach(n => {
+        if (n.nodeType === 3) return n.replaceWith(Object.assign(document.createElement('span'), { className: 'c', textContent: n.textContent }));
+        n.classList.remove('on');
+        n.innerHTML = [...n.textContent].map(ch => `<span class="c">${ch}</span>`).join('');
+      });
+      chars = $$('.c', el); i = 0; t0 = performance.now();
+    };
+    new IntersectionObserver(([en]) => { seen = en.isIntersecting; if (!seen && saved !== null && i < chars.length) reset(); }, { threshold: .6 }).observe(el);
+    addEventListener('keydown', e => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.target.closest?.('input, textarea, select, [contenteditable]')) return;
+      const typingNow = saved !== null && i < chars.length;
+      if (!typingNow) {
+        if (saved !== null || !seen || e.key.toLowerCase() !== 'h') return;
+        start();
+      }
+      if (e.key === 'Escape') return reset();
+      if (e.key.length !== 1) return;
+      e.preventDefault();
+      const c = chars[i];
+      c.classList.remove('cur');
+      if (e.key.toLowerCase() !== c.textContent.toLowerCase()) return c.classList.add('x', 'cur');
+      c.classList.add('t');
+      if (++i < chars.length) return chars[i].classList.add('cur');
+      $('b', tower).textContent = Math.round(chars.length / 5 / ((performance.now() - t0) / 6e4));
+      tower.classList.add('is-done');
+    });
+    bell.addEventListener('click', () => {
+      reset();
+      if (reduceMotion) return;
+      bell.classList.remove('is-ringing'); void bell.offsetWidth; bell.classList.add('is-ringing');
+    });
   };
 
   /* -------------------------------------------------------------- Count-up */
@@ -736,64 +789,56 @@
     document.addEventListener('hh:confetti', e => burst(e.detail.x, e.detail.y, 90, 2.2));
   };
 
-  /* ---------------------------------------------- Sky: click empty space to draw a random constellation */
+  /* ---------------------------------------------- Sky: hold a click on empty space to flash a random constellation */
   const sky = () => {
-    let data, last;
-    const load = () => data || (data = fetch('assets/data/constellations.csv').then(r => r.text()).then(t => {
-      const sets = {};
+    let sets, last, held;
+    fetch('assets/data/constellations.csv').then(r => r.text()).then(t => {
+      const by = {};
       t.trim().split('\n').slice(1).forEach(line => {
         const [c, star, ra, dec, mag, links] = line.split(',');
-        (sets[c] = sets[c] || []).push({ star, ra: ra * Math.PI / 12, dec: dec * Math.PI / 180, mag: +mag, links: links.split(';').filter(Boolean) });
+        (by[c] = by[c] || []).push({ star, ra: ra * Math.PI / 12, dec: dec * Math.PI / 180, mag: +mag, links: links.split(';').filter(Boolean) });
       });
-      return Object.entries(sets);
-    }));
+      sets = Object.entries(by);
+    });
     const draw = (x, y, [name, stars]) => {
+      console.log(name);
       const v = stars.reduce((a, s) => [a[0] + Math.cos(s.dec) * Math.cos(s.ra), a[1] + Math.cos(s.dec) * Math.sin(s.ra), a[2] + Math.sin(s.dec)], [0, 0, 0]);
       const ra0 = Math.atan2(v[1], v[0]), dec0 = Math.atan2(v[2], Math.hypot(v[0], v[1]));
       const pts = stars.map(s => {
         const d = s.ra - ra0;
         return [-Math.cos(s.dec) * Math.sin(d), -(Math.sin(s.dec) * Math.cos(dec0) - Math.cos(s.dec) * Math.sin(dec0) * Math.cos(d))];
       });
-      const ext = Math.max(...pts.flat().map(Math.abs)) || 1, size = innerWidth < 560 ? 70 : 110, k = size / ext;
+      const ext = Math.max(...pts.flat().map(Math.abs)) || 1, size = innerWidth < 560 ? 36 : 56, k = size / ext, W = size * 2 + 10;
+      const [ox, oy] = pts[Math.floor(Math.random() * pts.length)];
       const at = {};
-      stars.forEach((s, i) => { at[s.star] = [pts[i][0] * k, pts[i][1] * k]; });
-      const svg = svgEl('svg', { class: 'skymark', viewBox: `${-size - 20} ${-size - 20} ${size * 2 + 40} ${size * 2 + 60}`, style: `left:${x}px;top:${y}px;width:${size * 2 + 40}px` });
-      const lines = svgEl('g', { class: 'skymark__lines' });
+      stars.forEach((s, i) => { at[s.star] = [(pts[i][0] - ox) * k, (pts[i][1] - oy) * k]; });
+      const svg = svgEl('svg', { class: 'skymark', viewBox: `${-W} ${-W} ${W * 2} ${W * 2}`, style: `left:${x}px;top:${y}px;width:${W * 2}px` });
       stars.forEach(s => s.links.forEach(l => {
         const [a, b] = [at[s.star], at[l]];
-        lines.append(svgEl('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1) }));
+        svg.append(svgEl('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1) }));
       }));
-      svg.append(lines);
-      const dots = stars.map((s, i) => {
-        const [sx, sy] = at[s.star], r = clamp(3.4 - s.mag * .55, 1.1, 4.4);
-        const el = s.mag < 1.6
-          ? svgEl('path', { d: `M${sx} ${sy - r * 2.6}Q${sx + r * .4} ${sy - r * .4} ${sx + r * 2.6} ${sy}Q${sx + r * .4} ${sy + r * .4} ${sx} ${sy + r * 2.6}Q${sx - r * .4} ${sy + r * .4} ${sx - r * 2.6} ${sy}Q${sx - r * .4} ${sy - r * .4} ${sx} ${sy - r * 2.6}Z`, fill: 'var(--cream)' })
-          : svgEl('circle', { cx: sx.toFixed(1), cy: sy.toFixed(1), r: r.toFixed(2), fill: i % 4 ? 'var(--text)' : 'var(--magenta)' });
-        svg.append(el);
-        return el;
-      });
-      const label = svgEl('text', { class: 'skymark__name', x: 0, y: Math.max(...Object.values(at).map(p => p[1])) + 28 });
-      label.textContent = name;
-      svg.append(label);
+      stars.forEach(s => svg.append(svgEl('circle', { cx: at[s.star][0].toFixed(1), cy: at[s.star][1].toFixed(1), r: clamp(2.2 - s.mag * .35, .9, 2.8).toFixed(2) })));
       $('.confetti').append(svg);
-      if (!reduceMotion) {
-        dots.forEach((d, i) => d.animate({ opacity: [0, 1], transform: ['scale(0)', 'scale(1.4)', 'scale(1)'] }, { duration: 500, delay: i * 70, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' }));
-        lines.animate({ opacity: [0, 1] }, { duration: 700, delay: dots.length * 70, fill: 'backwards' });
-        label.animate({ opacity: [0, 1], transform: ['translateY(6px)', 'none'] }, { duration: 600, delay: dots.length * 70 + 200, fill: 'backwards' });
-      }
-      svg.animate({ opacity: [1, 0] }, { duration: 900, delay: 2600 + dots.length * 70, fill: 'forwards' }).onfinish = () => svg.remove();
+      return svg;
     };
-    document.addEventListener('click', e => {
-      if (e.target.closest('a, button, summary, input, textarea, select, label, [tabindex], [role="button"], .nav, .menu, .is-draggable') || inGarden(e.clientX, e.clientY) || String(getSelection())) return;
-      const { clientX: x, clientY: y } = e;
-      load().then(sets => {
-        let i;
-        do i = Math.floor(Math.random() * sets.length); while (sets.length > 1 && i === last);
-        last = i;
-        $$('.skymark').slice(0, -3).forEach(m => m.remove());
-        draw(x, y, sets[i]);
-      });
+    const release = () => {
+      if (!held) return;
+      const m = held;
+      held = null;
+      if (reduceMotion) return m.remove();
+      m.animate({ opacity: [1, 0] }, { duration: 120, fill: 'forwards' });
+      setTimeout(() => m.remove(), 120);
+    };
+    document.addEventListener('pointerdown', e => {
+      if (!sets || e.button || e.target.closest('a, button, summary, input, textarea, select, label, [tabindex], [role="button"], .nav, .menu, .is-draggable') || inGarden(e.clientX, e.clientY)) return;
+      release();
+      let i;
+      do i = Math.floor(Math.random() * sets.length); while (sets.length > 1 && i === last);
+      last = i;
+      held = draw(e.clientX, e.clientY, sets[i]);
     });
+    addEventListener('pointerup', release);
+    addEventListener('pointercancel', release);
   };
 
   /* -------------------------------------------------------- Rocket back-to-top */
@@ -813,16 +858,17 @@
   nav();
   reveals();
   scrub();
+  typing();
   counters();
   countdown();
   decoParallax();
-  satellite();
-  team();
+  onNear('[data-satellite]', satellite);
+  onNear('[data-team]', team);
   logoGlow();
   faq();
   gateLamps();
   constellation();
   confetti();
-  sky();
+  idle(sky);
   rocket();
 })();

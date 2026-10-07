@@ -64,12 +64,10 @@ Only `transform` and `opacity` are animated. Everything has a still fallback und
 - **Confetti clicks** whenever there is a confetti, you can click and it will have a small confetti on the side too.
 - **Interactive final piece** small really easy puzzle
 - **FAQ Lights** Lights will be lighted in the altar once a question is opened
-- **Clicks on noninteractive objects** A realistic constellations will display
+- **Clicks on noninteractive objects** A realistic constellations will display (information will be in console.log)
 - **WPM test in About** *(planned, not built yet):* type the About paragraph inside the temple, with letters lighting up as you go and a live words-per-minute readout on the podium. The copy stays fully readable for anyone who doesn't play.
 
 ## To do
 
 - [ ] WPM typing test in the About section
 - [ ] Add a calendar to the Schedule
-- [ ] Add more decorations in the style of the Sponsors comet garden
-- [ ] Add small interactions
