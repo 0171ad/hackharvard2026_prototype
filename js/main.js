@@ -301,7 +301,7 @@
   const typing = () => {
     const el = $('[data-scrub]'), tower = $('[data-tower]'), bell = $('.tower__bell');
     if (!el || !tower || !matchMedia('(min-width: 961px) and (hover: hover) and (pointer: fine)').matches) return;
-    let seen = false, saved = null, chars, i, t0;
+    let seen = false, saved = null, chars, i, t0, miss;
     const reset = () => {
       if (saved !== null) { el.innerHTML = saved; saved = null; }
       el.classList.remove('is-typing'); tower.classList.remove('is-done');
@@ -315,7 +315,7 @@
         n.classList.remove('on');
         n.innerHTML = [...n.textContent].map(ch => `<span class="c">${ch}</span>`).join('');
       });
-      chars = $$('.c', el); i = 0; t0 = performance.now();
+      chars = $$('.c', el); i = miss = 0; t0 = performance.now();
     };
     new IntersectionObserver(([en]) => { seen = en.isIntersecting; if (!seen && saved !== null && i < chars.length) reset(); }, { threshold: .6 }).observe(el);
     addEventListener('keydown', e => {
@@ -330,10 +330,11 @@
       e.preventDefault();
       const c = chars[i];
       c.classList.remove('cur');
-      if (e.key.toLowerCase() !== c.textContent.toLowerCase()) return c.classList.add('x', 'cur');
+      if (e.key.toLowerCase() !== c.textContent.toLowerCase()) return miss++, c.classList.add('x', 'cur');
       c.classList.add('t');
       if (++i < chars.length) return chars[i].classList.add('cur');
       $('b', tower).textContent = Math.round(chars.length / 5 / ((performance.now() - t0) / 6e4));
+      $('small', tower).textContent = Math.round(chars.length / (chars.length + miss) * 100) + '% ACC';
       tower.classList.add('is-done');
     });
     bell.addEventListener('click', () => {

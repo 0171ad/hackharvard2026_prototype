@@ -572,8 +572,9 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
 .deco.deco--tower { z-index: 0; }
 .deco--tower img { display: block; width: 100%; height: 100%; }
 .tower__wpm { position: absolute; left: 33%; top: 30.5%; width: 34%; height: 13.3%; display: grid; place-content: center; justify-items: center; color: var(--cream); opacity: 0; transition: opacity .8s var(--ease); }
-.tower__wpm b { font: italic 900 14cqw/1 var(--sans); letter-spacing: -.02em; }
+.tower__wpm b { font: italic 900 14cqw/1 var(--sans); letter-spacing: -.02em; color: var(--yellow); }
 .tower__wpm span { font: 700 3.4cqw/1 var(--sans); letter-spacing: .4em; margin: .6em -.4em 0 0; color: var(--magenta); }
+.tower__wpm small { font: 500 3cqw/1 var(--sans); letter-spacing: .2em; margin: .9em -.2em 0 0; color: var(--cream); }
 .deco--tower.is-done .tower__wpm { opacity: 1; }
 .tower__bell { position: absolute; left: 45.375%; top: 50.15%; width: 8.5%; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto; transform-origin: 50% 8%; }
 .tower__bell svg { display: block; width: 100%; height: auto; }
