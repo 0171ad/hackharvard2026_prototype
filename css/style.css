@@ -374,7 +374,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* sponsor call-to-action: a strip that continues the logo grid; the whole strip is the link */
 .sponsor-cta {
   position: relative; overflow: hidden; display: flex; align-items: center;
-  grid-column: span 2; flex-direction: column; justify-content: center; text-align: center; gap: 6px; padding: 20px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  grid-column: 1 / -1; justify-content: center; gap: 12px 28px; flex-wrap: wrap; padding: 26px clamp(20px, 3vw, 36px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
 .sponsor-cta::before {
   content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .5s; pointer-events: none;
