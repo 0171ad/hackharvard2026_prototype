@@ -62,7 +62,7 @@
     ['Joe', 'Liang', 'Technology', 'assets/img/team/joe.jpg'], ['Eric', 'Xu', 'Technology', 'assets/img/team/eric.jpg'],
   ];
   // Which member titles each director leads, in TEAM order (null = the whole team). Hovering a director filters the carousel.
-  const LEADS = [null, null, ['Finance'], ['Marketing & Design'], ['Logistics', 'Hacker Experience'], ['Technology']];
+  const LEADS = [null, null, ['Finance'], ['Marketing & Design', 'Technology'], ['Logistics', 'Hacker Experience'], ['Marketing & Design', 'Technology']];
 
   /* ---------------------------------------------------------------- Loader */
   // Beams of light draw out and spin, a small star spins up into the supernova,
