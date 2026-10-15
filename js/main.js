@@ -25,11 +25,28 @@
 
   // Track names + taglines from hhuh.io
   const TRACKS = [
-    { title: 'Money Moves', name: 'Fintech' },
-    { title: 'Hardware for Good', name: 'Hardware' },
-    { title: 'Code for Care', name: 'Health' },
-    { title: '(De)-Cipher', name: 'Cybersecurity' },
-    { title: 'Save The Earth', name: 'Sustainability' },
+    {
+      title: 'Reinvent Clinical Trials', name: 'Healthcare', by: 'Regeneron',
+      body: ['Build a solution that removes a major bottleneck on the path from discovery to an approved medicine: biostatistical design, trial site selection, recruitment, site workload, data quality, regulatory submissions or analysis. The <a href="https://regn.link/hackharvard" target="_blank" rel="noopener">starter kit</a> has problem sheets, context, data sources and reading.',
+        'Submit a pitch deck, demo video, GitHub repo and ideally a demo link. Judged on usefulness, readiness and design. Regeneron mentors are on Discord and in person, and you can book short feedback sessions.'],
+      prizes: [['1st place', 'Fitbit Inspire'], ['Runner-up', 'Fitbit Air'], ['Honorable mention (2 teams)', '$50 Visa gift card']],
+    },
+    {
+      title: 'Save the Earth', name: 'Sustainability', by: 'ASUS',
+      body: ['Create innovative solutions to real-world environmental challenges: rethink how we consume resources, build tools that promote sustainable habits, or find new ways to reduce environmental impact.',
+        'Teams on this track can use select ASUS hardware, including desktop and portable monitors, to bring their ideas to life. Don’t miss the <a href="#challenges">ASUS content challenge</a>.'],
+      prizes: [['1st place', 'ASUS motherboard'], ['2nd place', 'ASUS ZenScreen MB169CK-P portable monitor'], ['3rd place', 'ROG keyboard']],
+    },
+    {
+      title: 'Digital Trust', name: 'Fintech & Cybersecurity',
+      body: ['Every day, people trust technology with their money, identity and personal data. Build a project that makes that trust well deserved: tools that make digital services safer, fairer or more accessible, and tools that protect people, systems and data from threats, like detecting online fraud, protecting personal finances or improving digital privacy.'],
+      prizes: [['Winning team', 'A <a href="https://getbrick.com/" target="_blank" rel="noopener">Brick</a> for each member']],
+    },
+    {
+      title: 'Hardware for Good', name: 'Hardware',
+      body: ['Take your project off the screen and into the real world with sensors, Arduinos, Raspberry Pis, microcontrollers, motors, wearables, robotics or other devices. A smart home gadget, an assistive device, an environmental monitor, or something nobody has thought of yet: show us what you can build with your hands.'],
+      prizes: [['Winning team', 'A drone for each member']],
+    },
   ];
 
   // Team roster. The first FEATURED_COUNT people get a featured nova; the rest scroll as stars. Format: [first, last, title, photo (optional, e.g. 'assets/img/team/avery.jpg')]
@@ -420,7 +437,7 @@
     if (!root) return;
     const svg = $('svg', root), rig = $('[data-rig]', root);
     const title = $('[data-track-title]'), name = $('[data-track-name]');
-    const list = $('[data-track-list]');
+    const list = $('[data-track-list]'), info = $('[data-track-body]');
     const STEP = 360 / TRACKS.length;
 
     const mods = $('[data-mods]', root);
@@ -489,6 +506,14 @@
       list.append(li);
     });
     const listBtns = $$('button', list);
+    const cards = TRACKS.map(t => {
+      const d = document.createElement('div');
+      d.className = 'sat-info__card';
+      d.innerHTML = t.body.map(p => `<p>${p}</p>`).join('') +
+        `<ul class="prizes">${t.prizes.map(([k, v]) => `<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul>`;
+      info.append(d);
+      return d;
+    });
 
     let active = -1, rot = 0, target = 0, dragging = false, lastInteract = 0;
 
@@ -505,7 +530,8 @@
       modules.forEach((m, k) => m.classList.toggle('is-active', k === i));
       listBtns.forEach((b, k) => b.setAttribute('aria-current', k === i));
       title.textContent = TRACKS[i].title;
-      name.textContent = TRACKS[i].name;
+      name.textContent = TRACKS[i].by ? `${TRACKS[i].name} · presented by ${TRACKS[i].by}` : TRACKS[i].name;
+      cards.forEach((c, k) => { c.classList.toggle('is-active', k === i); c.inert = k !== i; });
       title.classList.remove('swap'); void title.offsetWidth; title.classList.add('swap');
     };
     const touch = () => (lastInteract = performance.now());

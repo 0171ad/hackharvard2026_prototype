@@ -340,6 +340,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sat-info__title { font: 400 clamp(44px, 5vw, 76px)/.92 var(--serif); margin: 0 0 10px; color: var(--yellow); min-height: 1.84em; display: flex; align-items: flex-end; }
 .sat-info__title.swap { animation: swapIn .6s var(--ease); }
 .sat-info__name { font: italic 300 clamp(18px, 1.8vw, 24px)/1 var(--sans); margin: 0 0 24px; }
+.sat-info__body { display: grid; margin-bottom: 24px; }
+.sat-info__card { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .5s var(--ease), visibility .5s; }
+.sat-info__card.is-active { opacity: 1; visibility: visible; }
+.sat-info__card p { margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.sat-info__card a, .chal a { color: var(--magenta); font-weight: 500; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .3s; }
+.sat-info__card a:hover, .chal a:hover { text-decoration-color: currentColor; }
+.tracks__note { margin: calc(clamp(28px, 3.5vw, 48px) * -.6) 0 clamp(20px, 2.5vw, 32px); font: italic 500 13px/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.prizes, .chal__reqs { list-style: none; margin: 4px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.prizes li, .chal__reqs li { display: grid; grid-template-columns: 9.5em 1fr; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.4; }
+.prizes b, .chal__reqs b { font: italic 500 12px/1.6 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--magenta); }
 .sat-info__nav { display: flex; gap: 10px; margin-bottom: 24px; }
 .sat-info__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .sat-info__list button {
@@ -348,6 +358,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .sat-info__list button:hover { color: var(--text); padding-left: 8px; }
 .sat-info__list button[aria-current="true"] { color: var(--yellow); padding-left: 8px; }
+
+/* ---------- Challenges ---------- */
+.chal { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.chal__card { display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(22px, 2.4vw, 34px); }
+.chal__card--wide { grid-column: 1 / -1; }
+.chal__by { margin: 0 0 10px; font: italic 500 12px/1.3 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--magenta); }
+.chal__card h3 { margin: 0 0 16px; font: 400 clamp(26px, 2.4vw, 36px)/1.05 var(--serif); }
+.chal__card h3 span { font: italic 300 .86em/1 var(--sans); }   /* Makcasa has no numerals */
+.chal__card > p:not(.chal__by) { margin: 0 0 14px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.chal__card .prizes, .chal__reqs { margin-top: auto; }
+.deco--orb-challenges { right: -50px; top: 6%; width: clamp(110px, 12vw, 180px); opacity: .75; animation: float 11s ease-in-out infinite; }
 
 /* ---------- Sponsors ---------- */
 .logo-grid { position: relative; display: grid; grid-template-columns: repeat(8, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
@@ -505,6 +526,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sched__day li a:hover { color: var(--magenta); text-decoration-color: currentColor; }
 .sched__day li.is-key b, .sched__day li.is-key time,
 .sched__day--key li b, .sched__day--key li time, .sched__day--key h3 { color: var(--yellow); }   /* yellow = must be at the venue */
+.sched__day li.is-due b, .sched__day li.is-due time { color: var(--magenta); }
+.sched__day li.is-due span { color: var(--text); }
 .schedule__legend { display: flex; align-items: center; gap: 10px; margin: 0; font: italic 500 13px/1.3 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--yellow); }
 .schedule__legend i { flex: none; width: 9px; height: 13px; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); background: var(--yellow); }
 
@@ -678,6 +701,7 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
 @media (max-width: 820px) {
   .section { overflow-x: clip; }
   .sched { grid-template-columns: 1fr; }
+  .chal { grid-template-columns: 1fr; }
   .schedule__head { justify-content: center; }
   .schedule__legend { display: block; text-align: center; letter-spacing: .12em; }
   .schedule__legend i { display: inline-block; margin-right: 8px; vertical-align: -1px; }
@@ -686,6 +710,7 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .about { justify-items: center; }
   .sat-info { text-align: center; }
   .sat-info__title { justify-content: center; }
+  .sat-info__body, .tracks__note { text-align: left; }
   .sat-info__nav { justify-content: center; }
   .sat-info__list button { justify-content: center; }
   .site { align-items: center; text-align: center; }
@@ -705,6 +730,8 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .scroll-hint { display: none; }
 }
 @media (max-width: 560px) {
+  .prizes li, .chal__reqs li { grid-template-columns: 1fr; gap: 2px; }
+  .deco--orb-challenges { display: none; }
   .sponsors__head { flex-wrap: wrap; }
   .sponsors__garden { flex-basis: 100%; height: 64px; }
   .sponsors__garden img { top: -30%; }

@@ -9,12 +9,12 @@
   <meta property="og:title" content="HackHarvard 2026 — Hack to the Moon" />
   <meta property="og:description" content="A 36-hour undergraduate hackathon at Harvard University. October 16–18, 2026 · Cambridge, MA." />
   <meta property="og:image" content="assets/img/og-art.jpg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=20261014q" />
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261014q" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=20261015b" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261015b" />
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20261014q" />
+  <link rel="stylesheet" href="css/style.css?v=20261015b" />
 </head>
 <body class="is-loading">
 
@@ -30,6 +30,7 @@
     <nav class="nav__links" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#tracks">Tracks</a>
+      <a href="#challenges">Challenges</a>
       <a href="#schedule">Schedule</a>
       <a href="#sponsors">Sponsors</a>
       <a href="#faq">FAQ</a>
@@ -46,7 +47,7 @@
   </header>
 
   <div class="menu" aria-hidden="true">
-    <a href="#about">About</a><a href="#tracks">Tracks</a><a href="#schedule">Schedule</a>
+    <a href="#about">About</a><a href="#tracks">Tracks</a><a href="#challenges">Challenges</a><a href="#schedule">Schedule</a>
     <a href="#sponsors">Sponsors</a><a href="#faq">FAQ</a><a href="#global">Global</a><a href="#team">Team</a>
     <a class="btn" href="https://portal.hackharvard.io">Portal</a>
   </div>
@@ -123,7 +124,7 @@
       <div class="temple reveal" style="--d:.15s">
         <!-- bell tower stands just left of the temple -->
         <div class="deco deco--tower" data-depth=".05" data-tower>
-          <img src="assets/svg/utopia-tower.svg?v=20261014q" alt="" aria-hidden="true" />
+          <img src="assets/svg/utopia-tower.svg?v=20261015b" alt="" aria-hidden="true" />
           <output class="tower__wpm" aria-live="polite"><b></b><span>WPM</span><small></small></output>
           <button class="tower__bell" type="button" aria-label="Ring the bell to reset the typing test" tabindex="-1">
             <svg viewBox="176 346 48 58" aria-hidden="true"><defs><linearGradient id="bell-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--butter)"/><stop offset=".5" stop-color="var(--yellow)"/><stop offset="1" stop-color="var(--red)"/></linearGradient></defs>
@@ -161,6 +162,7 @@
       <img class="deco deco--ribbons deco--ribbons-orbit" data-depth=".05" src="assets/svg/ribbons-orbit.svg" alt="" aria-hidden="true" />
       <img class="deco deco--orb-tracks" data-depth="-.25" src="assets/svg/orb-main.svg" alt="" aria-hidden="true" />
       <h2 class="title reveal">Tracks</h2>
+      <p class="tracks__note reveal">Prizes are awarded to each person on the team unless otherwise specified.</p>
 
       <div class="sat-wrap reveal">
         <div class="sat" data-satellite>
@@ -207,14 +209,67 @@
         </div>
 
         <div class="sat-info" aria-live="polite">
-          <h3 class="sat-info__title" data-track-title>Money Moves</h3>
-          <p class="sat-info__name" data-track-name>Fintech</p>
+          <h3 class="sat-info__title" data-track-title>Reinvent Clinical Trials</h3>
+          <p class="sat-info__name" data-track-name>Healthcare · presented by Regeneron</p>
+          <div class="sat-info__body" data-track-body></div>
           <div class="sat-info__nav">
             <button class="btn btn--outline btn--icon" data-track-prev aria-label="Previous track">←</button>
             <button class="btn btn--outline btn--icon" data-track-next aria-label="Next track">→</button>
           </div>
           <ol class="sat-info__list" data-track-list></ol>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ CHALLENGES ============ -->
+    <section class="section challenges" id="challenges">
+      <img class="deco deco--orb-challenges" data-depth="-.15" src="assets/svg/orb-full.svg" alt="" aria-hidden="true" />
+      <h2 class="title reveal">Challenges</h2>
+      <div class="chal">
+        <article class="chal__card reveal">
+          <p class="chal__by">Presented by Daytona</p>
+          <h3>Best Use of Daytona</h3>
+          <p>Daytona provides fast, secure sandboxes for running code, built for the era of AI agents. Give an AI agent a safe place to write and run code, spin up isolated development environments on demand, or build tools that execute untrusted code at scale. Daytona must be a meaningful part of how your project works; the most creative and effective use wins.</p>
+          <ul class="prizes"><li><b>Winner</b><span>$5,000 in Daytona credits</span></li></ul>
+        </article>
+        <article class="chal__card reveal">
+          <p class="chal__by">Presented by Photon</p>
+          <h3>Build a Messaging Agent with Photon <span>2.0</span></h3>
+          <p>Build an agent that lives where people already talk. With Photon 2.0, your agent gets a real phone number and a native presence across iMessage, SMS, RCS, WhatsApp, Telegram, email and phone calls. Build companions that understand social context, multi-agent systems that collaborate with humans, or voice agents that answer and place real calls.</p>
+          <p>Projects must be built on Photon 2.0 and live on at least one Photon channel. Most creative and technically impressive agent wins. Join the hands-on build workshop Friday, 4–5 PM. <a href="https://somethingreat.notion.site/Hackathon-Guidelines-for-Photon-2-0-3f8e443f36bb81f9893fed0d08a4c01d" target="_blank" rel="noopener">Guidelines &amp; docs</a></p>
+          <ul class="prizes">
+            <li><b>Winner</b><span>$400 cash + $300 Photon credits + fast-track to the final interview round</span></li>
+            <li><b>Runner-up</b><span>$200 cash + $100 Photon credits</span></li>
+            <li><b>Best voice agent</b><span>$300 cash + $100 Photon credits, for the best voice agent on a Photon phone number</span></li>
+          </ul>
+        </article>
+        <article class="chal__card reveal">
+          <p class="chal__by">Presented by SpaceXAI</p>
+          <h3>Make It Legendary</h3>
+          <p>Space gives you more to work with than almost any other field: enormous public datasets, decades of missions, and a literature no human can read all of. Real space data goes in and a legendary project comes out.</p>
+          <p>Your project must be built with Cursor (the more you use it, the better your odds) and must use the Grok Imagine or Voice API. Bonus points for using Grok Bot for project planning and team collaboration.</p>
+          <ul class="prizes">
+            <li><b>Winning team</b><span>A branded Cursor mechanical keyboard for each member</span></li>
+            <li><b>Every entry</b><span>A raffle for a Cursor Owala water bottle</span></li>
+          </ul>
+        </article>
+        <article class="chal__card reveal">
+          <p class="chal__by">Presented by Chalk</p>
+          <h3>Best Data-Driven Agent Built on Chalk</h3>
+          <p>Build an agentic application that runs on contextual or real-world data, and prove it works! Use any part of Chalk (sandboxes, AI gateways, data integration, evals) in your stack. Judged on impact, use of data, and how it’s evaluated.</p>
+          <ul class="prizes"><li><b>Winning team</b><span>$1,500+ in Apple gift cards</span></li></ul>
+        </article>
+        <article class="chal__card chal__card--wide reveal">
+          <p class="chal__by">Presented by ASUS · Sustainability track bonus</p>
+          <h3>Content Challenge</h3>
+          <p>Calling all content creators, vloggers and LinkedIn users! Share your experience building for the ASUS “Save the Earth” Sustainability Track on Instagram, TikTok, LinkedIn or YouTube to win a prize (announced at the opening ceremony) and get reposted by official ASUS accounts. A 24-hour vlog, a short walkthrough of your build, a funny video about your team’s roles, a LinkedIn post on what you learned: make it fun, creative, informative, or all three.</p>
+          <ul class="chal__reqs">
+            <li><b>Public</b><span>Content must be public, not private or unlisted</span></li>
+            <li><b>Tag</b><span>Instagram @asususa &amp; @hhuh.hackathon · LinkedIn @ASUS Education · TikTok @asuseducation · YouTube @ASUSUSA</span></li>
+            <li><b>Hashtags</b><span>#ASUSEducation #hackharvard2026 #agentcomputer</span></li>
+            <li><b>Submit</b><span><a href="https://forms.cloud.microsoft/r/ALeANFVf7C?origin=lprLink" target="_blank" rel="noopener">Proof-of-content form</a></span></li>
+          </ul>
+        </article>
       </div>
     </section>
 
@@ -230,8 +285,8 @@
       <div class="sched__day reveal">
         <h3>Friday, October <span>16</span></h3>
         <ol>
-          <li><time>12:00–3:00 PM</time><div><b>Hacker registration</b><span>Lobby</span></div></li>
-          <li class="is-key"><time>3:00–4:00 PM</time><div><b>Opening ceremony</b><span>Main Ballroom · hacking starts after</span></div></li>
+          <li><time>12:00–3:00 PM</time><div><b>Hacker registration</b><span>3rd Floor Atrium</span></div></li>
+          <li class="is-key"><time>3:00–4:00 PM</time><div><b>Opening ceremony</b><span>Canopy Hall · hacking starts after</span></div></li>
           <li><time>4:00–5:00 PM</time><div><b>Photon workshop</b></div></li>
           <li><time>5:00–6:00 PM</time><div><b><a href="https://www.linkedin.com/in/alon-kosowsky-sachs" target="_blank" rel="noopener">Alon Kosowsky-Sachs</a></b><span>Co-Founder &amp; CTO · Tutor Intelligence</span></div></li>
           <li><time>6:00–6:30 PM</time><div><b>Typeracing competition</b></div></li>
@@ -253,15 +308,15 @@
           <li><time>7:00–9:00 PM</time><div><b>Poker tournament</b></div></li>
         </ol>
       </div>
-      <div class="sched__day sched__day--key reveal">
+      <div class="sched__day reveal">
         <h3>Sunday, October <span>18</span></h3>
         <ol>
-          <li class="is-key"><time>8:00 AM</time><div><b>Project submissions due</b><span>On Devpost</span></div></li>
-          <li><time>8:00–9:00 AM</time><div><b>Judge debrief &amp; training</b></div></li>
-          <li><time>9:00–10:30 AM</time><div><b>Judging period 1</b></div></li>
-          <li><time>10:30 AM–12:00 PM</time><div><b>Judging period 2</b></div></li>
+          <li class="is-due"><time>8:00 AM</time><div><b>Project submissions due</b><span>On Devpost</span></div></li>
+          <li><time>8:15–9:00 AM</time><div><b>Judge debrief &amp; training</b><span>Riverbend</span></div></li>
+          <li><time>9:00–10:30 AM</time><div><b>Judging period 1</b><span>Canopy Hall</span></div></li>
+          <li><time>10:30 AM–12:00 PM</time><div><b>Judging period 2</b><span>Canopy Hall</span></div></li>
           <li><time>12:00–1:00 PM</time><div><b>Lunch</b></div></li>
-          <li><time>1:00–2:30 PM</time><div><b>Judge deliberations</b></div></li>
+          <li><time>1:00–2:30 PM</time><div><b>Judge deliberations</b><span>Riverbend</span></div></li>
           <li class="is-key"><time>3:00–4:00 PM</time><div><b>Closing ceremony</b><span>Winners announced</span></div></li>
         </ol>
       </div>
@@ -336,7 +391,7 @@
         <details class="reveal"><summary>Who can come?<i></i></summary>
           <div><p>HackHarvard is open to undergraduate students. Teams can include students from different schools and experience levels.</p></div></details>
         <details class="reveal"><summary>What does it cost?<i></i></summary>
-          <div><p>The event is free for accepted hackers, including meals, workshops, mentorship, and event programming.</p></div></details>
+          <div><p>The event is free for accepted hackers, including lunch, workshops, mentorship, and event programming.</p></div></details>
         <details class="reveal"><summary>What if I do not have a team?<i></i></summary>
           <div><p>You can form a team at the event. There will be time and space to meet other hackers before building begins.</p></div></details>
         <details class="reveal"><summary>Can I apply after the deadline?<i></i></summary>
@@ -457,7 +512,7 @@
     </footer>
   </main>
 
-  <script src="js/main.js?v=20261014q" defer></script>
-  <script src="js/egg.js?v=20261014q" defer></script>
+  <script src="js/main.js?v=20261015b" defer></script>
+  <script src="js/egg.js?v=20261015b" defer></script>
 </body>
 </html>
