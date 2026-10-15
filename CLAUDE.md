@@ -67,7 +67,7 @@ Source art: `/Users/chi/Desktop/HackHarvard/` (merch, stickers, banners, `300ppi
 
 | Path | What |
 | --- | --- |
-| `index.html` | All content. Sections in order: hero, `#about`, `#tracks`, `#challenges`, `#schedule`, `#sponsors`, `#faq`, `#global`, `#team` |
+| `index.html` | All content. Sections in order: hero, `#about`, `#sponsors`, `#tracks`, `#challenges`, `#schedule`, `#faq`, `#global`, `#team` |
 | `js/main.js` | One IIFE. Data at the top: `EVENT_START`, `TRACKS`, `TEAM` = `[first, last, title, photo?]` (the first `FEATURED_COUNT` = 6 are directors). Feature blocks are marked `/* ---- Name */`: Loader, Starfield, Nav, Reveals, Countdown, Track satellite, Team, FAQ, Rocket… Helpers: `$`, `$$`, `clamp`, `svgEl` |
 | `css/style.css` | `:root` tokens → sections → media queries at the end |
 | `assets/img/team/` | square director photos, `<first>.jpg` |
