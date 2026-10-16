@@ -387,7 +387,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .logo--diamond { grid-column: 1 / -1; aspect-ratio: auto; padding: 4% 14%; }
 .logo--diamond img { max-height: 104px; }
 .logo--feature { grid-column: span 4; aspect-ratio: auto; padding: 6% 14%; }
-.logo--last { aspect-ratio: auto; padding: 22px 14%; }
+.logo--last { grid-column: 1 / -1; aspect-ratio: auto; padding: 22px 14%; }
 .logo--last img { max-height: 22px; }
 .logo--strip { aspect-ratio: auto; padding: 16px 12%; }
 .logo--strip img { max-height: 44px; }
