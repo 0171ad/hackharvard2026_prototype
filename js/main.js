@@ -68,6 +68,7 @@
     ['Sophia', 'Zhang', 'Finance', 'assets/img/team/sophia-zhang.jpg'], ['Emilie', 'Efendy', 'Finance', 'assets/img/team/emilie.jpg'],
     ['Eric', 'Gong', 'Logistics', 'assets/img/team/eric-gong.jpg'], ['Gabe', 'Cooper', 'Logistics', 'assets/img/team/gabe.jpg'],
     ['Sophia', 'Liu', 'Logistics'],
+    ['Amy', 'Zhang', 'Logistics'],
     ['Michael', 'McCauley', 'Logistics'],
     ['Rick', 'Yang', 'Hacker Experience'],
     ['Katherine', 'Guo', 'Hacker Experience'],
