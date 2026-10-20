@@ -415,7 +415,7 @@
     if (!root) return;
     const svg = $('svg', root), rig = $('[data-rig]', root);
     const title = $('[data-track-title]'), name = $('[data-track-name]');
-    const list = $('[data-track-list]'), info = $('[data-track-body]');
+    const info = $('[data-track-body]');
     const STEP = 360 / TRACKS.length;
 
     const mods = $('[data-mods]', root);
@@ -477,13 +477,6 @@
       return g;
     });
 
-    TRACKS.forEach((t, i) => {
-      const li = document.createElement('li');
-      li.innerHTML = `<button type="button">${t.name}</button>`;
-      li.firstChild.addEventListener('click', () => { select(i); touch(); });
-      list.append(li);
-    });
-    const listBtns = $$('button', list);
     const cards = TRACKS.map(t => {
       const d = document.createElement('div');
       d.className = 'sat-info__card';
@@ -506,7 +499,6 @@
       if (i === active) return;
       active = i;
       modules.forEach((m, k) => m.classList.toggle('is-active', k === i));
-      listBtns.forEach((b, k) => b.setAttribute('aria-current', k === i));
       title.textContent = TRACKS[i].title;
       name.textContent = TRACKS[i].by ? `${TRACKS[i].name} · presented by ${TRACKS[i].by}` : TRACKS[i].name;
       cards.forEach((c, k) => { c.classList.toggle('is-active', k === i); c.inert = k !== i; });

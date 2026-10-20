@@ -14,7 +14,7 @@
   <link rel="preload" href="assets/fonts/Makcasa-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-Black.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/AVEstiana-BlackOblique.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20261019e" />
+  <link rel="stylesheet" href="css/style.css?v=20261019h" />
 </head>
 <body class="is-loading">
 
@@ -249,7 +249,6 @@
             <button class="btn btn--outline btn--icon" data-track-prev aria-label="Previous track">←</button>
             <button class="btn btn--outline btn--icon" data-track-next aria-label="Next track">→</button>
           </div>
-          <ol class="sat-info__list" data-track-list></ol>
         </div>
       </div>
     </section>
@@ -259,16 +258,14 @@
       <img class="deco deco--orb-challenges" data-depth="-.15" src="assets/svg/orb-full.svg" alt="" aria-hidden="true" />
       <h2 class="title reveal">Challenges</h2>
       <div class="chal">
-        <article class="chal__card reveal">
+        <article class="chal__card chal__card--wide reveal">
           <img class="chal__logo" src="assets/img/sponsors/daytona.png" alt="Daytona" loading="lazy" />
-          <p class="chal__by">Presented by Daytona</p>
           <h3>Best Use of Daytona</h3>
           <p>Daytona provides fast, secure sandboxes for running code, built for the era of AI agents. Give an AI agent a safe place to write and run code, spin up isolated development environments on demand, or build tools that execute untrusted code at scale. Daytona must be a meaningful part of how your project works; the most creative and effective use wins.</p>
           <ul class="prizes"><li><b>Winner</b><span>$5,000 in Daytona credits</span></li></ul>
         </article>
         <article class="chal__card reveal">
           <img class="chal__logo" src="assets/img/sponsors/spacexai.png" alt="SpaceXAI" loading="lazy" />
-          <p class="chal__by">Presented by SpaceXAI</p>
           <h3>Make It Legendary</h3>
           <p>Space gives you more to work with than almost any other field: enormous public datasets, decades of missions, and a literature no human can read all of. Real space data goes in and a legendary project comes out.</p>
           <p>Your project must be built with Cursor (the more you use it, the better your odds) and must use the Grok Imagine or Voice API. Bonus points for using Grok Bot for project planning and team collaboration.</p>
@@ -279,7 +276,6 @@
         </article>
         <article class="chal__card reveal">
           <img class="chal__logo" src="assets/img/sponsors/chalk.svg" alt="Chalk" loading="lazy" />
-          <p class="chal__by">Presented by Chalk</p>
           <h3>Best Data-Driven Agent Built on Chalk</h3>
           <p>Build an agent that runs on real-world or contextual data, and prove it works. Chalk gives you the building blocks: sandboxes to run agent code, AI Gateway for model and MCP tool access, Federated Queries to pull data from where it lives, and Agent Evals to show your agent does what you claim.</p>
           <p>Use any part of Chalk in your stack, as long as it does real work in your project. Judged on impact, use of data, and how rigorously you evaluate your agent. Get started at <a href="https://chalk.ai/hackharvard" target="_blank" rel="noopener">chalk.ai/hackharvard</a> and find the Chalk team in our community Slack.</p>
@@ -290,22 +286,19 @@
         </article>
         <article class="chal__card reveal">
           <img class="chal__logo" src="assets/img/sponsors/factory.png" alt="Factory" loading="lazy" />
-          <p class="chal__by">Presented by Factory</p>
           <h3>Best Use of the Factory Droid SDK</h3>
           <p>Droid is the coding agent behind Factory’s CLI, desktop app, and web platform. With the Droid SDK, it can run inside your own projects. Droid plans the steps, uses tools, edits files, and runs commands. You decide when it runs, what it can access, and what it builds. So what will your Droid do this weekend? Show us the most creative, useful, or ambitious thing you can build with it. Get started in TypeScript (npm install @factory/droid-sdk) or Python (pip install droid-sdk) with the <a href="https://docs.factory.ai" target="_blank" rel="noopener">docs at docs.factory.ai</a>.</p>
           <p>The project must use the Droid SDK (TypeScript or Python) in a meaningful way. Droid should do real work in the running product, not just help you write code. The repo README should explain where and how Droid is used.</p>
           <ul class="prizes"><li><b>Winning team</b><span>$2,000 cash, $200 in Factory credits for each member, and swag</span></li></ul>
         </article>
-        <article class="chal__card chal__card--wide reveal">
+        <article class="chal__card reveal">
           <img class="chal__logo" src="assets/img/sponsors/capitalone.png" alt="Capital One" loading="lazy" />
-          <p class="chal__by">Presented by Capital One</p>
           <h3>Best Use of Nessie</h3>
           <p>How will you reimagine banking? <a href="https://nessieisreal.com/" target="_blank" rel="noopener">Nessie</a> is Capital One’s REST API for hackathons. With simple HTTP requests, you can create customers, manage accounts, move money, check balances, access ATM and branch locations, and set up peer-to-peer transactions. Nessie is structured to resemble how Capital One actually runs things, so what you build here maps to the real world. Show us how you use Nessie in your project this weekend!</p>
           <ul class="prizes"><li><b>Winning team</b><span>A $300 Giftogram gift card for each member</span></li></ul>
         </article>
         <article class="chal__card reveal">
           <img class="chal__logo" src="assets/img/sponsors/photon.svg" alt="Photon" loading="lazy" />
-          <p class="chal__by">Presented by Photon</p>
           <h3>Build a Messaging Agent with Photon <span>2.0</span></h3>
           <p>Build an agent that lives where people already talk. With Photon 2.0, your agent gets a real phone number and a native presence across iMessage, SMS, RCS, WhatsApp, Telegram, email and phone calls. Build companions that understand social context, multi-agent systems that collaborate with humans, or voice agents that answer and place real calls.</p>
           <p>Projects must be built on Photon 2.0 and live on at least one Photon channel. Most creative and technically impressive agent wins. Join the hands-on build workshop Friday, 4–5 PM. <a href="https://somethingreat.notion.site/Hackathon-Guidelines-for-Photon-2-0-3f8e443f36bb81f9893fed0d08a4c01d" target="_blank" rel="noopener">Guidelines &amp; docs</a></p>
@@ -317,7 +310,6 @@
         </article>
         <article class="chal__card reveal">
           <img class="chal__logo" src="assets/img/sponsors/asus.svg" alt="ASUS" loading="lazy" />
-          <p class="chal__by">Presented by ASUS · Sustainability track bonus</p>
           <h3>Content Challenge</h3>
           <p>Calling all content creators, vloggers and LinkedIn users! Share your experience building for the ASUS “Save the Earth” Sustainability Track on Instagram, TikTok, LinkedIn or YouTube to win a prize (announced at the opening ceremony) and get reposted by official ASUS accounts. A 24-hour vlog, a short walkthrough of your build, a funny video about your team’s roles, a LinkedIn post on what you learned: make it fun, creative, informative, or all three.</p>
           <ul class="chal__reqs">
@@ -536,7 +528,7 @@
     </footer>
   </main>
 
-  <script src="js/main.js?v=20261019e" defer></script>
+  <script src="js/main.js?v=20261019h" defer></script>
   <script src="js/egg.js?v=20261018a" defer></script>
 </body>
 </html>

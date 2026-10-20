@@ -225,8 +225,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
 
 /* ---------- Countdown: glowing seven-segment digits with blinking colons, straight on the sky ---------- */
-.hero__thanks { margin-top: 30px; font-size: clamp(24px, 3vw, 40px); font-weight: 700; letter-spacing: .04em; color: var(--yellow); transform: skewX(-6deg); filter: drop-shadow(0 0 6px rgba(255, 221, 0, .55)); }
-.hero__sponsor { margin-top: 14px; font-size: clamp(14.4px, 1.8vw, 24px); line-height: 1.4; color: var(--muted); }
+.hero__thanks { margin-top: 20px; font-size: clamp(18px, 2.1vw, 28px); font-weight: 700; letter-spacing: .04em; color: var(--yellow); transform: skewX(-6deg); filter: drop-shadow(0 0 6px rgba(255, 221, 0, .55)); }
+.hero__sponsor { margin-top: 10px; font-size: clamp(12px, 1.25vw, 17px); line-height: 1.4; color: var(--muted); }
 .hero__sponsor a { color: var(--text); border-bottom: 1px solid var(--magenta); }
 .countdown { display: flex; align-items: flex-start; gap: clamp(10px, 1.8vw, 18px); margin-top: 30px; }
 .countdown div { display: grid; gap: 10px; justify-items: center; }
@@ -353,24 +353,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .prizes, .chal__reqs { list-style: none; margin: 4px 0 0; padding: 0; border-top: 1px solid var(--line); }
 .prizes li, .chal__reqs li { display: grid; grid-template-columns: 9.5em 1fr; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.4; }
 .prizes b, .chal__reqs b { font: italic 500 12px/1.6 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--magenta); }
-.sat-info__nav { display: flex; gap: 10px; margin-bottom: 24px; }
-.sat-info__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.sat-info__list button {
-  width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line);
-  font: 500 16px/1 var(--sans); color: var(--muted); text-align: left; transition: color .3s, padding .4s var(--ease);
-}
-.sat-info__list button:hover { color: var(--text); padding-left: 8px; }
-.sat-info__list button[aria-current="true"] { color: var(--yellow); padding-left: 8px; }
+.sat-info__nav { display: flex; gap: 10px; }
 
 /* ---------- Challenges ---------- */
 .chal { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .chal__card { display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(22px, 2.4vw, 34px); }
 .chal__card--wide { grid-column: 1 / -1; }
 .chal__logo { align-self: flex-start; height: 26px; width: auto; max-width: 150px; margin-bottom: 16px; object-fit: contain; object-position: left; filter: brightness(0) invert(1); opacity: .85; }
-.chal__by { margin: 0 0 10px; font: italic 500 12px/1.3 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--magenta); }
-.chal__card h3 { margin: 0 0 16px; font: 400 clamp(26px, 2.4vw, 36px)/1.05 var(--serif); }
+.chal__card h3 { margin: 0 0 16px; font: 400 clamp(26px, 2.4vw, 36px)/1.05 var(--serif); color: var(--yellow); }
 .chal__card h3 span { font: italic 300 .86em/1 var(--sans); }   /* Makcasa has no numerals */
-.chal__card > p:not(.chal__by) { margin: 0 0 14px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.chal__card > p { margin: 0 0 14px; color: var(--muted); font-size: 15px; line-height: 1.55; }
 .chal__card .prizes, .chal__reqs { margin-top: auto; }
 .deco--orb-challenges { right: -50px; top: 6%; width: clamp(110px, 12vw, 180px); opacity: .75; animation: float 11s ease-in-out infinite; }
 
@@ -716,7 +708,6 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .sat-info__title { justify-content: center; }
   .sat-info__body, .tracks__note { text-align: left; }
   .sat-info__nav { justify-content: center; }
-  .sat-info__list button { justify-content: center; }
   .site { align-items: center; text-align: center; }
   .sponsor-cta { flex-direction: column; text-align: center; }
   .tag { align-self: center; }
@@ -750,8 +741,8 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .logo--strip, .logo--last, .sponsor-cta { grid-column: 1 / -1; }
   .deco--nova { grid-area: 5 / 1; }   /* 2-up rows: AfterQuery sits above Factory here */
   .countdown { gap: 6px; }
-  .hero__thanks { font-size: 22px; }
-  .hero__sponsor { font-size: 13px; }
+  .hero__thanks { font-size: 18px; }
+  .hero__sponsor { font-size: 12px; }
   .countdown b { font-size: 28px; }
   .countdown__colon { height: 28px; }
   .temple__podium { padding: 14px 8px; }
