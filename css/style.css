@@ -225,6 +225,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
 
 /* ---------- Countdown: glowing seven-segment digits with blinking colons, straight on the sky ---------- */
+.hero__thanks { margin-top: 30px; font-size: clamp(24px, 3vw, 40px); font-weight: 700; letter-spacing: .04em; color: var(--yellow); transform: skewX(-6deg); filter: drop-shadow(0 0 6px rgba(255, 221, 0, .55)); }
+.hero__sponsor { margin-top: 14px; font-size: 15px; color: var(--muted); }
+.hero__sponsor a { color: var(--text); border-bottom: 1px solid var(--magenta); }
 .countdown { display: flex; align-items: flex-start; gap: clamp(10px, 1.8vw, 18px); margin-top: 30px; }
 .countdown div { display: grid; gap: 10px; justify-items: center; }
 .countdown b { display: flex; gap: .12em; font-size: clamp(30px, 3.4vw, 46px); color: var(--yellow); transform: skewX(-6deg); filter: drop-shadow(0 0 6px rgba(255, 221, 0, .55)); }
@@ -747,6 +750,7 @@ main { overflow-y: clip; }   /* decorations (e.g. the team ribbon) must not exte
   .logo--strip, .logo--last, .sponsor-cta { grid-column: 1 / -1; }
   .deco--nova { grid-area: 5 / 1; }   /* 2-up rows: AfterQuery sits above Factory here */
   .countdown { gap: 6px; }
+  .hero__thanks { font-size: 24px; }
   .countdown b { font-size: 28px; }
   .countdown__colon { height: 28px; }
   .temple__podium { padding: 14px 8px; }

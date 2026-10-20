@@ -21,7 +21,6 @@
   };
   const idle = fn => (window.requestIdleCallback || setTimeout)(fn);
 
-  const EVENT_START = new Date('2026-10-16T17:00:00-04:00');
 
   // Track names + taglines from hhuh.io
   const TRACKS = [
@@ -376,27 +375,6 @@
       requestAnimationFrame(step);
     }), { threshold: 0.6 });
     $$('[data-count]').forEach(el => io.observe(el));
-  };
-
-  /* --------------------------------------------------------------- Countdown */
-  const countdown = () => {
-    // each [data-cd] becomes two seven-segment digits (segments a–g) plus hidden text for screen readers
-    const digit = '<span class="seg" aria-hidden="true">' + 'abcdefg'.split('').map(c => `<i class="${c}"></i>`).join('') + '</span>';
-    const els = Object.fromEntries(['d', 'h', 'm', 's'].map(k => {
-      const el = $(`[data-cd="${k}"]`);
-      el.innerHTML = digit + digit + '<span class="sr"></span>';
-      return [k, { segs: $$('.seg', el), sr: $('.sr', el) }];
-    }));
-    const pad = n => String(n).padStart(2, '0');
-    const show = (k, n) => { const t = pad(n); els[k].segs.forEach((s, i) => { s.dataset.n = t[i]; }); els[k].sr.textContent = t; };
-    const tick = () => {
-      const diff = Math.max(0, EVENT_START - Date.now());
-      show('d', Math.min(99, Math.floor(diff / 864e5)));
-      show('h', Math.floor(diff / 36e5) % 24);
-      show('m', Math.floor(diff / 6e4) % 60);
-      show('s', Math.floor(diff / 1e3) % 60);
-    };
-    tick(); setInterval(tick, 1000);
   };
 
   /* ------------------------------------------------ Fit the HackHarvard lockup */
@@ -887,7 +865,6 @@
   scrub();
   typing();
   counters();
-  countdown();
   decoParallax();
   onNear('[data-satellite]', satellite);
   onNear('[data-team]', team);
